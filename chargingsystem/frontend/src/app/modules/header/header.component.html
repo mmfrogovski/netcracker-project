@@ -1,0 +1,33 @@
+<div class="head-wrap">
+  <header id="header" class="alt">
+    <h1 id="logo"><a href="index.html">Charging System</a></h1>
+    <nav id="nav">
+      <ul>
+        <li><a href="#">Welcome</a></li>
+        <li><a [routerLink]="['/all-services']">Services</a></li>
+        <li><a href="#">My services</a></li>
+        <li class="sign-up"><a href="#">Log in</a></li>
+        <div class="overlay" style="display:none;">
+          <div class="login-wrapper">
+            <div class="login-content">
+              <a class="close">x</a>
+              <form method="post">
+                <label for="username">
+                  Login:
+                  <input type="text" name="username" id="username" placeholder="Username must be between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{8,20}$" required="required" />
+                </label>
+                <label for="password">
+                  Password:
+                  <input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+                <button type="submit">Sign in</button>
+                <button><a href="registration.html">Registration</a></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <script src="../../../login.js"></script>
+</div>

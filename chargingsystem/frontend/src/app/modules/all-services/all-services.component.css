@@ -1,0 +1,116 @@
+body{
+  width: 100%;
+  height: auto;
+  background-image: url("../../../assets/images/service-bg.jpg");
+  background-size: 100%, auto;
+  background-attachment: fixed;
+  padding-top: 5.5em;
+}
+
+.content{
+  width:78%;
+  height: 95%;
+  padding: 1vw;
+  margin:1vw auto;
+  background-color: rgba(0,0,0,.1);
+  border: 1vw;
+  border-radius: 0.2vw;
+  box-shadow: 0 0 1.5vw #777;
+}
+
+.content h2{
+  text-align: center;
+  margin: 0 auto 0.5vw auto;
+  font-size: 2vw;
+  color: #427f9e;
+}
+
+.content h3{
+  text-align: center;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color:#4c5563;
+  text-shadow: 0 -1px rgba(0,0,0,.3);
+}
+
+.articles{
+  width: 100%;
+  margin: 0 1vw 1vw 1vw;
+}
+
+.container {
+  width: 45%;
+  float: left;
+  display: block;
+  margin:2% 0 3% 2vw;
+  background-image: url("../../../assets/images/og-image.png");
+  background-repeat: no-repeat;
+  background-size: 83%;
+}
+
+
+.container a{
+  text-decoration: none;
+}
+
+.anons{
+  height: 26vw;
+  background-color: rgba(166, 228, 255, 0.8);
+  padding: 1.1vw;
+  border: solid 1px;
+  border-radius: 0.1em;
+  font-size: 1.2vw;
+  font-weight: bold;
+  color:#4c5563;
+  text-shadow: 0 -1px rgba(0,0,0,.3);
+}
+
+.anons p{
+  font-size: 1.5vw;
+  display: none;
+}
+
+.anons:hover h3{
+  color: #f3f1f1;
+  font-size: 200%;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.anons:hover p{
+  transition: 0.5s;
+  transition-delay: 0.3s;
+  display: block;
+  color: brown;
+}
+
+.anons:not(:hover) h3{
+  transition: 2s;
+}
+
+.anons:not(:hover){
+  transition: 2s;
+}
+
+.anons:hover{
+  background-color: rgba(0,0,0,.2);
+  border: solid 1px #ffffff;
+  transition: 0.5s;
+}
+
+.clear{
+  clear: both;
+}
+
+.add-service a{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5vw;
+  font-weight: 600;
+  border: solid 1px transparent;
+}
+
+
+.add-service a:hover{
+  border: solid 1px #ffffff;
+}

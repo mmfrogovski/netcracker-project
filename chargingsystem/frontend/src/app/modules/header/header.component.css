@@ -1,0 +1,120 @@
+/*Header*/
+.head-wrap {
+  width: 100%;
+  height: 6vw;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#header {
+  cursor: default;
+  font-size: 1em;
+  left: 0;
+  padding: 1em 1.5em;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+}
+
+#header h1 {
+  font-weight: 900;
+  margin: 0;
+}
+
+#header nav {
+  letter-spacing: 0.075em;
+  position: absolute;
+  right: 1.5em;
+  text-transform: uppercase;
+  top: 0.75em;
+}
+
+#header nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#header nav ul li{
+  display: inline-block;
+  margin-left: 1em;
+}
+
+#header nav ul li a {
+  border: solid 1px transparent;
+  color: inherit;
+  display: inline-block;
+  line-height: 1em;
+  padding: 0.6em 1em;
+  text-decoration: none;
+}
+
+#header nav ul li input[type="button"],
+#header nav ul li input[type="submit"],
+#header nav ul li input[type="reset"],
+#header nav ul li button {
+  font-size: 1em;
+  min-width: 0;
+  width: auto;
+}
+
+
+#header nav ul li:hover > a {
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background: rgba(188, 202, 206, 0.15);
+}
+
+#header nav ul li > a {
+  font-weight: 900;
+}
+
+#header nav ul li.sign-up {
+  background-color: #6dc2ff;
+}
+
+#header {
+  -moz-animation: none;
+  -webkit-animation: none;
+  animation: none;
+  background: transparent;
+  box-shadow: none;
+  color: #fff;
+  padding: 2em 2.5em;
+  position: absolute;
+}
+
+#header nav {
+  right: 8em;
+}
+
+#header.alt nav ul li.active > a, #header.alt nav ul li:hover > a {
+  border: solid 1px;
+}
+
+
+ol, ul {
+  list-style: none;
+}
+
+
+h1 {
+  color: inherit;
+  font-weight: 300;
+  line-height: 1.75em;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+}
+
+h1 a{
+  color: inherit;
+  text-decoration: none;
+  border: 0;
+}
+
+h1 {
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+}
