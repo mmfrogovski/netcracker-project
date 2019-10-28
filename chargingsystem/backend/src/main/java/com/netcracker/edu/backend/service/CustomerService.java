@@ -30,10 +30,6 @@ public class CustomerService implements CustomerServiceInterface {
         return customersRepository.save(customer);
     }
 
-//    @Override
-//    public int updateCustomerBillingAccount(long billingId, long id){
-//        return customersRepository.updateCustomerBillingAccount(billingId, id);
-//    }
 
     @Override
     public void deleteCustomerById(long id){

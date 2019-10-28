@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsersController {
 
     private UsersServiceInterface usersService;

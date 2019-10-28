@@ -1,0 +1,40 @@
+<body>
+<app-header></app-header>
+<div class="wrapper">
+  <div class="content">
+    <div class="banner">
+      <h2 *ngIf="service.serviceName != null">{{service.serviceName}}</h2>
+      <p class="date">{{date|date}}</p>
+    </div>
+    <div class="service-wrap">
+      <div class="description">
+        <p>{{service.description}}</p>
+      </div>
+      <div class="details">
+        <ul>
+          <li>Price: {{service.price}}</li>
+          <li>Name: {{service.subName}}</li>
+          <li>Duration: {{service.subDuration}}</li>
+          <li class="subscribe" (click)="subscribeToService()"><a>Subscribe</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="reviews">
+      <h3>Reviews</h3>
+      <h3><a class="add-review">Add review</a></h3>
+      <ul>
+        <li> USERNAME |
+          <ul>
+            <li>
+              USERMASSAGE
+            </li>
+            <li>| MESSAGEDATE</li>
+          </ul>
+        </li>
+     </ul>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+</body>
+

@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.services;
 
 
+import com.netcracker.edu.fapi.models.NewUserSubscription;
 import com.netcracker.edu.fapi.models.UserSubscription;
 import com.netcracker.edu.fapi.services.interfaces.UserSubInterface;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class UserSubService implements UserSubInterface {
     }
 
     @Override
-    public UserSubscription saveUserSub(UserSubscription subscription) {
+    public UserSubscription saveUserSub(NewUserSubscription subscription) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/users_subs/", subscription, UserSubscription.class).getBody();
     }

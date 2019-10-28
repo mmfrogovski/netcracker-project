@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Charging System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="assets/css/service.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="head-wrap">
+        <header id="header" class="alt">
+            <h1 id="logo"><a href="index.html">Charging System</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="my-services.html">My services</a></li>
+                    <li class="sign-up"><a href="#">Log in</a></li>
+                    <div class="overlay" style="display:none;">
+                        <div class="login-wrapper">
+                            <div class="login-content">
+                                <a class="close">x</a>
+                                <form method="post">
+                                    <label for="username">
+                                        Login:
+                                        <input type="text" name="username" id="username" placeholder="Username must be between 8 and 20 characters" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{8,20}$" required="required" />
+                                    </label>
+                                    <label for="password">
+                                        Password:
+                                        <input type="password" name="password" id="password" placeholder="Password must contain 1 uppercase, lowercase and number" pattern="(?=^.{8,}$)((?=.*d)|(?=.*W+))(?![.n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                                    </label>
+                                    <button type="submit">Sign in</button>
+                                    <button><a href="registration.html">Registration</a></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="content">
+        <div class="articles">
+            <div class="container">
+                <a href="service-details.html">
+                    <div class="anons">
+                        <h3>Yandex Music</h3>
+                        <p>Yandex music description.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+                <a href="service-details.html">
+                    <div class="anons">
+                        <h3>Yandex Music</h3>
+                        <p>Yandex music description.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="clear"></div>
+            <div class="container">
+                <a href="service-details.html">
+                    <div class="anons">
+                        <h3>Yandex Music</h3>
+                        <p>Yandex music description.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+                <a href="service-details.html">
+                    <div class="anons">
+                        <h3>Yandex Music</h3>
+                        <p>Yandex music description.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; ChargingSystem</li>
+            <li>Design: <a href="#">Rogovskiy Vladislav</a></li>
+        </ul>
+    </section>
+
+</div>
+
+<script src="assets/js/login.js"></script>
+</body>
+</html>

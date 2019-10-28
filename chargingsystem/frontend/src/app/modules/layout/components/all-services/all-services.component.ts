@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: "app-all-services-view",
@@ -6,7 +6,8 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AllServicesViewComponent implements OnInit {
 
-  constructor( ) {}
+  constructor() {
+  }
 
   ngOnInit() {
 

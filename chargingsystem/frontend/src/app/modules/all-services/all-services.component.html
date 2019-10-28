@@ -1,45 +1,56 @@
 <body>
 <div class="wrapper">
-  <div class="content">
-    <div class="add-service">
-      <a href="#">Add service
-      </a></div>
-    <div class="articles">
-      <div class="container">
-        <a href="service-details.html">
-          <div class="anons">
-            <h3>Yandex Music</h3>
-            <p>Yandex music description.</p>
-          </div>
-        </a>
-      </div>
-      <div class="container">
-        <a href="service-details.html">
-          <div class="anons">
-            <h3>Yandex Music</h3>
-            <p>Yandex music description.</p>
-          </div>
-        </a>
-      </div>
-      <div class="clear"></div>
-      <div class="container">
-        <a href="service-details.html">
-          <div class="anons">
-            <h3>Yandex Music</h3>
-            <p>Yandex music description.</p>
-          </div>
-        </a>
-      </div>
-      <div class="container">
-        <a href="service-details.html">
-          <div class="anons">
-            <h3>Yandex Music</h3>
-            <p>Yandex music description.</p>
-          </div>
-        </a>
-      </div>
-      <div class="clear"></div>
+  <div class="add_service_form">
+    <div class="form_wrap">
+      <div (click)="closeForm()" class="close">X</div>
+      <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+        <div>
+          <label for="serviceName">Service Name
+            <input id="serviceName" type="text" formControlName="serviceName"/>
+          </label>
+        </div>
+        <div>
+          <label for="price">Price
+            <input id="price" type="number" formControlName="price"/>
+          </label>
+        </div>
+        <div>
+          <label for="subName">sub name
+            <input id="subName" type="text" formControlName="subName"/>
+          </label>
+        </div>
+        <div>
+          <label for="description">Description
+            <input id="description" type="text" formControlName="description"/>
+          </label>
+        </div>
+        <div>
+          <label for="subDuration">sub duration
+            <input id="subDuration" type="number" formControlName="subDuration"/>
+          </label>
+        </div>
+        <div class="send_service">
+          <button class="button" type="submit">Add</button>
+        </div>
+      </form>
     </div>
+  </div>
+  <div class="content">
+    <div class="add-service" (click)="addServiceForm()">
+      <a>Add service</a>
+    </div>
+    <div class="articles" *ngFor="let item of services">
+      <div class="container" >
+        <a [routerLink]="['/service-details/'+item.id]">
+          <div class="anons">
+            <h3>{{item.serviceName}}</h3>
+            <p>{{item.description}}</p>
+          </div>
+        </a>
+        <div><button type="submit" (click)="deleteService(item)">delete</button></div>
+      </div>
+    </div>
+    <div class="clear"></div>
   </div>
   <app-footer></app-footer>
 </div>

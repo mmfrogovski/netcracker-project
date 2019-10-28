@@ -10,17 +10,17 @@ import javax.persistence.*;
 public class UserSubscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
+
     private String subStart;
     private int restOfSub;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonBackReference
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id")
     @JsonBackReference
     private Subscription subscription;
@@ -28,11 +28,9 @@ public class UserSubscription {
     public UserSubscription() {
     }
 
-    public UserSubscription(String subStart, int restOfSub, Customer customer, Subscription subscription) {
+    public UserSubscription(String subStart, int restOfSub) {
         this.subStart = subStart;
         this.restOfSub = restOfSub;
-        this.customer = customer;
-        this.subscription = subscription;
     }
 
     public long getId() {

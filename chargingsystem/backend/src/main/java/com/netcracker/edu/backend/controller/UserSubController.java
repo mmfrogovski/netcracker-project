@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.controller;
 
+import com.netcracker.edu.backend.entities.NewUserSubscription;
 import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.service.interfaces.UserSubInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,12 @@ public class UserSubController {
     }
 
     @RequestMapping(value = "/users_subs", method = RequestMethod.POST)
-    public UserSubscription saveUserSub(@RequestBody UserSubscription userSubscription) {
+    public UserSubscription saveUserSub(@RequestBody NewUserSubscription userSubscription) {
         return userSubInterface.saveUserSub(userSubscription);
     }
 
-    @RequestMapping(value = "users_subs/{subId}", method = RequestMethod.DELETE)
-    public void deleteUserSubById(@PathVariable(name = "subId") long subId) {
-        userSubInterface.deleteUserSubById(subId);
+    @RequestMapping(value = "users_subs/{id}", method = RequestMethod.DELETE)
+    public void deleteUserSubById(@PathVariable(name = "id") long id) {
+        userSubInterface.deleteUserSubById(id);
     }
 }

@@ -1,0 +1,45 @@
+body {
+    width: 100%;
+    height: auto;
+    background-image: url("images/my-services-bg.jpg");
+    background-size: 100%, auto;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+.service-wrap {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0.5%;
+    margin-top: 1%;
+}
+
+.service-wrap:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.service-wrap a{
+    text-decoration: none;
+}
+
+.service-wrap ul{
+    width: 80%;
+    margin-left: 10%;
+}
+.service-wrap ul li{
+    color: #ffffff;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+}
+
+.service-wrap ul li ul {
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.service-wrap ul li ul li{
+    margin-left: 5vw;
+}

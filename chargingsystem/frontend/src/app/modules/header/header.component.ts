@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-header',
@@ -10,6 +10,14 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showLogin(){
+    document.querySelector(".overlay").id = "show";
+  }
+
+  closeLogin(){
+    document.querySelector(".overlay").id = "";
   }
 
 }

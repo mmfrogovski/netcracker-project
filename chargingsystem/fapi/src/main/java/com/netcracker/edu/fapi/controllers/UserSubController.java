@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.controllers;
 
 
+import com.netcracker.edu.fapi.models.NewUserSubscription;
 import com.netcracker.edu.fapi.models.UserSubscription;
 import com.netcracker.edu.fapi.services.interfaces.UserSubInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserSubController {
     private UserSubInterface userSubInterface;
 
@@ -31,7 +33,7 @@ public class UserSubController {
     }
 
     @RequestMapping(value = "/users_subs", method = RequestMethod.POST)
-    public UserSubscription saveUserSub(@RequestBody UserSubscription userSubscription) {
+    public UserSubscription saveUserSub(@RequestBody NewUserSubscription userSubscription) {
         return userSubInterface.saveUserSub(userSubscription);
     }
 

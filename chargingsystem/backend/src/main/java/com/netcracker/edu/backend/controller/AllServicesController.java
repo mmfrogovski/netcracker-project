@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.controller;
 
+import com.netcracker.edu.backend.entities.NewService;
 import com.netcracker.edu.backend.entities.Subscription;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ public class AllServicesController {
     }
 
     @RequestMapping(value = "/all_subs", method = RequestMethod.POST)
-    public Subscription saveService(@RequestBody Subscription service) {
+    public Subscription saveService(@RequestBody NewService service) {
         return subsService.saveService(service);
     }
 
     @RequestMapping(value = "/all_subs/{serviceId}", method = RequestMethod.DELETE)
-    public void deleteServiceById(@PathVariable(name = "serviceId") long serviceId) {
-        subsService.deleteServiceById(serviceId);
+    public void deleteServiceById(@PathVariable(name = "serviceId") long id) {
+        subsService.deleteServiceById(id);
     }
 
 }

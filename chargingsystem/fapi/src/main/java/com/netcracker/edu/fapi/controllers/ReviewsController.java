@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReviewsController {
 
     private ReviewsServiceInterface reviewsService;

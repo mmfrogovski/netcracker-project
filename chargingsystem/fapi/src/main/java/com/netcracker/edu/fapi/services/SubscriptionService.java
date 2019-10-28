@@ -1,5 +1,7 @@
 package com.netcracker.edu.fapi.services;
 
+
+import com.netcracker.edu.fapi.models.NewService;
 import com.netcracker.edu.fapi.models.Subscription;
 import com.netcracker.edu.fapi.services.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,9 +32,9 @@ public class SubscriptionService implements SubsServiceInterface {
     }
 
     @Override
-    public Subscription saveService(Subscription subscription) {
+    public Subscription saveService(NewService service) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/all_subs/", subscription, Subscription.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/all_subs/", service, Subscription.class).getBody();
     }
 
     @Override

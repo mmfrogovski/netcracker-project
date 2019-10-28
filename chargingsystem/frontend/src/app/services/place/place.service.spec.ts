@@ -1,6 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-
-import { PlaceService } from './place.service';
+import {PlaceService} from './place.service';
+import {TestBed} from "@angular/core/testing";
 
 describe('PlaceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

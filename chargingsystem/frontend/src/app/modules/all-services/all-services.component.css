@@ -35,7 +35,7 @@ body{
 
 .articles{
   width: 100%;
-  margin: 0 1vw 1vw 1vw;
+  margin: 1vw 1vw 1vw 1vw;
 }
 
 .container {
@@ -113,4 +113,61 @@ body{
 
 .add-service a:hover{
   border: solid 1px #ffffff;
+  cursor: pointer;
+}
+
+.add_service_form{
+  display: none;
+  background-color: rgba(0, 0, 0, .25);
+  bottom: 0;
+  position: fixed;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.form_wrap{
+  align-self: center;
+  background-color: rgba(94, 7, 126, 0.8);
+  position: absolute;
+  bottom: 30%;
+  left: 30%;
+  border-radius: 0.1vw;
+  padding: 0.4vw;
+  width: 35vw;
+  height: 35vw;
+}
+
+.form_wrap form{
+  color: rgb(255, 255, 255);
+  display: block;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.3vw;
+  font-weight: 300;
+  margin: .75em 0;
+}
+
+.close {
+  background-color: rgb(0, 57, 182);
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  display: block;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.6vw;
+  padding: 0.2vw 0.7vw;
+  position: absolute;
+  top: 1.25rem;
+  transition: all 400ms ease;
+  right: 1.25rem;
+}
+
+.close:hover {
+  background-color: #596982;
+  cursor: pointer;
+}
+
+
+#add_show{
+  display: block;
 }

@@ -1,0 +1,113 @@
+body {
+  width: 100%;
+  height: auto;
+  background-image: url("../../../assets/images/details-bg.jpg");
+  background-size: 100%, auto;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  padding-top: 5.5em;
+}
+
+
+.banner{
+  width: 78%;
+  height: 100px;
+  background-color: #ffb128;
+  margin-top: 2%;
+  margin-left: 11%;
+  padding: 1%;
+  text-align: center;
+}
+
+.service-wrap{
+  margin-top: 2%;
+  padding: 1%;
+  width: 78%;
+  height: auto;
+  background-color: #c7ada1;
+  margin-left: 11%;
+  color: white;
+}
+
+
+.service-wrap ul{
+  display: flex;
+  flex-direction: row;
+}
+.service-wrap ul li{
+  list-style: none;
+  margin-left: 1.5em;
+}
+
+.service-wrap ul li a{
+  position: absolute;
+  border: solid 1px transparent;
+  text-decoration: none;
+  color: #ffffff;
+  right: 15vw;
+}
+
+.service-wrap ul li a:hover{
+  border: solid 1px;
+  cursor: pointer;
+}
+
+.reviews {
+  background-color: rgba(0,0,0,0.3);
+  padding: 0.5%;
+  margin-top: 1%;
+}
+
+.reviews h3{
+  color: #ffffff;
+  width: 49%;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+}
+
+.reviews h3 a{
+  text-decoration: none;
+  color: #ffffff;
+  border: solid 1px transparent;
+}
+
+.reviews a:hover{
+  cursor: pointer;
+  background-color: rgba(255,255,255, 0.1);
+  border: solid 1px #ffffff;
+}
+
+.reviews h3 a:hover{
+  border: solid 1px #ffffff;
+}
+
+.reviews ul{
+  border-top: solid 1px #ffffff;
+  border-bottom: solid 1px #ffffff;
+  width: 80%;
+  margin-left: 10%;
+}
+.reviews ul li{
+  color: #ffffff;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row;
+}
+
+.reviews ul li ul {
+  border-top: none;
+  border-bottom: none;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+}
+
+.reviews ul li ul li{
+  margin-left: 2vw;
+}
+
+.reviews ul li ul li:last-child{
+  position: absolute;
+  right: 12vw;
+}

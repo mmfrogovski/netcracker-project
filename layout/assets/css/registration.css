@@ -1,0 +1,68 @@
+body {
+    width: 100%;
+    height: auto;
+    background-image: url("images/registration-bg.jpg");
+    background-size: 100%, auto;
+    background-repeat: no-repeat;
+}
+
+
+
+input {
+    border: none;
+    font-size: 1em;
+    font-weight: 300;
+}
+
+p, label {
+    line-height: 1.5em;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+#login {
+    margin: 5% auto;
+    width: 60%;
+}
+
+
+#login form input {
+    height: 50px;
+    outline: none;
+}
+
+#login form input[type="text"]{
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: solid 2px #ffffff;
+}
+
+#login form input[type="password"]{
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: solid 2px #ffffff;
+}
+
+#login form input:focus {
+    color: #fff;
+}
+
+#login form input[type="submit"] {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #ea4c88;
+    color: #eee;
+    font-weight: bold;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 30%;
+    margin-left: 33%;
+}
+
+#login form input[type="submit"]:hover {
+    background-color: #d44179;
+}
