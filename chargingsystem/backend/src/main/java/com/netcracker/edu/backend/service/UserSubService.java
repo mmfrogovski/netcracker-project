@@ -1,8 +1,5 @@
 package com.netcracker.edu.backend.service;
 
-import com.netcracker.edu.backend.entities.Customer;
-import com.netcracker.edu.backend.entities.NewUserSubscription;
-import com.netcracker.edu.backend.entities.Subscription;
 import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.repository.UserSubscriptionRepository;
 import com.netcracker.edu.backend.service.interfaces.UserSubInterface;
@@ -29,9 +26,8 @@ public class UserSubService implements UserSubInterface {
     }
 
     @Override
-    public UserSubscription saveUserSub(NewUserSubscription subscription) {
-        userSubscriptionRepository.saveUserSubscription(subscription.getRestOfSub(), subscription.getSubStart(), subscription.getCustomerId(), subscription.getServiceId());
-        return new UserSubscription(subscription.getSubStart(),subscription.getRestOfSub());
+    public UserSubscription saveUserSub(UserSubscription subscription) {
+        return userSubscriptionRepository.save(subscription);
     }
 
     @Override

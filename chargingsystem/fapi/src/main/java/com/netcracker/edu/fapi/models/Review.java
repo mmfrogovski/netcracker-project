@@ -8,6 +8,9 @@ public class Review {
     private long id;
     private String review;
     private String reviewDate;
+    private Customer customer;
+    private Subscription subscription;
+
 
 
     public Review() {
@@ -42,6 +45,22 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,6 +82,8 @@ public class Review {
                 "id=" + id +
                 ", review='" + review + '\'' +
                 ", reviewDate='" + reviewDate + '\'' +
+                ", customer=" + customer +
+                ", subscription=" + subscription +
                 '}';
     }
 }

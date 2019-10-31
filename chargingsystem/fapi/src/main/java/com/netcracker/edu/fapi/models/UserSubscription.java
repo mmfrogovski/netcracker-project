@@ -5,6 +5,8 @@ public class UserSubscription {
     private long id;
     private String subStart;
     private int restOfSub;
+    private Customer customer;
+    private Subscription subscription;
 
     public UserSubscription() {
     }
@@ -20,6 +22,22 @@ public class UserSubscription {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
     }
 
     public String getSubStart() {
@@ -45,6 +63,8 @@ public class UserSubscription {
                 "id=" + id +
                 ", subStart='" + subStart + '\'' +
                 ", restOfSub=" + restOfSub +
+                ", customer=" + customer +
+                ", subscription=" + subscription +
                 '}';
     }
 }

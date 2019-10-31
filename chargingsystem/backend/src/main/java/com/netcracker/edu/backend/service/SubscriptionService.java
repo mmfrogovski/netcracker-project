@@ -1,13 +1,11 @@
 package com.netcracker.edu.backend.service;
 
-import com.netcracker.edu.backend.entities.NewService;
 import com.netcracker.edu.backend.entities.Subscription;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +26,8 @@ public class SubscriptionService implements SubsServiceInterface {
     }
 
     @Override
-    public Subscription saveService(NewService service) {
-        Subscription temp = new Subscription(service.getServiceName(), service.getSubName(), service.getSubDuration(), service.getPrice(), service.getDescription());
-        temp.setReviews(Collections.emptyList());
-        temp.setUsersSubscriptions(Collections.emptyList());
-        return subscriptionRepository.save(temp);
+    public Subscription saveService(Subscription service) {
+        return subscriptionRepository.save(service);
     }
 
     @Override

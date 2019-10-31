@@ -5,6 +5,7 @@ public class User {
     private String login;
     private String password;
     private Boolean role;
+    private Customer customer;
 
 
     public User() {
@@ -23,6 +24,14 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getLogin() {
@@ -56,6 +65,7 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", customer=" + customer +
                 '}';
     }
 }

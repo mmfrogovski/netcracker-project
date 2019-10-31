@@ -1,11 +1,7 @@
 package com.netcracker.edu.backend.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,16 +23,6 @@ public class Customer {
     private BillingAccount billingAccount;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<UserSubscription> subscriptions;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<Review> reviews;
-
     public Customer() {
     }
 
@@ -55,21 +41,6 @@ public class Customer {
         this.id = id;
     }
 
-    public List<UserSubscription> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(List<UserSubscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     public int getAge() {
         return age;
@@ -78,6 +49,7 @@ public class Customer {
     public void setAge(int age) {
         this.age = age;
     }
+
     public String getName() {
         return name;
     }
@@ -126,7 +98,6 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", billingAccount=" + billingAccount +
-                ", subscriptions=" + subscriptions +
                 '}';
     }
 }

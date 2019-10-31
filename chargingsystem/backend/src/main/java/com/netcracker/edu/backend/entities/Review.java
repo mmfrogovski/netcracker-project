@@ -1,7 +1,6 @@
 package com.netcracker.edu.backend.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -16,13 +15,11 @@ public class Review {
     private String reviewDate;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
+    @ManyToOne()
     @JoinColumn(name = "service_id")
     private Subscription service;
 

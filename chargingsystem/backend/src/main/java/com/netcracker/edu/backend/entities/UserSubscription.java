@@ -1,7 +1,6 @@
 package com.netcracker.edu.backend.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -15,14 +14,12 @@ public class UserSubscription {
     private String subStart;
     private int restOfSub;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
-    @JsonBackReference
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id")
-    @JsonBackReference
     private Subscription subscription;
 
     public UserSubscription() {

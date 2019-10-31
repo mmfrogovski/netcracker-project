@@ -1,13 +1,9 @@
 package com.netcracker.edu.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="subs")
+@Table(name = "subs")
 public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +14,6 @@ public class Subscription {
     private int subDuration;
     private float price;
     private String description;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "subscription")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<UserSubscription> usersSubscriptions;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "service")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<Review> reviews;
 
     public Subscription() {
     }
@@ -88,21 +74,6 @@ public class Subscription {
         this.description = description;
     }
 
-    public List<UserSubscription> getUsersSubscriptions() {
-        return usersSubscriptions;
-    }
-
-    public void setUsersSubscriptions(List<UserSubscription> usersSubscriptions) {
-        this.usersSubscriptions = usersSubscriptions;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
 
     @Override
     public String toString() {
@@ -113,8 +84,6 @@ public class Subscription {
                 ", subDuration=" + subDuration +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", usersSubscriptions=" + usersSubscriptions +
-                ", reviews=" + reviews +
                 '}';
     }
 }

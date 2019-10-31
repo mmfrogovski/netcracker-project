@@ -50,7 +50,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     }));
   }
 
-  onSubmit(data) {
+  public onSubmit(data) : void {
     this.sendService(data);
     this.checkoutForm.reset();
   }

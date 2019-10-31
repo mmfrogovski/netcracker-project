@@ -1,6 +1,5 @@
 package com.netcracker.edu.backend.controller;
 
-import com.netcracker.edu.backend.entities.NewUserSubscription;
 import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.service.interfaces.UserSubInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class UserSubController {
     }
 
     @RequestMapping(value = "/users_subs", method = RequestMethod.POST)
-    public UserSubscription saveUserSub(@RequestBody NewUserSubscription userSubscription) {
+    public UserSubscription saveUserSub(@RequestBody UserSubscription userSubscription) {
         return userSubInterface.saveUserSub(userSubscription);
     }
 

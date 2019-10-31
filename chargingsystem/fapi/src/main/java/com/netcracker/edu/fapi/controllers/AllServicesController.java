@@ -1,7 +1,6 @@
 package com.netcracker.edu.fapi.controllers;
 
 
-import com.netcracker.edu.fapi.models.NewService;
 import com.netcracker.edu.fapi.models.Subscription;
 import com.netcracker.edu.fapi.services.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class AllServicesController {
     }
 
     @RequestMapping(value = "/all_subs", method = RequestMethod.POST)
-    public Subscription saveService(@RequestBody NewService service) {
+    public Subscription saveService(@RequestBody Subscription service) {
         return subsService.saveService(service);
     }
 

@@ -10,5 +10,4 @@ public interface CustomerServiceInterface {
     Optional<Customer> getCustomerById(long id);
     Customer saveCustomer(Customer customer);
     void deleteCustomerById(long id);
-//    int updateCustomerBillingAccount(long billingId, long id);
 }

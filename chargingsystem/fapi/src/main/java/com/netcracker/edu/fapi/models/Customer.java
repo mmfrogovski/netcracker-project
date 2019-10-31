@@ -11,6 +11,8 @@ public class Customer {
     private String name;
     private String email;
     private int age;
+    private BillingAccount billingAccount;
+
 
 
     public Customer() {
@@ -29,6 +31,14 @@ public class Customer {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public BillingAccount getBillingAccount() {
+        return billingAccount;
+    }
+
+    public void setBillingAccount(BillingAccount billingAccount) {
+        this.billingAccount = billingAccount;
     }
 
     public int getAge() {
@@ -77,6 +87,7 @@ public class Customer {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
+                ", billingAccount=" + billingAccount +
                 '}';
     }
 }

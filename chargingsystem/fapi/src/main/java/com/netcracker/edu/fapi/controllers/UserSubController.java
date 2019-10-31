@@ -1,7 +1,6 @@
 package com.netcracker.edu.fapi.controllers;
 
 
-import com.netcracker.edu.fapi.models.NewUserSubscription;
 import com.netcracker.edu.fapi.models.UserSubscription;
 import com.netcracker.edu.fapi.services.interfaces.UserSubInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +28,11 @@ public class UserSubController {
     @RequestMapping(value = "/users_subs/{subId}", method = RequestMethod.GET)
     public ResponseEntity<UserSubscription> getUserSubById(@PathVariable(name = "subId") long subId) {
         UserSubscription userSubscription = userSubInterface.getUserSubBySubId(subId);
-        return userSubscription!=null ? ResponseEntity.ok(userSubscription) : ResponseEntity.notFound().build();
+        return userSubscription != null ? ResponseEntity.ok(userSubscription) : ResponseEntity.notFound().build();
     }
 
     @RequestMapping(value = "/users_subs", method = RequestMethod.POST)
-    public UserSubscription saveUserSub(@RequestBody NewUserSubscription userSubscription) {
+    public UserSubscription saveUserSub(@RequestBody UserSubscription userSubscription) {
         return userSubInterface.saveUserSub(userSubscription);
     }
 
