@@ -8,6 +8,7 @@
     </div>
     <div class="service-wrap">
       <div class="description">
+        <h2>Service description</h2>
         <p>{{service.description}}</p>
       </div>
       <div class="details">
@@ -21,14 +22,24 @@
     </div>
     <div class="reviews">
       <h3>Reviews</h3>
-      <h3><a class="add-review">Add review</a></h3>
-      <ul>
-        <li> USERNAME |
+      <h3><a class="add-review" (click)="addReviewShow()">Add review</a></h3>
+      <div class="add-review" *ngIf="addReviewPopup">
+        <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+          <div>
+            <label for="review">Review
+              <input id="review" type="text" formControlName="review"/>
+            </label>
+            <button class="button" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+      <ul *ngFor="let review of reviews">
+        <li> {{review.customer.name}} |
           <ul>
             <li>
-              USERMASSAGE
+              {{review.review}}
             </li>
-            <li>| MESSAGEDATE</li>
+            <li>| {{review.reviewDate}}</li>
           </ul>
         </li>
      </ul>

@@ -11,5 +11,7 @@ public interface UserSubInterface {
 
     UserSubscription saveUserSub(UserSubscription subscription);
 
+    List<UserSubscription> getSubscriptionsByCustomerId(long id);
+
     void deleteUserSubById(long subId);
 }

@@ -31,6 +31,13 @@ public class ReviewsService implements ReviewsServiceInterface {
     }
 
     @Override
+    public List<Review> getReviewsByServiceId(long serviceId){
+        RestTemplate restTemplate = new RestTemplate();
+        Review[] reviews = restTemplate.getForObject(backendServerUrl + "/api/reviews/"+serviceId, Review[].class);
+        return reviews == null ? Collections.emptyList() : Arrays.asList(reviews);
+    }
+
+    @Override
     public void deleteReviewById(long id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/reviews/" + id);

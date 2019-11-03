@@ -25,6 +25,11 @@ public class UserSubController {
         return userSubInterface.getUsersSub();
     }
 
+    @RequestMapping(value = "/users_subs/customer/{id}", method = RequestMethod.GET)
+    public List<UserSubscription> getSubscriptionsByCustomerId(@PathVariable(name = "id") long id) {
+        return userSubInterface.getSubscriptionsByCustomerId(id);
+    }
+
     @RequestMapping(value = "/users_subs/{subId}", method = RequestMethod.GET)
     public ResponseEntity<UserSubscription> getUserSubById(@PathVariable(name = "subId") long subId) {
         UserSubscription userSubscription = userSubInterface.getUserSubBySubId(subId);

@@ -19,6 +19,11 @@ public class UserSubController {
         this.userSubInterface = userSubInterface;
     }
 
+    @RequestMapping(value = "/users_subs/customer/{id}", method = RequestMethod.GET)
+    public List<UserSubscription> getSubscriptionsByCustomerId(@PathVariable(name = "id") long id) {
+        return userSubInterface.getSubscriptionsByCustomerId(id);
+    }
+
     @RequestMapping(value = "/users_subs", method = RequestMethod.GET)
     public List<UserSubscription> getUsersSub() {
         return userSubInterface.getUsersSub();

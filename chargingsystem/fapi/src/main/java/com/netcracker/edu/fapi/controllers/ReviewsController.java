@@ -25,6 +25,11 @@ public class ReviewsController {
         return reviewsService.getReviews();
     }
 
+    @RequestMapping(value = "/reviews/{serviceId}", method = RequestMethod.GET)
+    public List<Review> getReviewsByServiceId(@PathVariable(name = "serviceId") long serviceId){
+        return reviewsService.getReviewsByServiceId(serviceId);
+    }
+
     @RequestMapping(value = "/reviews", method = RequestMethod.POST)
     public Review saveReview(@RequestBody Review review) {
         return reviewsService.saveReview(review);

@@ -26,6 +26,10 @@ public class UserSubService implements UserSubInterface {
     }
 
     @Override
+    public List<UserSubscription> getSubscriptionsByCustomerId(long id){
+        return (List<UserSubscription>) userSubscriptionRepository.getSubscriptionByCustomerId(id);
+    }
+    @Override
     public UserSubscription saveUserSub(UserSubscription subscription) {
         return userSubscriptionRepository.save(subscription);
     }

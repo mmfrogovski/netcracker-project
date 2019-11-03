@@ -1,8 +1,8 @@
 <body>
 <div class="wrapper">
-  <div class="add_service_form">
+  <div class="add_service_form" *ngIf="isPopup==true">
     <div class="form_wrap">
-      <div (click)="closeForm()" class="close">X</div>
+      <div (click)="formAction()" class="close">X</div>
       <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
         <div>
           <label for="serviceName">Service Name
@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="add-service" (click)="addServiceForm()">
+    <div class="add-service" (click)="formAction()">
       <a>Add service</a>
     </div>
     <div class="articles" *ngFor="let item of services">

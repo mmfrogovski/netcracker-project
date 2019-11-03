@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NewUserSub} from "../../models/new-user-sub";
+import {UserSub} from "../../models/user-sub";
 import {Observable} from "rxjs";
+import {ConstantsService} from "../const-service/constants.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersServiceService { //todo create interface
 
-  private url = `http://localhost:8083/api/users_subs/`;
 
+  constructor(private http: HttpClient, private constUrls: ConstantsService) { }
 
-  constructor(private http: HttpClient) { }
+  saveUserSub(newSub: UserSub):Observable<UserSub>{
+    return this.http.post<UserSub>(this.constUrls.backendUrlUsersSubs, newSub);
+  }
 
-  saveUserSub(newSub: NewUserSub):Observable<NewUserSub>{
-    return this.http.post<NewUserSub>(this.url, newSub);
+  getUserSubscriptionById(id: number):Observable<UserSub[]>{
+    return this.http.get<UserSub[]>(this.constUrls.backendUrlUsersSubs + 'customer/' + id);
   }
 
   deleteUserSub(id: bigint):Observable<void>{
-    return this.http.delete<void>(this.url + id);
+    return this.http.delete<void>(this.constUrls.backendUrlUsersSubs + id);
   }
 }

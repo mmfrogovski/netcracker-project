@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface UserSubscriptionRepository extends CrudRepository<UserSubscription, Long> {
 
@@ -17,4 +19,6 @@ public interface UserSubscriptionRepository extends CrudRepository<UserSubscript
     @Transactional
     void saveUserSubscription(@Param("rest_of_sub") int restOfSub, @Param("sub_start") String subStart, @Param("customer_id") long customerId, @Param("service_id") long serviceId);
 
+    @Query(value = "select * from users_subs where customer_id = :customerId", nativeQuery = true)
+    List<UserSubscription> getSubscriptionByCustomerId(@Param("customerId") long customerId);
 }

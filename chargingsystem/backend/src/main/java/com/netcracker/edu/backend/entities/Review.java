@@ -21,7 +21,7 @@ public class Review {
 
     @ManyToOne()
     @JoinColumn(name = "service_id")
-    private Subscription service;
+    private Subscription subscription;
 
     public Review() {
     }
@@ -63,12 +63,12 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
-    public Subscription getService() {
-        return service;
+    public Subscription getSubscription() {
+        return subscription;
     }
 
-    public void setService(Subscription service) {
-        this.service = service;
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
     }
 
     @Override
@@ -79,12 +79,12 @@ public class Review {
         return id == review1.id &&
                 Objects.equals(review, review1.review) &&
                 Objects.equals(reviewDate, review1.reviewDate) &&
-                Objects.equals(service, review1.service);
+                Objects.equals(subscription, review1.subscription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, review, reviewDate, service);
+        return Objects.hash(id, review, reviewDate, subscription);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Review {
                 ", review='" + review + '\'' +
                 ", reviewDate='" + reviewDate + '\'' +
                 ", customer=" + customer +
-                ", service=" + service +
+                ", service=" + subscription +
                 '}';
     }
 }

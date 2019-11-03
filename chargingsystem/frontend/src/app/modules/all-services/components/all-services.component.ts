@@ -1,8 +1,8 @@
-import {Service} from "../../models/service";
-import {AllServicesService} from "../../services/all-services/all-services.service";
 import {Subscription} from "rxjs";
 import {FormBuilder} from "@angular/forms";
 import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Service} from "../../../models/service";
+import {AllServicesService} from "../../../services/all-services/all-services.service";
 
 @Component({
   selector: 'app-all-services',
@@ -11,10 +11,12 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 })
 export class AllServicesComponent implements OnInit, OnDestroy {
 
-  service: Service;
-  checkoutForm;
+  public service: Service;
+  public checkoutForm;
 
-  services: Service[] = [];
+  public isPopup: boolean = false;
+
+  public services: Service[] = [];
   private subscriptions: Subscription[] = [];
 
   constructor(private allServicesService: AllServicesService,
@@ -33,16 +35,9 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   }
 
 
-  addServiceForm() {
-    document.querySelector(".add_service_form").id = "add_show";
-
+  public formAction():void {
+    this.isPopup=!this.isPopup;
   }
-
-
-  closeForm() {
-    document.querySelector(".add_service_form").id = "";
-  }
-
 
   private loadServices() {
     this.subscriptions.push(this.allServicesService.getServices().subscribe(services => {

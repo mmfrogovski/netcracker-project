@@ -17,11 +17,6 @@
   z-index: 10000;
 }
 
-
-.overlay {
-  display: none;
-}
-
 #show {
   display: block;
 }

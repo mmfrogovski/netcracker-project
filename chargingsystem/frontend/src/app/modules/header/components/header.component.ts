@@ -7,17 +7,15 @@ import {Component, OnInit} from "@angular/core";
 })
 export class HeaderComponent implements OnInit {
 
+  public isPopup: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  showLogin(){
-    document.querySelector(".overlay").id = "show";
-  }
-
-  closeLogin(){
-    document.querySelector(".overlay").id = "";
+  public showLogin(): void{
+    this.isPopup=!this.isPopup;
   }
 
 }

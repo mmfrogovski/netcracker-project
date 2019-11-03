@@ -1,7 +1,7 @@
 export class Customer {
-  id:number;
-  age:number;
-  email:string;
-  name:string;
-  billingId:number;
+  public id:number;
+  public age:number;
+  public email:string;
+  public name:string;
+  public billingId:number;
 }

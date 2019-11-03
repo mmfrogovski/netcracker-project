@@ -11,21 +11,30 @@ import java.util.List;
 
 @Component
 public class ReviewsService implements ReviewsServiceInterface {
-    @Autowired
-    private ReviewsRepository reviewsRepository;
+    private final ReviewsRepository reviewsRepository;
 
-    @Override
-    public List<Review> getReviews(){
-        return (List<Review>)reviewsRepository.findAll();
+    @Autowired
+    public ReviewsService(ReviewsRepository reviewsRepository) {
+        this.reviewsRepository = reviewsRepository;
     }
 
     @Override
-    public Review saveReview(Review review){
+    public List<Review> getReviews() {
+        return (List<Review>) reviewsRepository.findAll();
+    }
+
+    @Override
+    public Review saveReview(Review review) {
         return reviewsRepository.save(review);
     }
 
     @Override
-    public void deleteReviewById(long id){
+    public List<Review> getReviewsByServiceId(long serviceId) {
+        return (List<Review>) reviewsRepository.getReviewsByServiceId(serviceId);
+    }
+
+    @Override
+    public void deleteReviewById(long id) {
         reviewsRepository.deleteById(id);
     }
 }

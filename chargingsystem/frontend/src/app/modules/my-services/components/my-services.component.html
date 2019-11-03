@@ -1,0 +1,25 @@
+<body>
+<div class="wrapper">
+  <app-header></app-header>
+  <div class="content">
+    <div class="service-wrap" *ngFor="let service of myServices" [routerLink]="['/service-details/'+service.subscription.id]">
+      <ul>
+        <li><h3>{{service.subscription.subName}}</h3>
+          <ul>
+            <li>price:{{service.subscription.price}}</li>
+            <li>subscribe duration: {{service.subscription.subDuration}}</li>
+            <li>end of subscription: {{service.restOfSub}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="myServices.length==0" style="height: 34vw; color: #ffffff; font-size: 1.5vw; font-weight: 600; text-align: center">
+    <h2>You don't have subscriptions yet.</h2>
+  </div>
+  <div *ngIf="myServices.length==1" style="height: 24vw"></div>
+  <div *ngIf="myServices.length==2" style="height: 15vw"></div>
+  <div *ngIf="myServices.length==3" style="height: 6vw"></div>
+  <app-footer></app-footer>
+</div>
+</body>

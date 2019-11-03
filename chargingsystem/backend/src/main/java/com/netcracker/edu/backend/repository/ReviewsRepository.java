@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ReviewsRepository extends CrudRepository<Review, Long> {
     @Modifying
@@ -15,4 +17,8 @@ public interface ReviewsRepository extends CrudRepository<Review, Long> {
             nativeQuery = true)
     @Transactional
     void saveReview(@Param("review") String review, @Param("review_date") String reviewDate, @Param("customer_id") long customerId, @Param("service_id") long serviceId);
+
+    @Query(value = "select * from reviews where service_id = :serviceId", nativeQuery = true)
+    List<Review> getReviewsByServiceId(@Param("serviceId") long serviceId);
+
 }

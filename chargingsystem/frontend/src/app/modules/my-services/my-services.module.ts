@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
-import {FooterComponent} from "../footer/footer.component";
 import {HeaderComponent} from "../header/components/header.component";
+import {FooterComponent} from "../footer/footer.component";
 
 
 @NgModule({
@@ -12,6 +12,6 @@ import {HeaderComponent} from "../header/components/header.component";
 
   ],
   providers: [],
-  exports: []
+  exports: [HeaderComponent]
 })
-export class HeaderModule {}
+export class MyServicesModule {}

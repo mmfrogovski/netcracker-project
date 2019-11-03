@@ -31,6 +31,13 @@ public class UserSubService implements UserSubInterface {
     }
 
     @Override
+    public List<UserSubscription> getSubscriptionsByCustomerId(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        UserSubscription[] usersSubscriptions = restTemplate.getForObject(backendServerUrl + "/api/users_subs/customer/" + id, UserSubscription[].class);
+        return usersSubscriptions == null ? Collections.emptyList() : Arrays.asList(usersSubscriptions);
+    }
+
+    @Override
     public UserSubscription saveUserSub(UserSubscription subscription) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/users_subs/", subscription, UserSubscription.class).getBody();
@@ -39,6 +46,6 @@ public class UserSubService implements UserSubInterface {
     @Override
     public void deleteUserSubById(long subId) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/users_subs/"+subId);
+        restTemplate.delete(backendServerUrl + "/api/users_subs/" + subId);
     }
 }
