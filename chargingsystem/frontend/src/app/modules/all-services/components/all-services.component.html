@@ -9,28 +9,33 @@
             <input id="serviceName" type="text" formControlName="serviceName"/>
           </label>
         </div>
+        <div class="invalid" *ngIf="checkoutForm.get('serviceName').invalid && checkoutForm.get('serviceName').touched">Service Name is required.</div>
         <div>
           <label for="price">Price
             <input id="price" type="number" formControlName="price"/>
           </label>
         </div>
+        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Price is required.</div>
         <div>
           <label for="subName">sub name
             <input id="subName" type="text" formControlName="subName"/>
           </label>
         </div>
+        <div class="invalid" *ngIf="checkoutForm.get('subName').invalid && checkoutForm.get('subName').touched">Sub Name is required.</div>
         <div>
           <label for="description">Description
             <input id="description" type="text" formControlName="description"/>
           </label>
         </div>
+        <div class="invalid" *ngIf="checkoutForm.get('description').invalid && checkoutForm.get('description').touched">Description is required.</div>
         <div>
           <label for="subDuration">sub duration
             <input id="subDuration" type="number" formControlName="subDuration"/>
           </label>
         </div>
+        <div class="invalid" *ngIf="checkoutForm.get('subDuration').invalid && checkoutForm.get('subDuration').touched">Sub duration is required.</div>
         <div class="send_service">
-          <button class="button" type="submit">Add</button>
+          <button class="button" type="submit" [disabled]="!checkoutForm.valid">Add</button>
         </div>
       </form>
     </div>

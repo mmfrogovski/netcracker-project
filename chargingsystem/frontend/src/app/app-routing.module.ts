@@ -4,6 +4,7 @@ import {AllServicesViewComponent} from "./modules/layout/components/all-services
 import {NgModule} from "@angular/core";
 import {ServiceDetailsComponent} from "./modules/service-details/components/service-details.component";
 import {MyServicesComponent} from "./modules/my-services/components/my-services.component";
+import {RegistrationComponent} from "./modules/registration/components/registration.component";
 
 
 const routes: Routes = [
@@ -11,8 +12,8 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "all-services", component: AllServicesViewComponent},
   {path: "service-details/:id", component: ServiceDetailsComponent},
-  {path: "my-services", component: MyServicesComponent}
-
+  {path: "my-services", component: MyServicesComponent},
+  {path: "registration", component: RegistrationComponent}
 ];
 
 @NgModule({

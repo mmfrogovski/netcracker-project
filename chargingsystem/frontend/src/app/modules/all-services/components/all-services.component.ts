@@ -1,5 +1,5 @@
 import {Subscription} from "rxjs";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Service} from "../../../models/service";
 import {AllServicesService} from "../../../services/all-services/all-services.service";
@@ -26,11 +26,21 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadServices();
     this.checkoutForm = this.formBuilder.group({
-      serviceName: '',
-      subName: '',
-      subDuration: '',
-      price: '',
-      description: ''
+      serviceName: new FormControl('', [
+        Validators.required
+      ]),
+      subName:  new FormControl('', [
+        Validators.required
+      ]),
+      subDuration:  new FormControl('', [
+        Validators.required
+      ]),
+      price:  new FormControl('', [
+        Validators.required
+      ]),
+      description:  new FormControl('', [
+        Validators.required
+      ])
     })
   }
 

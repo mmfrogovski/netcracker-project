@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ConstantsService} from "../const-service/constants.service";
+import {BackendUrlsConst} from "../const-service/backend-urls.const";
 import {Observable} from "rxjs";
 import {Review} from "../../models/review";
 
@@ -9,7 +9,7 @@ import {Review} from "../../models/review";
 })
 export class ReviewsService { //todo create interface
 
-  constructor(private http: HttpClient, private backUrls: ConstantsService) {
+  constructor(private http: HttpClient, private backUrls: BackendUrlsConst) {
   }
 
   getReviews(id: number): Observable<Review[]> {

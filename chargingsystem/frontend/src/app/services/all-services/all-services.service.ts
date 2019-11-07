@@ -2,7 +2,7 @@ import {Observable} from "rxjs";
 import {Service} from "../../models/service";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {ConstantsService} from "../const-service/constants.service";
+import {BackendUrlsConst} from "../const-service/backend-urls.const";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import {ConstantsService} from "../const-service/constants.service";
 export class AllServicesService {  //todo create interface
 
 
-  constructor(private http: HttpClient, private backUrls: ConstantsService) {
+  constructor(private http: HttpClient, private backUrls: BackendUrlsConst) {
   }
 
   getServices(): Observable<Service[]> {

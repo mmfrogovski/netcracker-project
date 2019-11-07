@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ConstantsService {
+export class BackendUrlsConst {
 
   readonly backendUrl: string = 'http://localhost:8083/api/';
   readonly backendUrlAllSubs: string = this.backendUrl+'all_subs/';
@@ -11,6 +11,7 @@ export class ConstantsService {
   readonly backendUrlCustomers: string = this.backendUrl+'customers/';
   readonly backendUrlBillingAccounts: string = this.backendUrl+'billing_accounts/';
   readonly backendUrlReviews: string = this.backendUrl+'reviews/';
+  readonly backendUrlUsers: string = this.backendUrl + 'users/';
 
   constructor() { }
 }

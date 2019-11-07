@@ -1,0 +1,55 @@
+<body>
+<div class="wrapper">
+  <app-header></app-header>
+  <div class="content">
+    <div id="registration-form">
+      <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+        <div>
+          <label for="login">Login
+            <input id="login" type="text" formControlName="login" />
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('login').invalid && checkoutForm.get('login').touched">Invalid login.
+          Login must have 4-16 symbols.
+        </div>
+        <div>
+          <label for="name">Name
+            <input id="name" type="text" formControlName="name"/>
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('name').invalid && checkoutForm.get('name').touched">Invalid name</div>
+        <div>
+          <label for="email">Email
+            <input id="email" type="text" formControlName="email"/>
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('email').invalid && checkoutForm.get('email').touched">Invalid email.</div>
+        <div>
+          <label for="age">Age
+            <input id="age" type="text" formControlName="age"/>
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('age').invalid && checkoutForm.get('age').touched">Age is required.</div>
+        <div>
+          <label for="password">Password
+            <input id="password" type="password" formControlName="password"/>
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('password').invalid && checkoutForm.get('password').touched">Invalid password.</div>
+        <div>
+          <label for="confirm_password">Repeat password
+            <input id="confirm_password" type="password" formControlName="confirm_password"/>
+          </label>
+        </div>
+        <div class="invalid" *ngIf="checkoutForm.get('confirm_password').invalid && checkoutForm.get('confirm_password').touched">Passwords dont much.</div>
+        <div class="send_user">
+          <button class="button" type="submit" [disabled]="!checkoutForm.valid">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>
+</body>

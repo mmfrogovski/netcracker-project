@@ -9,12 +9,13 @@ import {PlaceComponent} from "./modules/place/place.component";
 import {NgModule} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ConstantsService} from "./services/const-service/constants.service";
+import {BackendUrlsConst} from "./services/const-service/backend-urls.const";
 import { MyServicesComponent } from './modules/my-services/components/my-services.component';
 import {StartComponent} from "./modules/start-page/components/start.component";
 import {AllServicesComponent} from "./modules/all-services/components/all-services.component";
 import {HeaderComponent} from "./modules/header/components/header.component";
 import {ServiceDetailsComponent} from "./modules/service-details/components/service-details.component";
+import {RegistrationComponent} from "./modules/registration/components/registration.component";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {ServiceDetailsComponent} from "./modules/service-details/components/serv
     PlaceComponent,
     ServiceDetailsComponent,
     MyServicesComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import {ServiceDetailsComponent} from "./modules/service-details/components/serv
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ConstantsService],
+  providers: [BackendUrlsConst],
   bootstrap: [AppComponent]
 })
 export class AppModule {

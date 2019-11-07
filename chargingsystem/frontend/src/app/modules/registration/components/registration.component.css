@@ -1,0 +1,84 @@
+body {
+  width: 100%;
+  height: auto;
+  background-image: url("../../../../assets/images/registration-bg.jpg");
+  background-size: 100%, auto;
+  background-repeat: no-repeat;
+  padding-top: 5.5vw;
+}
+
+
+.wrapper{
+  height: auto;
+}
+
+label{
+  background: transparent;
+  border: none;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+p, label {
+  line-height: 1.5em;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+#registration-form {
+  margin: 5% auto;
+  width: 60%;
+}
+
+
+#registration-form form input {
+  border-bottom: 2px solid #ffffff;
+  font-size: 1em;
+  height: 50px;
+  outline: none;
+}
+
+#registration-form form input[type="text"]{
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid 2px #ffffff;
+}
+
+#registration-form form input[type="password"]{
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid 2px #ffffff;
+}
+
+#registration-form form input:focus {
+  color: #fff;
+}
+
+#registration-form form button[type="submit"] {
+  border-radius: 3px;
+  border: transparent;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: 600;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 30%;
+  height: 50px;
+  margin-top: 1.3vw;
+  margin-left: 33%;
+}
+
+#registration-form form button[type="submit"]:hover {
+  background-color: #d44179;
+}
+
+.invalid{
+  color:red;
+  font-size: 1.3vw;
+}
+

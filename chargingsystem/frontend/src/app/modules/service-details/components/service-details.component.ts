@@ -22,7 +22,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   public service: Service = new Service();
   private subscriptions: Subscription[] = [];
   public newSubscription: UserSub = new UserSub();
-  public customer: Customer = new Customer();
+  public customer: Customer;
   public date = Date.now();
   public reviews: Review[] = [];
   public serviceId: number;
@@ -42,7 +42,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
     this.loadReviews();
     this.checkoutForm = this.formBuilder.group({
       review: '',
-      reviewDate: "2019-11-03",
+      reviewDate: '',
       customer:{id:1},
       subscription:{id: this.serviceId}
     })
@@ -80,7 +80,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
     this.newSubscription.subscription = this.service;
     this.newSubscription.restOfSub = this.service.subDuration;
     this.newSubscription.startSub = document.querySelector(".date").innerHTML;
-    console.log(this.newSubscription);
+    // console.log(this.newSubscription);
     this.subscriptions.push(this.usersServicesService.saveUserSub(this.newSubscription).subscribe(res => {
     }));
   }
