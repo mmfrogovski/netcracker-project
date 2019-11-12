@@ -15,4 +15,6 @@ public interface UsersServiceInterface {
     void deleteUserById(long userId);
 
     User registerUser(RegistrationData registrationData);
+
+    User getUserByLoginAndPassword(String login, String password);
 }

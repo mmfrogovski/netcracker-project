@@ -32,6 +32,7 @@ public class AllServicesController {
 
     @RequestMapping(value = "/all_subs", method = RequestMethod.POST)
     public Subscription saveService(@RequestBody Subscription service) {
+        System.out.println(service);
         return subsService.saveService(service);
     }
 

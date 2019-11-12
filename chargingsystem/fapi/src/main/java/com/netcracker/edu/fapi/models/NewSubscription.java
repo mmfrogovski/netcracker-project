@@ -1,14 +1,11 @@
-package com.netcracker.edu.backend.entities;
+package com.netcracker.edu.fapi.models;
 
-import javax.persistence.*;
-import java.sql.Blob;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.util.Arrays;
 
-@Entity
-@Table(name = "subs")
-public class Subscription {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class NewSubscription {
 
     private long id;
     private String serviceName;
@@ -16,12 +13,14 @@ public class Subscription {
     private int subDuration;
     private float price;
     private String description;
-    private String image;
+    private byte[] image;
 
-    public Subscription() {
+    public NewSubscription() {
     }
 
-    public Subscription(String serviceName, String subName, int subDuration, float price, String description, String image) {
+
+    public NewSubscription(long id, String serviceName, String subName, int subDuration, float price, String description, byte[] image) {
+        this.id = id;
         this.serviceName = serviceName;
         this.subName = subName;
         this.subDuration = subDuration;
@@ -38,11 +37,12 @@ public class Subscription {
         this.id = id;
     }
 
-    public String getImage() {
+
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -86,17 +86,16 @@ public class Subscription {
         this.description = description;
     }
 
-
     @Override
     public String toString() {
-        return "Subscription{" +
+        return "NewSubscription{" +
                 "id=" + id +
                 ", serviceName='" + serviceName + '\'' +
                 ", subName='" + subName + '\'' +
                 ", subDuration=" + subDuration +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", image=" + image +
+                ", image=" + Arrays.toString(image) +
                 '}';
     }
 }

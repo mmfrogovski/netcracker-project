@@ -16,6 +16,7 @@ import {AllServicesComponent} from "./modules/all-services/components/all-servic
 import {HeaderComponent} from "./modules/header/components/header.component";
 import {ServiceDetailsComponent} from "./modules/service-details/components/service-details.component";
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
+import { ProfileComponent } from './modules/profile/components/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {RegistrationComponent} from "./modules/registration/components/registrat
     ServiceDetailsComponent,
     MyServicesComponent,
     RegistrationComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

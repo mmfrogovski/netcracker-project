@@ -41,4 +41,10 @@ public class BillingAccountService implements BillingAccountServiceInterface {
         restTemplate.delete(backendServerUrl + "/api/billing_accounts/" + billingId);
     }
 
+    @Override
+    public void setBillingAccountResources(long id, int resources) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(backendServerUrl + "/api/billing_accounts/" + id + '/' + resources, BillingAccount.class);
+    }
+
 }

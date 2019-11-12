@@ -5,8 +5,9 @@
       <ul>
         <li><a href="#">Welcome</a></li>
         <li><a [routerLink]="['/all-services']">Services</a></li>
-        <li><a [routerLink]="['/my-services']">My services</a></li>
-        <li class="sign-up" (click)="showLogin()"><a>Log in</a></li>
+        <li *ngIf="isLoggedIn"><a [routerLink]="['/my-services']">My services</a></li>
+        <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>
+        <li class="sign-up" (click)="showLogin()" *ngIf="!isLoggedIn"><a>Log in</a></li>
         <div class="overlay" *ngIf="isPopup">
           <div class="login-wrapper">
             <div class="login-content">
@@ -27,10 +28,12 @@
                 </div>
                 <button type="submit">Sign in</button>
                 <button><a [routerLink]="['/registration']">Registration</a></button>
+                <div class="invalid" *ngIf="wrong">Wrong login or password</div>
               </form>
             </div>
           </div>
         </div>
+        <li class="sign-up" (click)="logOut()" *ngIf="isLoggedIn"><a>Log out</a></li>
       </ul>
     </nav>
   </header>

@@ -6,7 +6,9 @@ import com.netcracker.edu.fapi.services.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -29,11 +31,11 @@ public class AllServicesController {
     @RequestMapping(value = "/all_subs/{serviceId}", method = RequestMethod.GET)
     public ResponseEntity<Subscription> getServiceById(@PathVariable(name = "serviceId") long serviceId) {
         Subscription service = subsService.getServiceById(serviceId);
-        return service!=null ? ResponseEntity.ok(service) : ResponseEntity.notFound().build();
+        return service != null ? ResponseEntity.ok(service) : ResponseEntity.notFound().build();
     }
 
     @RequestMapping(value = "/all_subs", method = RequestMethod.POST)
-    public Subscription saveService(@RequestBody Subscription service) {
+    public Subscription saveService(@RequestBody Subscription service) throws IOException {
         return subsService.saveService(service);
     }
 

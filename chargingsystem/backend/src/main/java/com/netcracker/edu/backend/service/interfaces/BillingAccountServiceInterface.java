@@ -10,4 +10,5 @@ public interface BillingAccountServiceInterface {
     Optional<BillingAccount> getBillingAccountById(long billingId);
     BillingAccount saveBillingAccount(BillingAccount billingAccount);
     void deleteBillingAccountById(long billingId);
+    void setBillingAccountResources(long id, int resources);
 }

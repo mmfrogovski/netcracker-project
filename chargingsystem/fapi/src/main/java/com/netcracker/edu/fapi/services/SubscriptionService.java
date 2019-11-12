@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+
 @Service()
 public class SubscriptionService implements SubsServiceInterface {
 
@@ -42,3 +43,4 @@ public class SubscriptionService implements SubsServiceInterface {
         restTemplate.delete(backendServerUrl + "/api/all_subs/" + serviceId);
     }
 }
+

@@ -49,4 +49,10 @@ public class UsersController {
         usersService.deleteUserById(userId);
     }
 
+    @RequestMapping(value = "/users/{login}/{password}", method = RequestMethod.GET)
+    public User getUserByLoginAndPassword(@PathVariable(name="login") String login,
+                                          @PathVariable(name = "password") String password){
+        return usersService.getUserByLoginAndPassword(login, password);
+    }
+
 }

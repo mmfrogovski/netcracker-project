@@ -48,5 +48,11 @@ public class UserService implements UserServiceInterface {
         return usersRepository.save(tempUser);
     }
 
+    @Override
+    public User getUserByLoginAndPassword(String login, String password){
+        return usersRepository.getUserByLoginAndPassword(login, password);
+    }
+
+
 }
 

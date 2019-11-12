@@ -13,21 +13,25 @@ public class UserSubscription {
 
     private String subStart;
     private int restOfSub;
+    private boolean active;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "service_id")
     private Subscription subscription;
 
     public UserSubscription() {
     }
 
-    public UserSubscription(String subStart, int restOfSub) {
+    public UserSubscription(String subStart, int restOfSub, boolean active, Customer customer, Subscription subscription) {
         this.subStart = subStart;
         this.restOfSub = restOfSub;
+        this.active = active;
+        this.customer = customer;
+        this.subscription = subscription;
     }
 
     public long getId() {
@@ -36,6 +40,14 @@ public class UserSubscription {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getSubStart() {
@@ -76,6 +88,7 @@ public class UserSubscription {
                 "id=" + id +
                 ", subStart='" + subStart + '\'' +
                 ", restOfSub=" + restOfSub +
+                ", active=" + active +
                 ", customer=" + customer +
                 ", subscription=" + subscription +
                 '}';

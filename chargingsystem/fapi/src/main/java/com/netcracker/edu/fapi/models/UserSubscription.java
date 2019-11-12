@@ -7,13 +7,18 @@ public class UserSubscription {
     private int restOfSub;
     private Customer customer;
     private Subscription subscription;
+    private boolean active;
 
     public UserSubscription() {
     }
 
-    public UserSubscription(String subStart, int restOfSub, Customer customer, Subscription subscription) {
+    public UserSubscription(long id, String subStart, int restOfSub, Customer customer, Subscription subscription, boolean active) {
+        this.id = id;
         this.subStart = subStart;
         this.restOfSub = restOfSub;
+        this.customer = customer;
+        this.subscription = subscription;
+        this.active = active;
     }
 
     public long getId() {
@@ -22,6 +27,14 @@ public class UserSubscription {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Customer getCustomer() {
@@ -65,6 +78,7 @@ public class UserSubscription {
                 ", restOfSub=" + restOfSub +
                 ", customer=" + customer +
                 ", subscription=" + subscription +
+                ", active=" + active +
                 '}';
     }
 }

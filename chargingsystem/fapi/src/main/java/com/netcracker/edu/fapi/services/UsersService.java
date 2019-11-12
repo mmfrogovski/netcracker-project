@@ -50,4 +50,10 @@ public class UsersService implements UsersServiceInterface {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "api/users/register", registrationData, User.class).getBody();
     }
+
+    @Override
+    public User getUserByLoginAndPassword(String login, String password){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "api/users/" + login + '/'+password, User.class);
+    }
 }

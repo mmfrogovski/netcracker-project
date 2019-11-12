@@ -31,6 +31,12 @@ public class BillingAccountService implements BillingAccountServiceInterface {
     }
 
     @Override
+    public void setBillingAccountResources(long id, int resources){
+        billingAccountRepository.updateResources(id, resources);
+    }
+
+
+    @Override
     public void deleteBillingAccountById(long billingId){
         billingAccountRepository.deleteById(billingId);
     }

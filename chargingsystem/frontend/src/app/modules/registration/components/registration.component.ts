@@ -22,12 +22,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(16)
+        Validators.pattern('^[A-Za-z]{1}[0-9A-Za-z]{1,15}$')
         ]),
       name: new FormControl('', [
         Validators.required,
-        Validators.minLength(4)
+        Validators.pattern('^[A-Za-z]{1}[0-9A-Za-z]{1,15}$')
       ]),
       email: new FormControl('', [
         Validators.required,
@@ -39,11 +38,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       role: 0,
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\\d$@$!%*?&].{8,}')
+        Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$")
       ]),
       confirm_password: new FormControl('', [
         Validators.required,
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\\d$@$!%*?&].{8,}')
+        this.matchOtherValidator('password')
       ])
     })
   }
@@ -55,6 +54,44 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   private addUser(user: RegistrationData):void{
     this.subscriptions.push(this.usersService.registUser(user).subscribe(res=>{}))
+  }
+
+  matchOtherValidator (otherControlName: string) {
+
+    let thisControl: FormControl;
+    let otherControl: FormControl;
+
+    return function matchOtherValidate (control: FormControl) {
+
+      if (!control.parent) {
+        return null;
+      }
+
+      if (!thisControl) {
+        thisControl = control;
+        otherControl = control.parent.get(otherControlName) as FormControl;
+        if (!otherControl) {
+          throw new Error('matchOtherValidator(): other control is not found in parent group');
+        }
+        otherControl.valueChanges.subscribe(() => {
+          thisControl.updateValueAndValidity();
+        });
+      }
+
+      if (!otherControl) {
+        return null;
+      }
+
+      if (otherControl.value !== thisControl.value) {
+        return {
+          matchOther: true
+        };
+      }
+
+      return null;
+
+    }
+
   }
 
   ngOnDestroy(): void {

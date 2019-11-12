@@ -1,46 +1,81 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {stringify} from "querystring";
+import {User} from "../../../models/user";
+import {UsersServiceService} from "../../../services/users-service/users-service.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public isPopup: boolean = false;
   public checkoutForm;
+  public user:User;
+  public isLoggedIn: boolean = false;
+  public wrong:boolean =false;
+
+  private subscriptions: Subscription[] = [];
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private usersService: UsersServiceService) {
+  }
 
   ngOnInit() {
+    this.checkLogged();
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(16)
+        Validators.pattern("^[A-Za-z]{1}[0-9A-Za-z]{1,15}$")
       ]),
-      password: new FormControl('',[
-        Validators.required,
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\\d$@$!%*?&].{8,}')
+      password: new FormControl('', [
+        Validators.required
       ])
 
-  })
+    })
   }
 
-  public onSubmit(data) : void {
+  public checkLogged():void{
+    if(localStorage.getItem('user')!=null)
+      this.isLoggedIn=true;
+  }
+
+  public onSubmit(data): void {
     this.logIn(data);
     this.checkoutForm.reset();
   }
 
-  public logIn(user): boolean{
-    //check user
-    return false;
+  public logOut():void{
+    localStorage.clear();
+    this.isLoggedIn= false;
+    location.replace('http://localhost:4200/');
   }
 
-  public showLogin(): void{
-    this.isPopup=!this.isPopup;
+  public logIn(user): void {
+    this.subscriptions.push(this.usersService.getUserByLoginAndPassword(user.login, user.password).subscribe( res =>{
+        this.user = res;
+      }));
+    if(this.user.login){
+      localStorage.setItem('user', JSON.stringify(this.user));
+      this.isLoggedIn = true;
+      this.isPopup=false;
+    }else{
+      this.wrong=true;
+    }
+  }
+
+
+  public showLogin(): void {
+    this.isPopup = !this.isPopup;
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }

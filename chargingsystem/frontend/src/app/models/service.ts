@@ -5,4 +5,5 @@ export class Service {
   public subDuration:number;
   public price:number;
   public description:string;
+  public image: string;
 }

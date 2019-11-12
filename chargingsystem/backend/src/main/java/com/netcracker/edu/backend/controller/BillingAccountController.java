@@ -41,4 +41,9 @@ public class BillingAccountController {
         billingAccountsService.deleteBillingAccountById(billingId);
     }
 
+    @RequestMapping(value = "/billing_accounts/{id}/{resources}", method = RequestMethod.PUT)
+    public void setBillingAccountResources(@PathVariable(name = "id") long id,@PathVariable(name = "resources") int resources){
+        billingAccountsService.setBillingAccountResources(id, resources);
+    }
+
 }

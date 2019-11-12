@@ -13,4 +13,6 @@ public interface BillingAccountServiceInterface {
     BillingAccount saveBillingAccount(BillingAccount billingAccount);
 
     void deleteBillingAccountById(long billingId);
+
+    void setBillingAccountResources(long id, int resources);
 }

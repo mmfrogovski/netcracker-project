@@ -4,10 +4,11 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BackendUrlsConst} from "../const-service/backend-urls.const";
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class AllServicesService {  //todo create interface
+export class AllServicesService {
 
 
   constructor(private http: HttpClient, private backUrls: BackendUrlsConst) {

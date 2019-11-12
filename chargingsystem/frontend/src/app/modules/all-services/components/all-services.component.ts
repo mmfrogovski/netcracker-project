@@ -16,6 +16,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   public isPopup: boolean = false;
 
+  public urlBck: string;
+
   public services: Service[] = [];
   private subscriptions: Subscription[] = [];
 
@@ -40,6 +42,9 @@ export class AllServicesComponent implements OnInit, OnDestroy {
       ]),
       description:  new FormControl('', [
         Validators.required
+      ]),
+      image: new FormControl('', [
+        Validators.required
       ])
     })
   }
@@ -62,8 +67,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   sendService(service) {
     this.services.push(service);
+
     this.subscriptions.push(this.allServicesService.saveService(service).subscribe(res => {
-      console.log(res);
     }))
   }
 
