@@ -1,6 +1,7 @@
 package com.netcracker.edu.backend.service;
 
 import com.netcracker.edu.backend.entities.Subscription;
+import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,4 +35,5 @@ public class SubscriptionService implements SubsServiceInterface {
     public void deleteServiceById(long serviceId) {
         subscriptionRepository.deleteById(serviceId);
     }
+
 }

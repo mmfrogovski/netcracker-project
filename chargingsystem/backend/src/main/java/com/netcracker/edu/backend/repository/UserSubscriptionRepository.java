@@ -14,11 +14,23 @@ import java.util.List;
 public interface UserSubscriptionRepository extends CrudRepository<UserSubscription, Long> {
 
     @Modifying
-    @Query(value = "INSERT into users_subs(rest_of_sub, sub_start, customer_id, service_id) values(:rest_of_sub, :sub_start, :customer_id, :service_id)",
+    @Query(value = "update users_subs set active = :active where id = :id",
             nativeQuery = true)
     @Transactional
-    void saveUserSubscription(@Param("rest_of_sub") int restOfSub, @Param("sub_start") String subStart, @Param("customer_id") long customerId, @Param("service_id") long serviceId);
+    void setUserSubscriptionStatus(@Param("id") long id, @Param("active") boolean active);
 
     @Query(value = "select * from users_subs where customer_id = :customerId", nativeQuery = true)
     List<UserSubscription> getSubscriptionByCustomerId(@Param("customerId") long customerId);
+
+    @Modifying
+    @Query(value = "update users_subs set discount = :discount where id = :id",
+            nativeQuery = true)
+    @Transactional
+    void updateDiscountById(@Param("id") long id, @Param("discount") int discount);
+
+    @Modifying
+    @Query(value = "update users_subs set sub_duration = :duration where id = :id",
+            nativeQuery = true)
+    @Transactional
+    void updateSubDurationById(@Param("id") long id, @Param("duration") int duration);
 }

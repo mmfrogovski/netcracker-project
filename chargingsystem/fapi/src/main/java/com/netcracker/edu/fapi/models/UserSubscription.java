@@ -4,21 +4,23 @@ package com.netcracker.edu.fapi.models;
 public class UserSubscription {
     private long id;
     private String subStart;
-    private int restOfSub;
     private Customer customer;
     private Subscription subscription;
     private boolean active;
+    private int subDuration;
+    private int discount;
 
     public UserSubscription() {
     }
 
-    public UserSubscription(long id, String subStart, int restOfSub, Customer customer, Subscription subscription, boolean active) {
+    public UserSubscription(long id, String subStart, Customer customer, Subscription subscription, boolean active, int subDuration, int discount) {
         this.id = id;
         this.subStart = subStart;
-        this.restOfSub = restOfSub;
         this.customer = customer;
         this.subscription = subscription;
         this.active = active;
+        this.subDuration = subDuration;
+        this.discount = discount;
     }
 
     public long getId() {
@@ -35,6 +37,22 @@ public class UserSubscription {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getSubDuration() {
+        return subDuration;
+    }
+
+    public void setSubDuration(int subDuration) {
+        this.subDuration = subDuration;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public Customer getCustomer() {
@@ -61,13 +79,6 @@ public class UserSubscription {
         this.subStart = subStart;
     }
 
-    public int getRestOfSub() {
-        return restOfSub;
-    }
-
-    public void setRestOfSub(int restOfSub) {
-        this.restOfSub = restOfSub;
-    }
 
 
     @Override
@@ -75,7 +86,6 @@ public class UserSubscription {
         return "UserSubscription{" +
                 "id=" + id +
                 ", subStart='" + subStart + '\'' +
-                ", restOfSub=" + restOfSub +
                 ", customer=" + customer +
                 ", subscription=" + subscription +
                 ", active=" + active +

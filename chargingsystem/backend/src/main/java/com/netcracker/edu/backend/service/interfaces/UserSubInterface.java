@@ -16,4 +16,8 @@ public interface UserSubInterface {
     UserSubscription saveUserSub(UserSubscription subscription);
 
     void deleteUserSubById(long subId);
+
+    void getMoneyForSubscriptions();
+
+    void subDurationAdd();
 }

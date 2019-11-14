@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {stringify} from "querystring";
 import {User} from "../../../models/user";
 import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {Subscription} from "rxjs";
@@ -14,9 +13,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isPopup: boolean = false;
   public checkoutForm;
-  public user:User;
+  public user: User;
   public isLoggedIn: boolean = false;
-  public wrong:boolean =false;
+  public wrong: boolean = false;
 
   private subscriptions: Subscription[] = [];
 
@@ -39,9 +38,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
-  public checkLogged():void{
-    if(localStorage.getItem('user')!=null)
-      this.isLoggedIn=true;
+  public checkLogged(): void {
+    if (localStorage.getItem('user') != null)
+      this.isLoggedIn = true;
   }
 
   public onSubmit(data): void {
@@ -49,23 +48,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.checkoutForm.reset();
   }
 
-  public logOut():void{
+  public logOut(): void {
     localStorage.clear();
-    this.isLoggedIn= false;
+    this.isLoggedIn = false;
     location.replace('http://localhost:4200/');
   }
 
   public logIn(user): void {
-    this.subscriptions.push(this.usersService.getUserByLoginAndPassword(user.login, user.password).subscribe( res =>{
-        this.user = res;
-      }));
-    if(this.user.login){
-      localStorage.setItem('user', JSON.stringify(this.user));
-      this.isLoggedIn = true;
-      this.isPopup=false;
-    }else{
-      this.wrong=true;
-    }
+    this.subscriptions.push(this.usersService.getUserByLoginAndPassword(user.login, user.password).subscribe(res => {
+      this.user = res;
+      if (this.user.login) {
+        localStorage.setItem('user', JSON.stringify(this.user));
+        this.isLoggedIn = true;
+        this.isPopup = false;
+      } else {
+        this.wrong = true;
+      }
+    }));
+
   }
 
 

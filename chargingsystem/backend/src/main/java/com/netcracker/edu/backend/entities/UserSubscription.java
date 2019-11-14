@@ -12,8 +12,9 @@ public class UserSubscription {
     private long id;
 
     private String subStart;
-    private int restOfSub;
     private boolean active;
+    private int subDuration;
+    private int discount;
 
     @ManyToOne()
     @JoinColumn(name = "customer_id")
@@ -26,10 +27,11 @@ public class UserSubscription {
     public UserSubscription() {
     }
 
-    public UserSubscription(String subStart, int restOfSub, boolean active, Customer customer, Subscription subscription) {
+    public UserSubscription(String subStart, boolean active, int subDuration, int discount, Customer customer, Subscription subscription) {
         this.subStart = subStart;
-        this.restOfSub = restOfSub;
         this.active = active;
+        this.subDuration = subDuration;
+        this.discount = discount;
         this.customer = customer;
         this.subscription = subscription;
     }
@@ -50,6 +52,22 @@ public class UserSubscription {
         this.active = active;
     }
 
+    public int getSubDuration() {
+        return subDuration;
+    }
+
+    public void setSubDuration(int subDuration) {
+        this.subDuration = subDuration;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
     public String getSubStart() {
         return subStart;
     }
@@ -58,13 +76,6 @@ public class UserSubscription {
         this.subStart = subStart;
     }
 
-    public int getRestOfSub() {
-        return restOfSub;
-    }
-
-    public void setRestOfSub(int restOfSub) {
-        this.restOfSub = restOfSub;
-    }
 
     public Customer getCustomer() {
         return customer;
@@ -87,8 +98,9 @@ public class UserSubscription {
         return "UserSubscription{" +
                 "id=" + id +
                 ", subStart='" + subStart + '\'' +
-                ", restOfSub=" + restOfSub +
                 ", active=" + active +
+                ", subDuration=" + subDuration +
+                ", discount=" + discount +
                 ", customer=" + customer +
                 ", subscription=" + subscription +
                 '}';

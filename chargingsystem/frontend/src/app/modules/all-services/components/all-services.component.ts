@@ -34,9 +34,6 @@ export class AllServicesComponent implements OnInit, OnDestroy {
       subName:  new FormControl('', [
         Validators.required
       ]),
-      subDuration:  new FormControl('', [
-        Validators.required
-      ]),
       price:  new FormControl('', [
         Validators.required
       ]),

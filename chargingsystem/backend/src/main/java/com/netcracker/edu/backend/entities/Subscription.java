@@ -1,8 +1,6 @@
 package com.netcracker.edu.backend.entities;
 
 import javax.persistence.*;
-import java.sql.Blob;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "subs")
@@ -13,18 +11,16 @@ public class Subscription {
     private long id;
     private String serviceName;
     private String subName;
-    private int subDuration;
-    private float price;
+    private int price;
     private String description;
     private String image;
 
     public Subscription() {
     }
 
-    public Subscription(String serviceName, String subName, int subDuration, float price, String description, String image) {
+    public Subscription(String serviceName, String subName, int price, String description, String image) {
         this.serviceName = serviceName;
         this.subName = subName;
-        this.subDuration = subDuration;
         this.price = price;
         this.description = description;
         this.image = image;
@@ -62,19 +58,11 @@ public class Subscription {
         this.subName = subName;
     }
 
-    public int getSubDuration() {
-        return subDuration;
-    }
-
-    public void setSubDuration(int subDuration) {
-        this.subDuration = subDuration;
-    }
-
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -93,7 +81,6 @@ public class Subscription {
                 "id=" + id +
                 ", serviceName='" + serviceName + '\'' +
                 ", subName='" + subName + '\'' +
-                ", subDuration=" + subDuration +
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", image=" + image +

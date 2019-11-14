@@ -29,13 +29,7 @@
         </div>
         <div class="invalid" *ngIf="checkoutForm.get('description').invalid && checkoutForm.get('description').touched">Description is required.</div>
         <div>
-          <label for="subDuration">sub duration
-            <input id="subDuration" type="number" formControlName="subDuration"/>
-          </label>
-        </div>
-        <div class="invalid" *ngIf="checkoutForm.get('subDuration').invalid && checkoutForm.get('subDuration').touched">Sub duration is required.</div>
-        <div>
-          <label for="image">sub duration
+          <label for="image">Image
             <input id="image" type="text" formControlName="image"/>
           </label>
         </div>
@@ -51,7 +45,7 @@
       <a>Add service</a>
     </div>
     <div class="articles" *ngFor="let item of services">
-      <div class="container" [ngStyle]="{'background-image': item.image}">
+      <div class="container" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
         <a [routerLink]="['/service-details/'+item.id]">
           <div class="anons">
             <h3>{{item.serviceName}}</h3>

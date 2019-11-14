@@ -13,6 +13,6 @@ public interface BillingAccountRepository extends CrudRepository<BillingAccount,
 
     @Transactional
     @Modifying
-    @Query(value = "update billing_accounts set resources=:resources where id = :id", nativeQuery = true)
+    @Query(value = "update billing_accounts set resources = :resources where id = :id", nativeQuery = true)
     void updateResources(@Param("id") long id, @Param("resources") int resources);
 }

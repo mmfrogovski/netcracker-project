@@ -11,8 +11,9 @@ import {UserSub} from "./models/user-sub";
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  public users: User[] = [];
   private subscriptions: Subscription[] = [];
+  private user:User;
+  private userSubs:UserSub[] = [];
 
   setInterval = setInterval;
 
@@ -20,44 +21,23 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private usersService: UsersServiceService) {
   }
 
-  ngOnInit(): void {
-    this.subscriptions.push(this.usersService.getUsers().subscribe(res => {
-      this.users = res;
-    }));
+  ngOnInit(){
+    this.setUser();
     this.setIntrvl();
   }
 
-  public subSumOfPrice(user_subs: UserSub[]): number {
-    let sum: number = 0;
-    user_subs.forEach(sub => {
-      sum += sub.subscription.price;
-    });
-    return sum;
+  public setUser(){
+    this.user=JSON.parse(localStorage.getItem('user'));
   }
 
-
-  //Not correct
   public checkSubscriptions(): void {
-    this.users.forEach(user => {
-      let user_subs: UserSub[] = [];
-      this.usersService.getUserSubscriptionById(user.id).subscribe(res => {
-          user_subs = res;
-        let sumOfSubs: number = this.subSumOfPrice(user_subs);
-        if (sumOfSubs < user.customer.billingAccount.resources) {
-          let newResources: number = user.customer.billingAccount.resources - this.subSumOfPrice(user_subs);
-          this.usersService.setBillingAccountResources(newResources, user.customer.billingAccount).subscribe();
-          console.log(user.customer.billingAccount.resources);
-          if (newResources < sumOfSubs) {
-            // while (newResources - sumOfSubs < 0) {
-            //   // this.usersService.disableSubscription(user_subs[user_subs.length])
-            //
-            // }
-            this.sendNotification();
-          }
+    this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res=>{
+      this.userSubs=res;
+      this.userSubs.forEach(sub=>{
+        if(sub.active==false){
+          this.sendNotification();
         }
-        }
-      );
-
+      })
     })
   }
 
@@ -66,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public setIntrvl(): void {
-    setInterval(() => this.checkSubscriptions(), 2000);
+    setInterval(() => this.checkSubscriptions(), 5000);
   }
 
   ngOnDestroy(): void {

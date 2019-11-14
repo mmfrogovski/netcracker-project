@@ -78,9 +78,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
     this.customer.id = 1;
     this.newSubscription.customer = this.customer;
     this.newSubscription.subscription = this.service;
-    this.newSubscription.restOfSub = this.service.subDuration;
     this.newSubscription.startSub = document.querySelector(".date").innerHTML;
-    // console.log(this.newSubscription);
     this.subscriptions.push(this.usersServicesService.saveUserSub(this.newSubscription).subscribe(res => {
     }));
   }
