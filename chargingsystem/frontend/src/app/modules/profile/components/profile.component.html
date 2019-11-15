@@ -3,19 +3,25 @@
   <app-header></app-header>
   <div class="content">
     <div class="profile">
-      <h2>Profile</h2>
-      <ul>
-        <li>Username: {{user.customer.name}}</li>
-        <li>Number of subscriptions: {{numberOfSubs}}</li>
-        <li>Resources: {{resources}}
-          <button (click)="updateResources()">Update resources</button>
-        </li>
-      </ul>
-      <ul *ngFor="let service of myServices">Paused services
-        <li *ngIf="service.active==false">
-          {{service.subscription.serviceName}} paused.
-        </li>
-      </ul>
+      <div class="user_info">
+        <h2>Profile</h2>
+        <ul>
+          <li>Username: {{user.customer.name}}</li>
+          <li>Number of subscriptions: {{numberOfSubs}}</li>
+          <li>Resources: {{resources}}
+            <button (click)="updateResources()">Update resources</button>
+          </li>
+        </ul>
+      </div>
+      <div class="services_info">
+        <h2>Paused services</h2>
+        <ul *ngFor="let service of myServices">
+          <li *ngIf="service.active==false">
+            {{service.subscription.serviceName}} paused.
+            <button (click)="unpauseService(service)">UNPAUSE</button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <app-footer></app-footer>

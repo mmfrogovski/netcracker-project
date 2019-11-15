@@ -45,4 +45,9 @@ public class UserSubController {
     public void deleteUserSubById(@PathVariable(name = "subId") long subId) {
         userSubInterface.deleteUserSubById(subId);
     }
+
+    @RequestMapping(value = "users_subs/{id}/{status}", method = RequestMethod.PUT)
+    public void setUserSubActive(@PathVariable(name = "id") long id, @PathVariable(name="status") boolean status){
+        userSubInterface.setUserSubActive(id, status);
+    }
 }

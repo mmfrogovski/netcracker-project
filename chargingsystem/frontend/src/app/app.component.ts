@@ -12,8 +12,8 @@ import {UserSub} from "./models/user-sub";
 export class AppComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
-  private user:User;
-  private userSubs:UserSub[] = [];
+  private user: User;
+  private userSubs: UserSub[] = [];
 
   setInterval = setInterval;
 
@@ -21,25 +21,33 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private usersService: UsersServiceService) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.setUser();
-    this.setIntrvl();
+    if (this.user) {
+      this.setIntrvl();
+    }
   }
 
-  public setUser(){
-    this.user=JSON.parse(localStorage.getItem('user'));
+  public setUser() {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   public checkSubscriptions(): void {
-    this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res=>{
-      this.userSubs=res;
-      this.userSubs.forEach(sub=>{
-        if(sub.active==false){
+    this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
+      this.userSubs = res;
+      this.userSubs.forEach(sub => {
+        if (sub.active == false) {
           this.sendNotification();
+          console.log(this.userSubs);
+          this.removePausedSub(sub);
         }
       })
     })
   }
+
+  removePausedSub = (pausedSub: UserSub): void => {
+    this.userSubs = this.userSubs.filter(sub => sub.id == 18);
+  };
 
   public sendNotification() {
     //Service ... is paused.

@@ -48,4 +48,11 @@ public class UserSubService implements UserSubInterface {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/users_subs/" + subId);
     }
+
+    @Override
+    public void setUserSubActive(long id, boolean status){
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(backendServerUrl + "/api/users_subs/" + id + "/" + status, new UserSubscription());
+    }
+
 }

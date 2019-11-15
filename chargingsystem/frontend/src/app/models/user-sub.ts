@@ -2,6 +2,7 @@ import {Service} from "./service";
 import {Customer} from "./customer";
 
 export class UserSub {
+  public id:number;
   public startSub:string;
   public active: boolean;
   public subDuration:number;

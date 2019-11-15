@@ -17,6 +17,8 @@ public interface UserSubInterface {
 
     void deleteUserSubById(long subId);
 
+    void setUserSubActive(long id, boolean status);
+
     void getMoneyForSubscriptions();
 
     void subDurationAdd();

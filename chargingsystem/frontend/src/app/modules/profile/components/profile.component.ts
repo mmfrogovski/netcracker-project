@@ -44,6 +44,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   updateResources() {
     this.subscriptions.push(this.usersSubService.setBillingAccountResources(50, this.user.customer.billingAccount).subscribe());
+    alert("resources updated");
+  }
+
+  public unpauseService(sub){
+    this.subscriptions.push(this.usersServicesService.setUserSubscriptionActive(sub, true).subscribe(res=>{}));
+    alert("status updated");
   }
 
   ngOnDestroy(): void {

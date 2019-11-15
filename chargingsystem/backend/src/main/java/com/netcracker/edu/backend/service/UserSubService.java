@@ -41,6 +41,8 @@ public class UserSubService implements UserSubInterface {
         return userSubscriptionRepository.save(subscription);
     }
 
+
+
     @Override
     public void deleteUserSubById(long id) {
         userSubscriptionRepository.deleteById(id);
@@ -48,7 +50,12 @@ public class UserSubService implements UserSubInterface {
 
 
     @Override
-    @Scheduled(fixedRate = 10000)
+    public void setUserSubActive(long id, boolean status){
+        userSubscriptionRepository.setUserSubscriptionStatus(id, status);
+    }
+
+    @Override
+    @Scheduled(fixedRate = 5000)
     public void getMoneyForSubscriptions() {
         List<UserSubscription> userSubscriptions = (List<UserSubscription>) userSubscriptionRepository.findAll();
         userSubscriptions.forEach(subscription -> {
