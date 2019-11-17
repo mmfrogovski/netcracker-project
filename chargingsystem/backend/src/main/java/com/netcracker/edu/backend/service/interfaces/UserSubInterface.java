@@ -19,6 +19,8 @@ public interface UserSubInterface {
 
     void setUserSubActive(long id, boolean status);
 
+    UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId);
+
     void getMoneyForSubscriptions();
 
     void subDurationAdd();

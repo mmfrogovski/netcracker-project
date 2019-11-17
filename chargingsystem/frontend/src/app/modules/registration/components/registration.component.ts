@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {RegistrationData} from "../../../models/registr";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +14,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   public checkoutForm;
   private subscriptions: Subscription[] = [];
-
+  private user:User;
 
   constructor(private usersService: UsersServiceService,
               private formBuilder: FormBuilder) { }
@@ -22,7 +23,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[A-Za-z]{1}[0-9A-Za-z]{1,15}$')
+        Validators.pattern('^[A-Za-z0-9_]{1,15}$')
         ]),
       name: new FormControl('', [
         Validators.required,
@@ -53,9 +54,13 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   private addUser(user: RegistrationData):void{
-    this.subscriptions.push(this.usersService.registUser(user).subscribe(res=>{}))
+    this.subscriptions.push(this.usersService.registUser(user).subscribe(res=>{
+      this.subscriptions.push(this.usersService.getUserByLoginAndPassword(res.login, res.password).subscribe(user=>{
+          localStorage.setItem('user', JSON.stringify(user));
+      }));
+      location.replace('http://localhost:4200/');
+    }));
   }
-
   matchOtherValidator (otherControlName: string) {
 
     let thisControl: FormControl;

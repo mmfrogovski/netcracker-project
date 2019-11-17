@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserSubController {
     private UserSubInterface userSubInterface;
 
@@ -41,6 +41,12 @@ public class UserSubController {
         return userSubInterface.saveUserSub(userSubscription);
     }
 
+    @RequestMapping(value = "/users_subs/customer/{id}/service/{serviceId}", method = RequestMethod.GET)
+    public ResponseEntity<UserSubscription> getSubscriptionsByCustomerId(@PathVariable(name = "id") long id,
+                                                         @PathVariable(name = "serviceId") long serviceId) {
+        UserSubscription userSubscription=userSubInterface.getSubscriptionByCustomerAndServiceId(id, serviceId);
+        return userSubscription != null ? ResponseEntity.ok(userSubscription) : null;
+    }
     @RequestMapping(value = "users_subs/{subId}", method = RequestMethod.DELETE)
     public void deleteUserSubById(@PathVariable(name = "subId") long subId) {
         userSubInterface.deleteUserSubById(subId);

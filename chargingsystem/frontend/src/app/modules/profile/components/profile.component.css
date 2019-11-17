@@ -8,28 +8,28 @@ body {
   padding-top: 5.5em;
 }
 
-.content{
-  width:100%;
+.content {
+  width: 100%;
   height: 34vw;
-  margin:1vw auto;
+  margin: 1vw auto;
   padding: 0;
 }
 
-.profile{
+.profile {
   width: 78%;
   height: 30vw;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   margin-left: 11%;
   color: #ffffff;
   font-size: 1.5vw;
   font-weight: 500;
 }
 
-.profile ul li{
+.profile ul li {
   margin-top: 0.5vw;
 }
 
-.profile button{
+.profile button {
   color: #ffffff;
   width: auto;
   height: 2.5vw;
@@ -38,33 +38,115 @@ body {
   border: solid 1px;
 }
 
-.profile{
+.profile {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 }
 
-.services_info{
+.services_info {
   margin-left: 17vw;
   border-left: 2px solid #ffffff;
 }
 
 
-
-.profile button:hover{
-  background: rgba(255,255,255,0.1);
+.profile button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 
-.profile h2{
+.profile h2 {
   font-weight: 600;
 }
 
-.services_info h2{
+.services_info h2 {
   margin-left: 7vw;
 }
 
-.user_info h2{
+.user_info h2 {
   width: 50%;
   text-align: center;
   margin-left: 12vw;
+}
+
+img.close {
+  border-radius: 100%;
+  width: 9%;
+  height: 100%;
+}
+
+img.close:hover {
+  cursor: pointer;
+  background-color: #7c8081;
+}
+
+div.add-resources button{
+  height: 2vw;
+  border: none;
+  margin-left: 0.4vw;
+  color: #ffffff;
+  font-size: 1.5vw;
+  font-weight: 300;
+}
+
+button:not(disabled) {
+  background-color: #00fc00;
+}
+
+button:not(disabled):hover {
+  background-color: #00c500;
+}
+
+button:disabled {
+  background-color: red
+}
+
+button:disabled:hover{
+  background-color: #950000;
+}
+
+div.add-resources{
+  background-color: rgba(0, 0, 0, .25);
+  bottom: 0;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+div.add-resources input{
+  height: 2vw;
+  width: 50%;
+  background:none;
+  border: none;
+  color:#ffffff;
+  font-size: 1.5vw;
+  border-bottom: 2px solid #ffffff;
+}
+
+
+div.add-resources form{
+  height: 4vw;
+  align-self: center;
+  background-color: rgba(32, 0, 126, 0.8);
+  position: absolute;
+  bottom: 50%;
+  border: none;
+  left: 30%;
+  border-radius: 0.1vw;
+  padding: 0.4vw;
+  width: 40vw;
+}
+
+div.invalid{
+  position: absolute;
+  color: red;
+  font-size: 1.1vw;
+  font-weight: bold;
+}
+
+div.close_wrap{
+  position: absolute;
+  right: -29rem;
+  top:0;
 }

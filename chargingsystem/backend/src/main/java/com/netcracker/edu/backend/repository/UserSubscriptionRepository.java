@@ -22,6 +22,10 @@ public interface UserSubscriptionRepository extends CrudRepository<UserSubscript
     @Query(value = "select * from users_subs where customer_id = :customerId", nativeQuery = true)
     List<UserSubscription> getSubscriptionByCustomerId(@Param("customerId") long customerId);
 
+    @Query(value = "select * from users_subs where customer_id = :customerId and service_id = :serviceId", nativeQuery = true)
+    UserSubscription getSubscriptionByCustomerAndServiceId(@Param("customerId") long customerId,
+                                                           @Param("serviceId") long serviceId);
+
     @Modifying
     @Query(value = "update users_subs set discount = :discount where id = :id",
             nativeQuery = true)

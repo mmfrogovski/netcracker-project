@@ -24,6 +24,12 @@ public class UserSubController {
         return userSubInterface.getSubscriptionsByCustomerId(id);
     }
 
+    @RequestMapping(value = "/users_subs/customer/{id}/service/{serviceId}", method = RequestMethod.GET)
+    public UserSubscription getSubscriptionsByCustomerId(@PathVariable(name = "id") long id,
+                                                         @PathVariable(name = "serviceId") long serviceId) {
+        return userSubInterface.getSubscriptionByCustomerAndServiceId(id, serviceId);
+    }
+
     @RequestMapping(value = "/users_subs", method = RequestMethod.GET)
     public List<UserSubscription> getUsersSub() {
         return userSubInterface.getUsersSub();
@@ -41,7 +47,7 @@ public class UserSubController {
     }
 
     @RequestMapping(value = "/users_subs/{id}/{status}", method = RequestMethod.PUT)
-    public void setUserSubActive(@PathVariable(name = "id") long id, @PathVariable(name = "status") boolean status){
+    public void setUserSubActive(@PathVariable(name = "id") long id, @PathVariable(name = "status") boolean status) {
         userSubInterface.setUserSubActive(id, status);
     }
 

@@ -151,22 +151,25 @@ div.overlay > div.login-wrapper > div.login-content {
 }
 
 a.close {
-  background-color: rgb(29, 29, 29);
   border-radius: 50%;
-  color: rgb(255, 255, 255);
   display: block;
   font-family: 'Varela Round', sans-serif;
   font-size: 1.6vw;
   padding: 0.2vw 0.7vw;
   position: absolute;
-  top: 1.25rem;
-  transition: all 400ms ease;
-  right: 1.25rem;
+  top: 0;
+  right: -29rem;
 }
 
-a.close:hover {
-  background-color: #596982;
+img.close{
+  border-radius: 100%;
+  width: 9%;
+  height: 100%;
+}
+
+img.close:hover {
   cursor: pointer;
+  background-color: #7c8081;
 }
 
 .login-wrapper form label {

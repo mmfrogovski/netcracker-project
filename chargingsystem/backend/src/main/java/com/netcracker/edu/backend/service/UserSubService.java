@@ -54,6 +54,10 @@ public class UserSubService implements UserSubInterface {
         userSubscriptionRepository.setUserSubscriptionStatus(id, status);
     }
 
+    public UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId){
+        return userSubscriptionRepository.getSubscriptionByCustomerAndServiceId(customerId, serviceId);
+    }
+
     @Override
     @Scheduled(fixedRate = 5000)
     public void getMoneyForSubscriptions() {

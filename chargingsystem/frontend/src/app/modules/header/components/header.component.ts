@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
         Validators.required,
-        Validators.pattern("^[A-Za-z]{1}[0-9A-Za-z]{1,15}$")
+        Validators.pattern("^[A-Za-z0-9_]{1,15}$")
       ]),
       password: new FormControl('', [
         Validators.required

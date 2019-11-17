@@ -40,6 +40,10 @@ export class UsersServiceService {
     return this.http.get<User>(this.constUrls.backendUrlUsers + login + '/' + password);
   }
 
+  getSubscriptionByCustomerAndServiceId(customerId: number, serviceId: number): Observable<UserSub> {
+    return this.http.get<UserSub>(this.constUrls.backendUrlUsersSubs + 'customer/' + customerId + '/service/' + serviceId);
+  }
+
   setBillingAccountResources(resources: number, billingAccount: BillingAccount): Observable<void> {
     return this.http.put<void>(this.constUrls.backendUrlBillingAccounts + billingAccount.id + '/' + resources, billingAccount);
   }

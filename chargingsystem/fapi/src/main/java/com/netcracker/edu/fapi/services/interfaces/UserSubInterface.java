@@ -16,4 +16,6 @@ public interface UserSubInterface {
     void setUserSubActive(long id, boolean status);
 
     void deleteUserSubById(long subId);
+
+    UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId);
 }

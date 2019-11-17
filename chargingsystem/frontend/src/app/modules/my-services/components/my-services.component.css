@@ -41,12 +41,16 @@ body {
   flex-direction: row;
 }
 
+.service-wrap ul li h3{
+  width: 20%;
+}
+
 .service-wrap ul li ul {
-  margin-left: 5%;
+  align-items: center;
   display: flex;
   flex-direction: row;
 }
 
 .service-wrap ul li ul li{
-  margin-left: 5vw;
+  margin-left: 4vw;
 }

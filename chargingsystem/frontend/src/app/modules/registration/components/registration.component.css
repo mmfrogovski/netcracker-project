@@ -73,6 +73,15 @@ p, label {
   margin-left: 33%;
 }
 
+#registration-form form button[type="submit"]:disabled {
+  background-color: red
+}
+
+#registration-form form button[type="submit"]:disabled:hover {
+  background-color: #c60017
+}
+
+
 #registration-form form button[type="submit"]:hover {
   background-color: #d44179;
 }

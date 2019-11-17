@@ -15,7 +15,8 @@
         <ul>
           <li>Price: {{service.price}}</li>
           <li>Name: {{service.subName}}</li>
-          <li class="subscribe" (click)="subscribeToService()"><a>Subscribe</a></li>
+          <li class="subscribe" (click)="subscribeToService()" *ngIf="subscribed"><a>Subscribe</a></li>
+          <li class="subscribed" *ngIf="!subscribed">You already subscribed to this service!</li>
         </ul>
       </div>
     </div>
@@ -41,7 +42,7 @@
             <li>| {{review.reviewDate}}</li>
           </ul>
         </li>
-     </ul>
+      </ul>
     </div>
   </div>
   <app-footer></app-footer>

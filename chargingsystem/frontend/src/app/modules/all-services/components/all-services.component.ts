@@ -13,7 +13,6 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   public service: Service;
   public checkoutForm;
-
   public isPopup: boolean = false;
 
   public urlBck: string;
@@ -64,9 +63,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   sendService(service) {
     this.services.push(service);
-
-    this.subscriptions.push(this.allServicesService.saveService(service).subscribe(res => {
-    }))
+    this.subscriptions.push(this.allServicesService.saveService(service).subscribe());
+    this.isPopup=false;
   }
 
   deleteService(item) {

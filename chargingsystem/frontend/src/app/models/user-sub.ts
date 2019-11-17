@@ -3,7 +3,7 @@ import {Customer} from "./customer";
 
 export class UserSub {
   public id:number;
-  public startSub:string;
+  public subStart:string;
   public active: boolean;
   public subDuration:number;
   public discount:number;

@@ -7,8 +7,10 @@
         <li><h3>{{service.subscription.subName}}</h3>
           <ul>
             <li>price:{{service.subscription.price}}</li>
-            <li>subscribe duration: {{service.subscription.subDuration}}</li>
-            <li>end of subscription: {{service.restOfSub}}</li>
+            <li>sub duration: {{service.subDuration}}</li>
+            <li>discount: {{service.discount}}</li>
+            <li *ngIf="service.active">status: active</li>
+            <li *ngIf="!service.active">status: paused.</li>
           </ul>
         </li>
       </ul>

@@ -10,6 +10,7 @@ import {UsersServiceService} from "../../../services/users-service/users-service
 import {AllServicesService} from "../../../services/all-services/all-services.service";
 import {Customer} from "../../../models/customer";
 import {FormBuilder} from "@angular/forms";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-service-details',
@@ -23,10 +24,12 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public newSubscription: UserSub = new UserSub();
   public customer: Customer;
-  public date = Date.now();
+  public date: Date = new Date();
   public reviews: Review[] = [];
   public serviceId: number;
   public checkoutForm;
+  public user: User;
+  public subscribed: boolean = true;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -37,25 +40,27 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.serviceId = parseFloat(this.activatedRoute.snapshot.paramMap.get('id'));
     this.loadService();
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.subscribedCheck();
     this.loadReviews();
     this.checkoutForm = this.formBuilder.group({
       review: '',
-      reviewDate: '',
-      customer:{id:1},
-      subscription:{id: this.serviceId}
+      reviewDate: this.date.getDate() + ' ' + this.date.getMonth() + ' ' + this.date.getFullYear(),
+      customer: {id: this.user.customer.id},
+      subscription: {id: this.serviceId}
     })
   }
 
   private loadService(): void {
+    this.serviceId = parseFloat(this.activatedRoute.snapshot.paramMap.get('id'));
     this.subscriptions.push(this.allServicesService.getServiceById(this.serviceId).subscribe(service => {
       this.service = service;
     }));
   }
 
-  public onSubmit(data) : void {
-    console.log(data);
+  public onSubmit(data): void {
+    data.customerId = this.user.customer.id;
     this.addReview(data);
     this.checkoutForm.reset();
   }
@@ -67,20 +72,30 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   public addReviewShow(): void {
-    this.addReviewPopup=!this.addReviewPopup;
+    this.addReviewPopup = !this.addReviewPopup;
   }
 
-  public addReview(review):void{
-    this.subscriptions.push(this.reviewsService.saveReview(review).subscribe(res=>{}));
+  public subscribedCheck(): void {
+    this.subscriptions.push(this.usersServicesService.getSubscriptionByCustomerAndServiceId(this.user.customer.id, this.serviceId).subscribe(res => {
+      if (res != null) {
+        this.subscribed = false;
+      }
+    }))
   }
 
-  subscribeToService():void {
-    this.customer.id = 1;
-    this.newSubscription.customer = this.customer;
-    this.newSubscription.subscription = this.service;
-    this.newSubscription.startSub = document.querySelector(".date").innerHTML;
-    this.subscriptions.push(this.usersServicesService.saveUserSub(this.newSubscription).subscribe(res => {
+  public addReview(review): void {
+    this.subscriptions.push(this.reviewsService.saveReview(review).subscribe(res => {
     }));
+  }
+
+  subscribeToService(): void {
+    this.newSubscription.customer = this.user.customer;
+    this.newSubscription.subscription = this.service;
+    this.newSubscription.active = true;
+    this.newSubscription.discount = 0;
+    this.newSubscription.subStart = this.date.getFullYear() + '-' + this.date.getMonth() + '-' + this.date.getDate();
+    this.newSubscription.subDuration = 0;
+    this.subscriptions.push(this.usersServicesService.saveUserSub(this.newSubscription).subscribe());
   }
 
   ngOnDestroy(): void {

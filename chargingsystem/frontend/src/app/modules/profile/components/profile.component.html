@@ -2,6 +2,19 @@
 <div class="wrapper">
   <app-header></app-header>
   <div class="content">
+    <div class="add-resources" *ngIf="addResourcesPopup">
+      <form method="post" [formGroup]="addResourcesForm" (ngSubmit)="onSubmit(addResourcesForm.value)">
+        <div (click)="isResourcesPopup()" class="close_wrap"><img
+          src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"></div>
+        <label for="resources">
+          <input type="number" id="resources" formControlName="resources">
+        </label>
+        <div class="invalid" *ngIf="addResourcesForm.get('resources').invalid
+       && addResourcesForm.get('resources').touched">Invalid number (1 - 1000)
+        </div>
+        <button type="submit" [disabled]="!addResourcesForm.valid">Add resources</button>
+      </form>
+    </div>
     <div class="profile">
       <div class="user_info">
         <h2>Profile</h2>
@@ -9,7 +22,7 @@
           <li>Username: {{user.customer.name}}</li>
           <li>Number of subscriptions: {{numberOfSubs}}</li>
           <li>Resources: {{resources}}
-            <button (click)="updateResources()">Update resources</button>
+            <button (click)="isResourcesPopup()">Add resources</button>
           </li>
         </ul>
       </div>

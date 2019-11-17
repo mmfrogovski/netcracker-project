@@ -2,38 +2,49 @@
 <div class="wrapper">
   <div class="add_service_form" *ngIf="isPopup==true">
     <div class="form_wrap">
-      <div (click)="formAction()" class="close">X</div>
+      <div (click)="formAction()" class="close_wrap"><img
+        src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"></div>
       <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
         <div>
           <label for="serviceName">Service Name
             <input id="serviceName" type="text" formControlName="serviceName"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('serviceName').invalid && checkoutForm.get('serviceName').touched">Service Name is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('serviceName').invalid && checkoutForm.get('serviceName').touched">
+          Service Name is required.
+        </div>
         <div>
           <label for="price">Price
             <input id="price" type="number" formControlName="price"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Price is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Price is
+          required.
+        </div>
         <div>
           <label for="subName">sub name
             <input id="subName" type="text" formControlName="subName"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('subName').invalid && checkoutForm.get('subName').touched">Sub Name is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('subName').invalid && checkoutForm.get('subName').touched">Sub Name
+          is required.
+        </div>
         <div>
           <label for="description">Description
             <input id="description" type="text" formControlName="description"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('description').invalid && checkoutForm.get('description').touched">Description is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('description').invalid && checkoutForm.get('description').touched">
+          Description is required.
+        </div>
         <div>
           <label for="image">Image
             <input id="image" type="text" formControlName="image"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('image').invalid && checkoutForm.get('image').touched">Image is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('image').invalid && checkoutForm.get('image').touched">Image is
+          required.
+        </div>
         <div class="send_service">
           <button class="button" type="submit" [disabled]="!checkoutForm.valid">Add</button>
         </div>
@@ -46,13 +57,16 @@
     </div>
     <div class="articles" *ngFor="let item of services">
       <div class="container" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
-        <a [routerLink]="['/service-details/'+item.id]">
+        <div class="delete_wrap">
+          <button type="submit" (click)="deleteService(item)"><img
+            src="http://cdn.onlinewebfonts.com/svg/img_116511.png" alt="delete" class="delete"/></button>
+        </div>
+        <a [routerLink]="['/service-details/' + item.id]">
           <div class="anons">
             <h3>{{item.serviceName}}</h3>
             <p>{{item.description}}</p>
           </div>
         </a>
-        <div><button type="submit" (click)="deleteService(item)">delete</button></div>
       </div>
     </div>
     <div class="clear"></div>

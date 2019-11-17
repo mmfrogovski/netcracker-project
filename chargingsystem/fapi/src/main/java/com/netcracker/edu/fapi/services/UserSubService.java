@@ -37,6 +37,12 @@ public class UserSubService implements UserSubInterface {
         return usersSubscriptions == null ? Collections.emptyList() : Arrays.asList(usersSubscriptions);
     }
 
+
+    public UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "/api/users_subs/customer/" + customerId + "/service/" + serviceId, UserSubscription.class);
+    }
+
     @Override
     public UserSubscription saveUserSub(UserSubscription subscription) {
         RestTemplate restTemplate = new RestTemplate();
@@ -50,7 +56,7 @@ public class UserSubService implements UserSubInterface {
     }
 
     @Override
-    public void setUserSubActive(long id, boolean status){
+    public void setUserSubActive(long id, boolean status) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(backendServerUrl + "/api/users_subs/" + id + "/" + status, new UserSubscription());
     }

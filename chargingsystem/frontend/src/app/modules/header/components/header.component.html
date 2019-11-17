@@ -1,6 +1,6 @@
 <div class="head-wrap">
   <header id="header" class="alt">
-    <h1 id="logo"><a href="index.html">Charging System</a></h1>
+    <h1 id="logo"><a href="#">Charging System</a></h1>
     <nav id="nav">
       <ul>
         <li><a href="#">Welcome</a></li>
@@ -11,7 +11,7 @@
         <div class="overlay" *ngIf="isPopup">
           <div class="login-wrapper">
             <div class="login-content">
-              <a class="close" (click)="showLogin()">x</a>
+              <a class="close" (click)="showLogin()"><img src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/></a>
               <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
                 <label for="username">
                   Login:
