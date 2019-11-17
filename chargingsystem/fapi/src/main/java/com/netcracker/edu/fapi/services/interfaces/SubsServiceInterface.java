@@ -13,4 +13,7 @@ public interface SubsServiceInterface {
     Subscription saveService(Subscription service) throws IOException;
 
     void deleteServiceById(long serviceId);
+
+    List<Subscription> getSubsPage(int page);
+
 }

@@ -42,5 +42,12 @@ public class SubscriptionService implements SubsServiceInterface {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/all_subs/" + serviceId);
     }
+
+    @Override
+    public List<Subscription> getSubsPage(int page) {
+        RestTemplate restTemplate = new RestTemplate();
+        Subscription[] subscriptions = restTemplate.getForObject(backendServerUrl + "/api/all_subs/pages/" + page, Subscription[].class);
+        return subscriptions == null ? Collections.emptyList() : Arrays.asList(subscriptions);
+    }
 }
 

@@ -5,6 +5,8 @@ import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,6 +36,11 @@ public class SubscriptionService implements SubsServiceInterface {
     @Override
     public void deleteServiceById(long serviceId) {
         subscriptionRepository.deleteById(serviceId);
+    }
+
+    @Override
+    public Page<Subscription> getSubsPage(int page, int size){
+        return subscriptionRepository.findAll(new PageRequest(page, size));
     }
 
 }

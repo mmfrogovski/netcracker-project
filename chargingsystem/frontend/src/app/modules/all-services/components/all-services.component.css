@@ -265,7 +265,15 @@ img.close:hover {
   cursor: pointer;
 }
 
+.pagination-control{
+  font-size: 1.5vw;
+  color: #ffffff;
+  font-weight: 400;
+}
 
-#add_show{
-  display: block;
+.pagination_wrap{
+  width: auto;
+  margin-left: 35%;
+  margin-right: 32%;
+  background-color: rgba(148, 8, 127, 0.58);
 }

@@ -55,7 +55,7 @@
     <div class="add-service" (click)="formAction()">
       <a>Add service</a>
     </div>
-    <div class="articles" *ngFor="let item of services">
+    <div class="articles" *ngFor="let item of services | paginate: config">
       <div class="container" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
         <div class="delete_wrap">
           <button type="submit" (click)="deleteService(item)"><img
@@ -70,6 +70,9 @@
       </div>
     </div>
     <div class="clear"></div>
+    <div class="pagination_wrap">
+      <pagination-controls (pageChange)="pageChanged($event)" class="pagination-control"></pagination-controls>
+    </div>
   </div>
   <app-footer></app-footer>
 </div>

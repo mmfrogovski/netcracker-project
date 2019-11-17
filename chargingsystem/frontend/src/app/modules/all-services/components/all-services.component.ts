@@ -17,26 +17,34 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   public urlBck: string;
 
+  public config: any;
+  // public collection = {count: 4, data: Service[]};
+
   public services: Service[] = [];
   private subscriptions: Subscription[] = [];
 
   constructor(private allServicesService: AllServicesService,
               private formBuilder: FormBuilder) {
+    this.config = {
+      itemsPerPage: 4,
+      currentPage: 1,
+      totalItems: 5
+    };
   }
 
   ngOnInit() {
-    this.loadServices();
+    this.loadFirstPage();
     this.checkoutForm = this.formBuilder.group({
       serviceName: new FormControl('', [
         Validators.required
       ]),
-      subName:  new FormControl('', [
+      subName: new FormControl('', [
         Validators.required
       ]),
-      price:  new FormControl('', [
+      price: new FormControl('', [
         Validators.required
       ]),
-      description:  new FormControl('', [
+      description: new FormControl('', [
         Validators.required
       ]),
       image: new FormControl('', [
@@ -45,18 +53,27 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     })
   }
 
-
-  public formAction():void {
-    this.isPopup=!this.isPopup;
+  pageChanged(event) {
+    this.config.currentPage = event;
+    this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1).subscribe(
+      res => {
+        this.services = res;
+      }
+    ));
   }
 
-  private loadServices() {
-    this.subscriptions.push(this.allServicesService.getServices().subscribe(services => {
+
+  public formAction(): void {
+    this.isPopup = !this.isPopup;
+  }
+
+  private loadFirstPage() {
+    this.subscriptions.push(this.allServicesService.getServicePage(0).subscribe(services => {
       this.services = services;
     }));
   }
 
-  public onSubmit(data) : void {
+  public onSubmit(data): void {
     this.sendService(data);
     this.checkoutForm.reset();
   }
@@ -64,13 +81,11 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   sendService(service) {
     this.services.push(service);
     this.subscriptions.push(this.allServicesService.saveService(service).subscribe());
-    this.isPopup=false;
+    this.isPopup = false;
   }
 
   deleteService(item) {
-    this.subscriptions.push(this.allServicesService.deleteService(item.id).subscribe(() => {
-      this.loadServices();
-    }));
+    this.subscriptions.push(this.allServicesService.deleteService(item.id).subscribe());
     this.services.slice(item);
   }
 

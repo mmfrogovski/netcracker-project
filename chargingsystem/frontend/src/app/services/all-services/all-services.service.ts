@@ -18,15 +18,19 @@ export class AllServicesService {
     return this.http.get<Service[]>(this.backUrls.backendUrlAllSubs);
   }
 
-  getServiceById(id):Observable<Service>{
-    return this.http.get<Service>(this.backUrls.backendUrlAllSubs+id);
+  getServicePage(page: number): Observable<Service[]> {
+    return this.http.get<Service[]>(this.backUrls.backendUrlAllSubs + 'pages/' + page);
+  }
+
+  getServiceById(id): Observable<Service> {
+    return this.http.get<Service>(this.backUrls.backendUrlAllSubs + id);
   }
 
   saveService(service: Service): Observable<Service> {
     return this.http.post<Service>(this.backUrls.backendUrlAllSubs, service);
   }
 
-  deleteService(id: number):Observable<void> {
+  deleteService(id: number): Observable<void> {
     return this.http.delete<void>(this.backUrls.backendUrlAllSubs + id);
   }
 

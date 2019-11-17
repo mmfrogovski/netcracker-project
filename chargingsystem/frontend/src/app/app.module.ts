@@ -17,6 +17,7 @@ import {HeaderComponent} from "./modules/header/components/header.component";
 import {ServiceDetailsComponent} from "./modules/service-details/components/service-details.component";
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
 import { ProfileComponent } from './modules/profile/components/profile.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProfileComponent } from './modules/profile/components/profile.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [BackendUrlsConst],
   bootstrap: [AppComponent]
