@@ -3,7 +3,7 @@
     <h1 id="logo"><a href="#">Charging System</a></h1>
     <nav id="nav">
       <ul>
-        <li><a href="#">Welcome</a></li>
+        <li (click)="addClassActive(this.element())"><a href="#">Welcome</a></li>
         <li><a [routerLink]="['/all-services']">Services</a></li>
         <li *ngIf="isLoggedIn"><a [routerLink]="['/my-services']">My services</a></li>
         <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>

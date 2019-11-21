@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class BackendUrlsConst {
 
-  // readonly backendUrl: string = 'http://localhost:8083/api/';
   readonly backendUrlAllSubs: string = 'api/all_subs/';
   readonly backendUrlUsersSubs: string = 'api/users_subs/';
   readonly backendUrlCustomers: string = 'api/customers/';

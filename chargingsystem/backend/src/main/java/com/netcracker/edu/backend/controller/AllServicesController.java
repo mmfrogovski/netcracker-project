@@ -4,7 +4,6 @@ import com.netcracker.edu.backend.entities.Subscription;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +25,9 @@ public class AllServicesController {
         return subsService.getSubs();
     }
 
-    @RequestMapping(value = "/all_subs/pages/{page}", method = RequestMethod.GET)
-    public List<Subscription> getAllSubs(@PathVariable(name = "page") int page) {
-        return subsService.getSubsPage(page, 4).getContent();
+    @RequestMapping(value = "/all_subs/pages/{page}/{size}", method = RequestMethod.GET)
+    public Page<Subscription> getAllSubs(@PathVariable(name = "page") int page, @PathVariable(name = "size") int size) {
+        return subsService.getSubsPage(page, size);
     }
 
     @RequestMapping(value = "/all_subs/{serviceId}", method = RequestMethod.GET)

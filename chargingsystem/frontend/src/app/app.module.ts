@@ -10,14 +10,15 @@ import {NgModule} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BackendUrlsConst} from "./services/const-service/backend-urls.const";
-import { MyServicesComponent } from './modules/my-services/components/my-services.component';
+import {MyServicesComponent} from './modules/my-services/components/my-services.component';
 import {StartComponent} from "./modules/start-page/components/start.component";
 import {AllServicesComponent} from "./modules/all-services/components/all-services.component";
 import {HeaderComponent} from "./modules/header/components/header.component";
 import {ServiceDetailsComponent} from "./modules/service-details/components/service-details.component";
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
-import { ProfileComponent } from './modules/profile/components/profile.component';
+import {ProfileComponent} from './modules/profile/components/profile.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {EventService} from "./services/eventService/event.service";
 
 @NgModule({
   declarations: [
@@ -40,9 +41,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
-  providers: [BackendUrlsConst],
+  providers: [BackendUrlsConst, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

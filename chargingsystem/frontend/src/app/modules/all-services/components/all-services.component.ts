@@ -15,10 +15,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   public checkoutForm;
   public isPopup: boolean = false;
 
-  public urlBck: string;
-
   public config: any;
-  // public collection = {count: 4, data: Service[]};
 
   public services: Service[] = [];
   private subscriptions: Subscription[] = [];
@@ -28,7 +25,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     this.config = {
       itemsPerPage: 4,
       currentPage: 1,
-      totalItems: 5
+      totalItems: 8
     };
   }
 
@@ -55,9 +52,9 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   pageChanged(event) {
     this.config.currentPage = event;
-    this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1).subscribe(
+    this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1, 4).subscribe(
       res => {
-        this.services = res;
+        this.services = res.content;
       }
     ));
   }
@@ -68,8 +65,10 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   }
 
   private loadFirstPage() {
-    this.subscriptions.push(this.allServicesService.getServicePage(0).subscribe(services => {
-      this.services = services;
+    this.subscriptions.push(this.allServicesService.getServicePage(0, 4).subscribe(page => {
+      this.services = page.content;
+      this.config.totalItems = page.totalElements;
+      console.log(this.services);
     }));
   }
 

@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public user: User;
   public isLoggedIn: boolean = false;
   public wrong: boolean = false;
+  public page: string;
 
   private subscriptions: Subscription[] = [];
 
@@ -38,10 +39,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
+  public addClassActive(element):void{
+
+  }
+
   public checkLogged(): void {
     if (localStorage.getItem('user') != null)
       this.isLoggedIn = true;
   }
+
+
 
   public onSubmit(data): void {
     this.logIn(data);

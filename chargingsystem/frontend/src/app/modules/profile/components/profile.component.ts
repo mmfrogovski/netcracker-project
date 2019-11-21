@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {User} from "../../../models/user";
 import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {EventService} from "../../../services/eventService/event.service";
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public user: User;
 
+  public pausedServices: UserSub[] = [];
+
   public numberOfSubs: number;
 
   public resources: number;
@@ -29,10 +32,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private usersSubService: UsersServiceService,
               private usersServicesService: UsersServiceService,
+              private eventService: EventService,
               private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.eventService.onUpdatePrice.subscribe(value => this.resources = value);
+    this.eventService.onUpdateServiceStatus.subscribe(value => {
+      this.myServices = value;
+    });
     this.addResourcesForm = this.formBuilder.group({
         resources: new FormControl('',
           [Validators.required,
@@ -41,6 +49,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ])
       }
     );
+
     this.user = JSON.parse(localStorage.getItem('user'));
     this.subscriptions.push(this.usersServicesService.getBillingAccountById(this.user.customer.billingAccount.id).subscribe(res => {
         this.resources = res.resources;
@@ -73,11 +82,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.addResourcesPopup = !this.addResourcesPopup;
   }
 
-
-  public unpauseService(sub) {
-    this.subscriptions.push(this.usersServicesService.setUserSubscriptionActive(sub, true).subscribe(res => {
-    }));
-    alert("status updated");
+  public unpauseService(sub: UserSub) {
+    if (2*sub.subscription.price < this.resources) {
+      this.subscriptions.push(this.usersServicesService.setUserSubscriptionActive(sub, true).subscribe(res => {
+        this.subscriptions.push(this.usersSubService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
+          this.eventService.updateUserServicesStatus(res);
+        }));
+      }));
+    }else{
+      alert("Can't unpause service due to low resources.")
+    }
   }
 
   ngOnDestroy(): void {

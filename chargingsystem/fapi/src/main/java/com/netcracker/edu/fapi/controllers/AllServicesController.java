@@ -1,10 +1,10 @@
 package com.netcracker.edu.fapi.controllers;
 
 
+import com.netcracker.edu.fapi.models.RestResponsePage;
 import com.netcracker.edu.fapi.models.Subscription;
 import com.netcracker.edu.fapi.services.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +34,9 @@ public class AllServicesController {
         return service != null ? ResponseEntity.ok(service) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/all_subs/pages/{page}", method = RequestMethod.GET)
-    public List<Subscription> getAllSubs(@PathVariable(name = "page") int page) {
-        return subsService.getSubsPage(page);
+    @RequestMapping(value = "/all_subs/pages/{page}/{size}", method = RequestMethod.GET)
+    public RestResponsePage getAllSubs(@PathVariable(name = "page") int page, @PathVariable(name = "size") int size) {
+        return subsService.getSubsPage(page, size);
     }
 
     @RequestMapping(value = "/all_subs", method = RequestMethod.POST)

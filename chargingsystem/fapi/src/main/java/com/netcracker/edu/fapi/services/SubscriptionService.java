@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.services;
 
 
+import com.netcracker.edu.fapi.models.RestResponsePage;
 import com.netcracker.edu.fapi.models.Subscription;
 import com.netcracker.edu.fapi.services.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,10 +45,9 @@ public class SubscriptionService implements SubsServiceInterface {
     }
 
     @Override
-    public List<Subscription> getSubsPage(int page) {
+    public RestResponsePage getSubsPage(int page, int size) {
         RestTemplate restTemplate = new RestTemplate();
-        Subscription[] subscriptions = restTemplate.getForObject(backendServerUrl + "/api/all_subs/pages/" + page, Subscription[].class);
-        return subscriptions == null ? Collections.emptyList() : Arrays.asList(subscriptions);
+        return restTemplate.getForObject(backendServerUrl + "/api/all_subs/pages/" + page + "/" + size, RestResponsePage.class);
     }
 }
 

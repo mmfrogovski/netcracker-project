@@ -1,5 +1,6 @@
 package com.netcracker.edu.fapi.services.interfaces;
 
+import com.netcracker.edu.fapi.models.RestResponsePage;
 import com.netcracker.edu.fapi.models.Subscription;
 
 import java.io.IOException;
@@ -14,6 +15,6 @@ public interface SubsServiceInterface {
 
     void deleteServiceById(long serviceId);
 
-    List<Subscription> getSubsPage(int page);
+    RestResponsePage getSubsPage(int page, int size);
 
 }
