@@ -14,8 +14,7 @@ import java.util.List;
 public interface UserSubscriptionRepository extends CrudRepository<UserSubscription, Long> {
 
     @Modifying
-    @Query(value = "update users_subs set active = :active where id = :id",
-            nativeQuery = true)
+    @Query(value = "update UserSubscription set active = :active where id = :id")
     @Transactional
     void setUserSubscriptionStatus(@Param("id") long id, @Param("active") boolean active);
 
@@ -37,4 +36,7 @@ public interface UserSubscriptionRepository extends CrudRepository<UserSubscript
             nativeQuery = true)
     @Transactional
     void updateSubDurationById(@Param("id") long id, @Param("duration") int duration);
+
+
+    List<UserSubscription> findAllByOrderBySubscriptionPriceDesc();
 }

@@ -15,21 +15,24 @@
         <ul>
           <li>Price: {{service.price}}</li>
           <li>Name: {{service.subName}}</li>
-          <li class="subscribe" (click)="subscribeToService()" *ngIf="subscribed"><a>Subscribe</a></li>
-          <li class="subscribed" *ngIf="!subscribed">You already subscribed to this service!</li>
+          <li class="subscribe" *ngIf="!subscribed"><a (click)="subscribeToService()">Subscribe</a></li>
+          <li class="subscribe" *ngIf="subscribed"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>
         </ul>
       </div>
     </div>
     <div class="reviews">
       <h3>Reviews</h3>
       <h3><a class="add-review" (click)="addReviewShow()">Add review</a></h3>
-      <div class="add-review" *ngIf="addReviewPopup">
+      <div class="add-review-wrap" *ngIf="addReviewPopup">
         <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
           <div>
-            <label for="review">Review
-              <input id="review" type="text" formControlName="review"/>
+            <label for="review">
+              <textarea id="review" type="text" formControlName="review"></textarea>
             </label>
-            <button class="button" type="submit">Add</button>
+            <button class="button" type="submit" [disabled]="!checkoutForm.valid">Add</button>
+            <button class="button" (click)="addReviewShow()"><img src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/></button>
+            <div class="invalid" *ngIf="checkoutForm.get('review').invalid && checkoutForm.get('review').touched">Review can't be empty and max number of symbols is 255.
+            </div>
           </div>
         </form>
       </div>

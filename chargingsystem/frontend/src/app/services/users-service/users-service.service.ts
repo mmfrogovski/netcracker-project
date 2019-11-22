@@ -52,7 +52,7 @@ export class UsersServiceService {
     return this.http.put<void>(this.constUrls.backendUrlUsersSubs + subscription.id + '/' + status, subscription);
   }
 
-  deleteUserSub(id: bigint): Observable<void> {
+  deleteUserSub(id: number): Observable<void> {
     return this.http.delete<void>(this.constUrls.backendUrlUsersSubs + id);
   }
 }

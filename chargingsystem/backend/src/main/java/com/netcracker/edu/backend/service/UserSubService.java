@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.service;
 
+import com.netcracker.edu.backend.entities.BillingAccount;
 import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.repository.BillingAccountRepository;
 import com.netcracker.edu.backend.repository.UserSubscriptionRepository;
@@ -18,7 +19,7 @@ public class UserSubService implements UserSubInterface {
     private UserSubscriptionRepository userSubscriptionRepository;
 
     @Autowired
-    private BillingAccountRepository billingAccountRepository;
+    private BillingAccountService billingAccountService;
 
 
     @Override
@@ -42,7 +43,6 @@ public class UserSubService implements UserSubInterface {
     }
 
 
-
     @Override
     public void deleteUserSubById(long id) {
         userSubscriptionRepository.deleteById(id);
@@ -50,30 +50,33 @@ public class UserSubService implements UserSubInterface {
 
 
     @Override
-    public void setUserSubActive(long id, boolean status){
+    public void setUserSubActive(long id, boolean status) {
         userSubscriptionRepository.setUserSubscriptionStatus(id, status);
     }
 
-    public UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId){
+    public UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId) {
         return userSubscriptionRepository.getSubscriptionByCustomerAndServiceId(customerId, serviceId);
     }
 
     @Override
     @Scheduled(fixedRate = 5000)
     public void getMoneyForSubscriptions() {
-        List<UserSubscription> userSubscriptions = (List<UserSubscription>) userSubscriptionRepository.findAll();
-        userSubscriptions.forEach(subscription -> {
-            if (subscription.isActive()) {
-                int resources = subscription.getCustomer().getBillingAccount().getResources();
-                if (2 * subscription.getSubscription().getPrice() <= resources) {
-                    resources = resources - subscription.getSubscription().getPrice() + subscription.getDiscount();
-                    billingAccountRepository.updateResources(subscription.getCustomer().getBillingAccount().getId(), resources);
+        List<UserSubscription> userSubscriptions = userSubscriptionRepository.findAllByOrderBySubscriptionPriceDesc();
+        int resources=0;
+        for (UserSubscription userSubscription : userSubscriptions) {
+            if (userSubscription.isActive()) {
+                Optional<BillingAccount> billingAccount = billingAccountService.getBillingAccountById(userSubscription.getCustomer().getBillingAccount().getId());
+                if(billingAccount.isPresent())
+                    resources = billingAccount.get().getResources();
+                if (userSubscription.getSubscription().getPrice() <= resources) {
+                    billingAccountService.setBillingAccountResources(userSubscription.getCustomer()
+                            .getBillingAccount().getId(),
+                            resources - userSubscription.getSubscription().getPrice() + userSubscription.getDiscount());
                 } else {
-                    userSubscriptionRepository.setUserSubscriptionStatus(subscription.getId(), false);
+                    userSubscriptionRepository.setUserSubscriptionStatus(userSubscription.getId(), false);
                 }
             }
-        });
-        userSubscriptions.clear();
+        }
     }
 
     @Override
@@ -96,6 +99,5 @@ public class UserSubService implements UserSubInterface {
                 }
             }
         });
-        userSubscriptions.clear();
     }
 }

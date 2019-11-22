@@ -9,7 +9,7 @@ body {
 }
 
 
-.banner{
+.banner {
   width: 78%;
   height: 100px;
   background-color: #ffb128;
@@ -21,12 +21,12 @@ body {
   color: #ffffff;
 }
 
-.banner h2{
+.banner h2 {
   font-size: 1.5vw;
   font-weight: 600;
 }
 
-.service-wrap{
+.service-wrap {
   margin-top: 2%;
   padding: 1%;
   width: 78%;
@@ -38,16 +38,17 @@ body {
   font-weight: 300;
 }
 
-.service-wrap ul{
+.service-wrap ul {
   display: flex;
   flex-direction: row;
 }
-.service-wrap ul li{
+
+.service-wrap ul li {
   list-style: none;
   margin-left: 1.5em;
 }
 
-.service-wrap ul li a{
+.service-wrap ul li a {
   position: absolute;
   border: solid 1px transparent;
   text-decoration: none;
@@ -55,18 +56,18 @@ body {
   right: 15vw;
 }
 
-.service-wrap ul li a:hover{
+.service-wrap ul li a:hover {
   border: solid 1px;
   cursor: pointer;
 }
 
 .reviews {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 0.5%;
   margin-top: 2%;
 }
 
-.reviews h3{
+.reviews h3 {
   color: #ffffff;
   width: 49%;
   font-weight: 600;
@@ -74,23 +75,35 @@ body {
   text-align: center;
 }
 
-.reviews h3 a{
+
+div.details li.subscribe a {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: solid 1px #ffffff;
+  padding: 0.5vw;
+}
+
+div.details li.subscribe a:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.reviews h3 a {
+  padding: 0.5vw;
   text-decoration: none;
   color: #ffffff;
-  border: solid 1px transparent;
+  border: solid 1px;
 }
 
-.reviews a:hover{
+.reviews a:hover {
   cursor: pointer;
-  background-color: rgba(255,255,255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border: solid 1px #ffffff;
 }
 
-.reviews h3 a:hover{
+.reviews h3 a:hover {
   border: solid 1px #ffffff;
 }
 
-.reviews ul{
+.reviews ul {
   border-top: solid 1px #ffffff;
   border-bottom: solid 1px #ffffff;
   width: 80%;
@@ -98,7 +111,8 @@ body {
   font-size: 1.5vw;
   font-weight: 300;
 }
-.reviews ul li{
+
+.reviews ul li {
   color: #ffffff;
   font-weight: 300;
   display: flex;
@@ -113,11 +127,69 @@ body {
   flex-direction: row;
 }
 
-.reviews ul li ul li{
+.reviews ul li ul li {
   margin-left: 2vw;
 }
 
-.reviews ul li ul li:last-child{
+.reviews ul li ul li:last-child {
   position: absolute;
   right: 12vw;
 }
+
+.add-review-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+}
+
+.add-review-wrap form div {
+  background-color: white;
+  width: 30vw;
+  height: auto;
+  margin-left: 40%;
+  margin-top: 15vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.add-review-wrap form div textarea {
+  width: 20vw;
+  height: 100%;
+  background-color: #928f8f;
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 1.5vw;
+}
+
+.add-review-wrap form div button img {
+  width: 3vw;
+  height: auto;
+}
+
+.invalid {
+  position: absolute;
+  right: 29.7%;
+  top: 9%;
+}
+
+.add-review-wrap form button {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 2vw;
+  border: none;
+  width: 7vw;
+  height: auto;
+  background-color: #ff8244;
+}
+
+.add-review-wrap form button:not(disabled):hover {
+  background-color: #00ff2f;
+}
+
+.add-review-wrap form button:disabled:hover {
+  background-color: #b22222;
+}
+
