@@ -19,6 +19,8 @@ import {RegistrationComponent} from "./modules/registration/components/registrat
 import {ProfileComponent} from './modules/profile/components/profile.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {EventService} from "./services/eventService/event.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -42,6 +44,12 @@ import {EventService} from "./services/eventService/event.service";
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
+    })
   ],
   providers: [BackendUrlsConst, EventService],
   bootstrap: [AppComponent]

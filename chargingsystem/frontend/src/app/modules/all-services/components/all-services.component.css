@@ -237,6 +237,15 @@ p, label {
   background-color: #d44179;
 }
 
+.form_wrap form button[type="submit"]:disabled{
+  background-color: #d43a44;
+}
+
+.form_wrap form button[type="submit"]:disabled:hover{
+  background-color: #d42625;
+}
+
+
 .invalid{
   color:red;
   font-size: 1.3vw;

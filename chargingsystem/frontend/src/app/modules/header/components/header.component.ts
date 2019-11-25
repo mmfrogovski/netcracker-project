@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.addClassActive();
     this.checkLogged();
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
@@ -39,15 +40,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
-  public addClassActive(element):void{
-
+  public addClassActive(): void {
+    this.page = document.URL;
   }
 
   public checkLogged(): void {
     if (localStorage.getItem('user') != null)
       this.isLoggedIn = true;
   }
-
 
 
   public onSubmit(data): void {

@@ -5,6 +5,7 @@ import {User} from "../../../models/user";
 import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {EventService} from "../../../services/eventService/event.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-profile',
@@ -20,8 +21,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public user: User;
 
-  public pausedServices: UserSub[] = [];
-
   public numberOfSubs: number;
 
   public resources: number;
@@ -33,11 +32,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private usersSubService: UsersServiceService,
               private usersServicesService: UsersServiceService,
               private eventService: EventService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService) {
   }
 
   ngOnInit() {
-    this.eventService.onUpdatePrice.subscribe(value => this.resources = value);
+    this.eventService.onUpdatePrice.subscribe(value => {
+      this.resources = value
+    });
     this.eventService.onUpdateServiceStatus.subscribe(value => {
       this.myServices = value;
     });
@@ -73,8 +75,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public addResources(value: number): void {
-    this.subscriptions.push(this.usersSubService.setBillingAccountResources(this.resources + value, this.user.customer.billingAccount).subscribe());
+    this.subscriptions.push(this.usersSubService
+      .setBillingAccountResources(this.resources + value, this.user.customer.billingAccount)
+      .subscribe(() => {
+        this.toastr.success('Resources was successfully added!', 'Success!')
+      },
+      err => {
+        this.toastr.error(err, 'Error!')
+      }));
     this.resources += value;
+    this.eventService.updatePrice(this.resources);
     this.addResourcesPopup = false;
   }
 
@@ -83,14 +93,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public unpauseService(sub: UserSub) {
-    if (2*sub.subscription.price < this.resources) {
+    if (sub.subscription.price < this.resources) {
       this.subscriptions.push(this.usersServicesService.setUserSubscriptionActive(sub, true).subscribe(res => {
         this.subscriptions.push(this.usersSubService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
-          this.eventService.updateUserServicesStatus(res);
+          this.myServices=res;
+          this.toastr.success('Service unpaused!', 'Success!')
+        }, err => {
+          console.log('UNPAUSE SERVICE ERROR: ' + err);
         }));
       }));
-    }else{
-      alert("Can't unpause service due to low resources.")
+    } else {
+      this.toastr.error("Can't unpause service due to low resources.", 'Error!');
     }
   }
 

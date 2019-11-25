@@ -1,6 +1,5 @@
 package com.netcracker.edu.fapi.services.interfaces;
 
-
 import com.netcracker.edu.fapi.models.BillingAccount;
 
 import java.util.List;

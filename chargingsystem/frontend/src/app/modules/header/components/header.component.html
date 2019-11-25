@@ -3,28 +3,38 @@
     <h1 id="logo"><a href="#">Charging System</a></h1>
     <nav id="nav">
       <ul>
-        <li (click)="addClassActive(this.element())"><a href="#">Welcome</a></li>
-        <li><a [routerLink]="['/all-services']">Services</a></li>
-        <li *ngIf="isLoggedIn"><a [routerLink]="['/my-services']">My services</a></li>
-        <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']">Profile</a></li>
+        <li [ngClass]="{active: page === 'http://localhost:4200/'}"><a href="#">Welcome</a></li>
+        <li [ngClass]="{active: page === 'http://localhost:4200/all-services'}"><a [routerLink]="['/all-services']">Services</a>
+        </li>
+        <li *ngIf="isLoggedIn" [ngClass]="{active: page === 'http://localhost:4200/my-services'}"><a
+          [routerLink]="['/my-services']">My
+          services</a></li>
+        <li *ngIf="isLoggedIn" [ngClass]="{active: page === 'http://localhost:4200/profile'}"><a
+          [routerLink]="['/profile']">Profile</a>
+        </li>
         <li class="sign-up" (click)="showLogin()" *ngIf="!isLoggedIn"><a>Log in</a></li>
         <div class="overlay" *ngIf="isPopup">
           <div class="login-wrapper">
             <div class="login-content">
-              <a class="close" (click)="showLogin()"><img src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/></a>
+              <a class="close" (click)="showLogin()"><img
+                src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close"
+                alt="close-img"/></a>
               <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
                 <label for="username">
                   Login:
                   <input type="text" name="username" id="username" formControlName="login"/>
                 </label>
-                <div class="invalid" *ngIf="checkoutForm.get('login').invalid && checkoutForm.get('login').touched">Invalid login.
+                <div class="invalid" *ngIf="checkoutForm.get('login').invalid && checkoutForm.get('login').touched">
+                  Invalid login.
                   Login must have 4-16 symbols.
                 </div>
                 <label for="password">
                   Password:
                   <input type="password" name="password" id="password" formControlName="password"/>
                 </label>
-                <div class="invalid" *ngIf="checkoutForm.get('password').invalid && checkoutForm.get('password').touched">Invalid password.
+                <div class="invalid"
+                     *ngIf="checkoutForm.get('password').invalid && checkoutForm.get('password').touched">Invalid
+                  password.
                 </div>
                 <button type="submit">Sign in</button>
                 <button><a [routerLink]="['/registration']">Registration</a></button>

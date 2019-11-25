@@ -33,7 +33,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     this.loadFirstPage();
     this.checkoutForm = this.formBuilder.group({
       serviceName: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.maxLength(255)
       ]),
       subName: new FormControl('', [
         Validators.required
