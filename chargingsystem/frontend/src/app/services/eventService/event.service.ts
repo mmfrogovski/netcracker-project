@@ -13,8 +13,14 @@ export class EventService {
 
   public onUpdateServiceStatus: Subject<UserSub[]> = new Subject<UserSub[]>();
 
+  public onSubscriptionPause: Subject<string> = new Subject<string>();
+
   public updatePrice(price: number): void {
     this.onUpdatePrice.next(price);
+  }
+
+  public pauseSubscription(service: string): void{
+    this.onSubscriptionPause.next(service);
   }
 
   public updateUserServicesStatus(services: UserSub[]): void {

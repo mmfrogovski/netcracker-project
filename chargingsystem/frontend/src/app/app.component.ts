@@ -42,9 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public setUser() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
-      res.forEach(sub => {
-        this.userSubs.push(sub);
-      })
+      this.userSubs = res;
     }, error1 => {
     });
   }
@@ -67,18 +65,19 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  public checkSubscriptions(): void {
-    this.userSubs.forEach(sub => {
-      if (sub.active == false) {
-        this.removePausedSub(sub);
+  public compareSubscriptionsStatus(): void {
+    this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
+      for (let i = 0; i < res.length; i++) {
+        if ((this.userSubs[i].active != res[i].active) && res[i].active == false) {
+          this.userSubs[i].active = false;
+          this.sendNotification(this.userSubs[i].subscription.serviceName + "is paused!");
+        }
       }
-    });
-
+    })
   }
 
-  removePausedSub = (pausedSub: UserSub): void => {
+  public removePausedSub = (pausedSub: UserSub): void => {
     var unactiveSub = this.userSubs.find(sub => sub.id == pausedSub.id);
-    this.sendNotification("service" + pausedSub.subscription.serviceName + "is paused");
     this.userSubs.splice(this.userSubs.indexOf(unactiveSub), 1);
   };
 
@@ -88,7 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public setIntrvl(): void {
     setInterval(() => {
-      this.checkSubscriptions();
+      this.compareSubscriptionsStatus();
       this.checkMoney();
       this.checkoutServiceStatus();
     }, 5000);
