@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Service} from "../../../models/service";
 import {AllServicesService} from "../../../services/all-services/all-services.service";
+import {User} from "../../../models/user";
+import {StorageService} from "../../../services/storage-service/storage-service";
 
 @Component({
   selector: 'app-all-services',
@@ -14,6 +16,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   public service: Service;
   public checkoutForm;
   public isPopup: boolean = false;
+  public user:User;
 
   public config: any;
 
@@ -21,7 +24,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private allServicesService: AllServicesService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private storageService: StorageService) {
     this.config = {
       itemsPerPage: 4,
       currentPage: 1,
@@ -30,6 +34,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.user = this.storageService.getCurrentUser();
     this.loadFirstPage();
     this.checkoutForm = this.formBuilder.group({
       serviceName: new FormControl('', [
@@ -69,7 +74,6 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.allServicesService.getServicePage(0, 4).subscribe(page => {
       this.services = page.content;
       this.config.totalItems = page.totalElements;
-      console.log(this.services);
     }));
   }
 

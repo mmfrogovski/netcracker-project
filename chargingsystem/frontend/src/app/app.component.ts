@@ -5,6 +5,7 @@ import {UsersServiceService} from "./services/users-service/users-service.servic
 import {UserSub} from "./models/user-sub";
 import {EventService} from "./services/eventService/event.service";
 import {ToastrService} from "ngx-toastr";
+import {StorageService} from "./services/storage-service/storage-service";
 
 @Component({
   selector: 'app-root',
@@ -24,23 +25,26 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private usersService: UsersServiceService,
               private eventService: EventService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private storageService: StorageService) {
   }
 
   ngOnInit() {
-    this.eventService.onUpdatePrice.subscribe(value => {
-      if (value > 5) {
-        this.resourcesStatus = true;
+    if (this.storageService.getCurrentUser() != null) {
+      this.eventService.onUpdatePrice.subscribe(value => {
+        if (value > 5) {
+          this.resourcesStatus = true;
+        }
+      });
+      this.setUser();
+      if (this.user != null) {
+        this.setIntrvl();
       }
-    });
-    this.setUser();
-    if (this.user != null) {
-      this.setIntrvl();
     }
   }
 
   public setUser() {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user = this.storageService.getCurrentUser();
     this.usersService.getUserSubscriptionById(this.user.customer.id).subscribe(res => {
       this.userSubs = res;
     }, error1 => {

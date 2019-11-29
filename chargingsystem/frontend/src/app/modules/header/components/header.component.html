@@ -22,9 +22,9 @@
               <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
                 <label for="username">
                   Login:
-                  <input type="text" name="username" id="username" formControlName="login"/>
+                  <input type="text" name="username" id="username" formControlName="username"/>
                 </label>
-                <div class="invalid" *ngIf="checkoutForm.get('login').invalid && checkoutForm.get('login').touched">
+                <div class="invalid" *ngIf="checkoutForm.get('username').invalid && checkoutForm.get('username').touched">
                   Invalid login.
                   Login must have 4-16 symbols.
                 </div>

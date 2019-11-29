@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
 import {Service} from "../../models/service";
 import {UserSub} from "../../models/user-sub";
+import {LoginModel} from "../../models/login-model";
 
 
 @Injectable({
@@ -13,17 +14,18 @@ export class EventService {
 
   public onUpdateServiceStatus: Subject<UserSub[]> = new Subject<UserSub[]>();
 
-  public onSubscriptionPause: Subject<string> = new Subject<string>();
+  public onRegistrUser: Subject<LoginModel> = new Subject<LoginModel>();
+
 
   public updatePrice(price: number): void {
     this.onUpdatePrice.next(price);
   }
 
-  public pauseSubscription(service: string): void{
-    this.onSubscriptionPause.next(service);
-  }
-
   public updateUserServicesStatus(services: UserSub[]): void {
     this.onUpdateServiceStatus.next(services);
+  }
+
+  public registrUser(login: LoginModel): void{
+    this.onRegistrUser.next(login);
   }
 }

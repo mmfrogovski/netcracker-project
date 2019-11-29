@@ -1,8 +1,11 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {User} from "../../../models/user";
-import {UsersServiceService} from "../../../services/users-service/users-service.service";
+import {AuthToken, UsersServiceService} from "../../../services/users-service/users-service.service";
 import {Subscription} from "rxjs";
+import {StorageService} from "../../../services/storage-service/storage-service";
+import {ToastrService} from "ngx-toastr";
+import {EventService} from "../../../services/eventService/event.service";
 
 @Component({
   selector: 'app-header',
@@ -22,14 +25,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   constructor(private formBuilder: FormBuilder,
-              private usersService: UsersServiceService) {
+              private usersService: UsersServiceService,
+              private storageService: StorageService,
+              private toastr: ToastrService,
+              private eventService: EventService) {
   }
 
   ngOnInit() {
+    this.eventService.onRegistrUser.subscribe(login => {
+      this.logIn(login);
+    });
     this.addClassActive();
     this.checkLogged();
     this.checkoutForm = this.formBuilder.group({
-      login: new FormControl('', [
+      username: new FormControl('', [
         Validators.required,
         Validators.pattern("^[A-Za-z0-9_]{1,15}$")
       ]),
@@ -45,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public checkLogged(): void {
-    if (localStorage.getItem('user') != null)
+    if (this.storageService.getCurrentUser() != null)
       this.isLoggedIn = true;
   }
 
@@ -56,23 +65,31 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logOut(): void {
-    localStorage.clear();
+    window.location.replace('http://localhost:4200/');
+    this.storageService.clearToken();
+    this.storageService.setCurrentUser(null);
     this.isLoggedIn = false;
-    location.replace('http://localhost:4200/');
   }
 
   public logIn(user): void {
-    this.subscriptions.push(this.usersService.getUserByLoginAndPassword(user.login, user.password).subscribe(res => {
-      this.user = res;
-      if (this.user.login) {
-        localStorage.setItem('user', JSON.stringify(this.user));
-        this.isLoggedIn = true;
-        this.isPopup = false;
-      } else {
-        this.wrong = true;
-      }
-    }));
-
+    this.usersService.generateToken(user)
+      .subscribe((authToken: AuthToken) => {
+        if (authToken.token) {
+          this.isLoggedIn = true;
+          this.isPopup = !this.isPopup;
+          this.storageService.setToken(authToken.token);
+          this.usersService.getAuthorizedUser()
+            .subscribe((userModel: User) => {
+              this.storageService.setCurrentUser(userModel);
+            });
+        }
+      }, (error) => {
+        if (error.status === 401) {
+          this.toastr.info('Check your set data', 'Invalid login or password!')
+        } else {
+          this.toastr.error(error.message, 'Error!');
+        }
+      });
   }
 
 

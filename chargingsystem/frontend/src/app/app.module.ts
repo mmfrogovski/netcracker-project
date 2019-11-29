@@ -7,7 +7,7 @@ import {AllServicesViewComponent} from "./modules/layout/components/all-services
 import {FooterComponent} from './modules/footer/footer.component';
 import {PlaceComponent} from "./modules/place/place.component";
 import {NgModule} from "@angular/core";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BackendUrlsConst} from "./services/const-service/backend-urls.const";
 import {MyServicesComponent} from './modules/my-services/components/my-services.component';
@@ -21,6 +21,8 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {EventService} from "./services/eventService/event.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import {StorageService} from "./services/storage-service/storage-service";
+import {APIInterceptor} from "./interceptors/api-interceptor";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,11 @@ import {ToastrModule} from "ngx-toastr";
       preventDuplicates: false
     })
   ],
-  providers: [BackendUrlsConst, EventService],
+  providers: [BackendUrlsConst, EventService, APIInterceptor,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

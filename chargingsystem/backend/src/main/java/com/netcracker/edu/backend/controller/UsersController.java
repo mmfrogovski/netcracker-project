@@ -55,4 +55,9 @@ public class UsersController {
         return usersService.getUserByLoginAndPassword(login, password);
     }
 
+    @RequestMapping(value = "/login/{login}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByLogin(@PathVariable(name = "login") String login) {
+        User user = usersService.findByLogin(login);
+        return ResponseEntity.ok(user);
+    }
 }

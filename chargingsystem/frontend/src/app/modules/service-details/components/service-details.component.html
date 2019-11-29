@@ -15,8 +15,8 @@
         <ul>
           <li>Price: {{service.price}}</li>
           <li>Name: {{service.subName}}</li>
-          <li class="subscribe" *ngIf="!subscribed"><a (click)="subscribeToService()">Subscribe</a></li>
-          <li class="subscribe" *ngIf="subscribed"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>
+          <li class="subscribe" *ngIf="!subscribed && user!=null"><a (click)="subscribeToService()">Subscribe</a></li>
+          <li class="subscribe" *ngIf="subscribed && user!=null"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>
         </ul>
       </div>
     </div>

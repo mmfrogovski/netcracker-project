@@ -259,6 +259,8 @@ div.close_wrap {
 
 
 img.close{
+  position: relative;
+  z-index: 100;
   border-radius: 100%;
   width: 9%;
   height: 100%;

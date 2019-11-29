@@ -18,4 +18,5 @@ public interface UserSubInterface {
     void deleteUserSubById(long subId);
 
     UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId);
+
 }

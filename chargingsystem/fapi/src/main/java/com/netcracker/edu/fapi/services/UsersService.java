@@ -3,21 +3,28 @@ package com.netcracker.edu.fapi.services;
 import com.netcracker.edu.fapi.models.RegistrationData;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.services.interfaces.UsersServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
-@Service()
-public class UsersService implements UsersServiceInterface {
+@Service("customUserDetailsService")
+public class UsersService implements UsersServiceInterface, UserDetailsService {
 
 
     @Value("${backend.server.url}")
     private String backendServerUrl;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Override
@@ -47,13 +54,37 @@ public class UsersService implements UsersServiceInterface {
 
     @Override
     public User registerUser(RegistrationData registrationData) {
+        registrationData.setPassword(bCryptPasswordEncoder.encode(registrationData.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "api/users/register", registrationData, User.class).getBody();
     }
 
     @Override
-    public User getUserByLoginAndPassword(String login, String password){
+    public User getUserByLoginAndPassword(String login, String password) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "api/users/" + login + '/'+password, User.class);
+        return restTemplate.getForObject(backendServerUrl + "api/users/" + login + '/' + password, User.class);
+    }
+
+
+    @Override
+    public User findByLogin(String login) {
+        RestTemplate restTemplate = new RestTemplate();
+        User user = restTemplate.getForObject(backendServerUrl + "/api/login/" + login, User.class);
+        return user;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findByLogin(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
+    }
+
+    private Set<SimpleGrantedAuthority> getAuthority(User user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        return authorities;
     }
 }

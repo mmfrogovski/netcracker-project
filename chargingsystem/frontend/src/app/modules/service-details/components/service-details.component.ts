@@ -42,8 +42,10 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadService();
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.subscribedCheck();
+    if (JSON.parse(localStorage.getItem('user'))) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.subscribedCheck();
+    }
     this.loadReviews();
     this.checkoutForm = this.formBuilder.group({
       review: new FormControl('',
@@ -78,7 +80,8 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   public addReviewShow(): void {
-    this.addReviewPopup = !this.addReviewPopup;
+    if(this.user!=null)
+      this.addReviewPopup = !this.addReviewPopup;
   }
 
   public subscribedCheck(): void {

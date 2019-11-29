@@ -53,6 +53,10 @@ public class UserService implements UserServiceInterface {
         return usersRepository.getUserByLoginAndPassword(login, password);
     }
 
+    @Override
+    public User findByLogin(String login){
+        return usersRepository.findByLogin(login);
+    }
 
 }
 

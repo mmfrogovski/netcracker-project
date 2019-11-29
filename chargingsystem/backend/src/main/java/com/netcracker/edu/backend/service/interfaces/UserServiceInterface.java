@@ -19,4 +19,6 @@ public interface UserServiceInterface {
 
     User getUserByLoginAndPassword(String login, String password);
 
+    User findByLogin(String login);
+
 }

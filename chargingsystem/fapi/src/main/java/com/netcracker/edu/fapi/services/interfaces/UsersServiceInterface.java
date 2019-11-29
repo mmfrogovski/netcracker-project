@@ -17,4 +17,6 @@ public interface UsersServiceInterface {
     User registerUser(RegistrationData registrationData);
 
     User getUserByLoginAndPassword(String login, String password);
+
+    User findByLogin(String login);
 }

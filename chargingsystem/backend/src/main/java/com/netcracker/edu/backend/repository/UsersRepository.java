@@ -12,4 +12,6 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 
     @Query(value = "select * from users where users.login = :login and users.password= :password", nativeQuery = true)
     User getUserByLoginAndPassword(@Param("login") String login, @Param("password") String password);
+
+    User findByLogin(String login);
 }
