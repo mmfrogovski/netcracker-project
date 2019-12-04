@@ -12,9 +12,8 @@ import {StorageService} from "./services/storage-service/storage-service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit{
 
-  private subscriptions: Subscription[] = [];
   private user: User;
   private userSubs: UserSub[] = [];
   private resourcesStatus: boolean = true;
@@ -95,10 +94,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.checkMoney();
       this.checkoutServiceStatus();
     }, 5000);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   title = 'frontend';

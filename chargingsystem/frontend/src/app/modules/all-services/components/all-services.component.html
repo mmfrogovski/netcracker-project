@@ -52,12 +52,12 @@
     </div>
   </div>
   <div class="content">
-    <div class="add-service" (click)="formAction()" *ngIf="user.role">
+    <div class="add-service" (click)="formAction()" *ngIf="user!=null && user.role==true">
       <a>Add service</a>
     </div>
     <div class="articles" *ngFor="let item of services | paginate: config">
       <div class="container" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
-        <div class="delete_wrap" *ngIf="user.role">
+        <div class="delete_wrap" *ngIf="user!=null && user.role==true">
           <button type="submit" (click)="deleteService(item)"><img
             src="http://cdn.onlinewebfonts.com/svg/img_116511.png" alt="delete" class="delete"/></button>
         </div>

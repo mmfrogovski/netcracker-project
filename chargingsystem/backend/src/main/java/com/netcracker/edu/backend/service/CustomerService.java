@@ -16,23 +16,28 @@ public class CustomerService implements CustomerServiceInterface {
     private CustomerRepository customersRepository;
 
     @Override
-    public List<Customer> getCustomers(){
-        return (List<Customer>)customersRepository.findAll();
+    public List<Customer> getCustomers() {
+        return (List<Customer>) customersRepository.findAll();
     }
 
     @Override
-    public Optional<Customer> getCustomerById(long id){
+    public Optional<Customer> getCustomerById(long id) {
         return customersRepository.findById(id);
     }
 
     @Override
-    public Customer saveCustomer(Customer customer){
+    public Customer saveCustomer(Customer customer) {
         return customersRepository.save(customer);
     }
 
 
     @Override
-    public void deleteCustomerById(long id){
+    public void deleteCustomerById(long id) {
         customersRepository.deleteById(id);
+    }
+
+    @Override
+    public String checkEmailExists(String email) {
+        return customersRepository.getEmailIfExists(email);
     }
 }

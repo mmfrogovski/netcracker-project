@@ -7,6 +7,8 @@ import {RegistrationData} from "../../models/registr";
 import {User} from "../../models/user";
 import {BillingAccount} from "../../models/billing-account";
 import {LoginModel} from "../../models/login-model";
+import {StorageService} from "../storage-service/storage-service";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,10 @@ import {LoginModel} from "../../models/login-model";
 export class UsersServiceService {
 
 
-  constructor(private http: HttpClient, private constUrls: BackendUrlsConst) {
+  constructor(private http: HttpClient,
+              private constUrls: BackendUrlsConst,
+              private storageService: StorageService,
+              private toastr: ToastrService) {
   }
 
   public saveUserSub(newSub: UserSub): Observable<UserSub> {
@@ -63,6 +68,26 @@ export class UsersServiceService {
 
   public getAuthorizedUser():Observable<User>{
     return this.http.get<User>('/api/current');
+  }
+  
+  public logIn(loginModel: LoginModel):void{
+    this.generateToken(loginModel)
+      .subscribe((authToken: AuthToken) => {
+        if (authToken.token) {
+          this.storageService.setToken(authToken.token);
+          this.getAuthorizedUser()
+            .subscribe((userModel: User) => {
+              this.storageService.setCurrentUser(userModel);
+              window.location.replace('http://localhost:4200/');
+            });
+        }
+      }, (error) => {
+        if (error.status === 401) {
+          this.toastr.info('Check your set data', 'Invalid login or password!')
+        } else {
+          this.toastr.error(error.message, 'Error!');
+        }
+      });
   }
 }
 

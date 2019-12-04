@@ -1,12 +1,22 @@
 package com.netcracker.edu.fapi.models;
 
 
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import java.util.Objects;
 
 
 public class BillingAccount {
 
     private long id;
+
+    @Positive
+    @Max(1000)
+    @Min(1)
     private int resources;
 
 

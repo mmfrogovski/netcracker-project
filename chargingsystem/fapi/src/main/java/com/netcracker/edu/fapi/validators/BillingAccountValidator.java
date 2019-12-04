@@ -1,14 +1,19 @@
 package com.netcracker.edu.fapi.validators;
 
-import com.netcracker.edu.fapi.validators.intefaces.BillingAccountValidators;
+import com.netcracker.edu.fapi.models.BillingAccount;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class BillingAccountValidator implements BillingAccountValidators{
+@Component
+public class BillingAccountValidator implements Validator {
 
     @Override
-    public Exception resourcesInputException(int resources) throws Exception {
-       if(resources==0){
-           throw  new Exception("Can't add zero resources.");
-       }
-        return null;
+    public boolean supports(Class<?> aClass) {
+        return BillingAccount.class.equals(aClass);
+    }
+
+    @Override
+    public void validate(Object o, Errors errors) {
     }
 }

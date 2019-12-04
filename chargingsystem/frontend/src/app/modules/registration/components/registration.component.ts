@@ -3,6 +3,9 @@ import {Subscription} from "rxjs";
 import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {RegistrationData} from "../../../models/registr";
+import {EventService} from "../../../services/eventService/event.service";
+import {LoginModel} from "../../../models/login-model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +19,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   constructor(private usersService: UsersServiceService,
               private formBuilder: FormBuilder,
-  ) {
+              private toastr: ToastrService
+              ) {
   }
 
   ngOnInit() {
@@ -34,7 +38,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         Validators.email
       ]),
       age: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.min(1),
+        Validators.max(100)
       ]),
       role: 0,
       password: new FormControl('', [
@@ -55,7 +61,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   private addUser(user: RegistrationData): void {
     this.subscriptions.push(this.usersService.registUser(user).subscribe(() => {
-      window.location.replace('http://localhost:4200/');
+        let val: LoginModel = {username: user.login, password: user.password};
+        this.usersService.logIn(val);
+    },err=>{
+      this.toastr.error("Error", "This email is already in use.");
     }));
   }
 
@@ -102,3 +111,4 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
 }
+

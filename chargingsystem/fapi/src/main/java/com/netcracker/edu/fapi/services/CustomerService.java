@@ -41,4 +41,10 @@ public class CustomerService implements CustomerServiceInterface {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/customers/" + id);
     }
+
+    public String checkEmailExists(String email){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "/api/customers/email/" + email, String.class);
+    }
+
 }

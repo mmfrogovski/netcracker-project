@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping(value = "/api/customers")
 public class CustomersController {
 
     private CustomerServiceInterface customersService;
@@ -21,24 +20,23 @@ public class CustomersController {
         this.customersService = customersService;
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Customer> getCustomers() {
         return customersService.getCustomers();
     }
 
-    @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Customer> getCustomerById(@PathVariable(name = "id") long id) {
         Customer customer = customersService.getCustomerById(id);
         return customer!=null ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Customer saveCustomer(@RequestBody Customer customer) {
         return customersService.saveCustomer(customer);
     }
 
-
-    @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteCustomerById(@PathVariable(name = "id") long id) {
         customersService.deleteCustomerById(id);
     }

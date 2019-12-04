@@ -6,13 +6,14 @@ import com.netcracker.edu.fapi.services.interfaces.BillingAccountServiceInterfac
 import com.netcracker.edu.fapi.validators.BillingAccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BillingAccountController {
     private BillingAccountServiceInterface billingAccountsService;
 
@@ -43,7 +44,7 @@ public class BillingAccountController {
     }
 
     @RequestMapping(value = "/billing_accounts/{id}/{resources}", method = RequestMethod.PUT)
-    public void setBillingAccountResources(@PathVariable(name = "id") long id,@PathVariable(name = "resources") int resources){
+    public void setBillingAccountResources(@PathVariable(name = "id") long id,@PathVariable(name = "resources") @Valid int resources){
         billingAccountsService.setBillingAccountResources(id, resources);
     }
 }

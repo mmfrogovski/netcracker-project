@@ -1,14 +1,17 @@
 package com.netcracker.edu.fapi.controllers;
 
 
+import com.netcracker.edu.fapi.exceptions.UserServiceExceptions;
 import com.netcracker.edu.fapi.models.RegistrationData;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.services.interfaces.UsersServiceInterface;
+import com.netcracker.edu.fapi.validators.UsersValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +22,12 @@ import java.util.List;
 public class UsersController {
 
     private UsersServiceInterface usersService;
+    private UsersValidator usersValidator;
 
     @Autowired
-    public UsersController(UsersServiceInterface usersService) {
+    public UsersController(UsersServiceInterface usersService, UsersValidator usersValidator) {
         this.usersService = usersService;
+        this.usersValidator = usersValidator;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -67,7 +72,11 @@ public class UsersController {
 
     @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = "application/json")
-    public User saveUser(@RequestBody RegistrationData user) {
+    public User saveUser(@RequestBody RegistrationData user, BindingResult result) throws UserServiceExceptions{
+        this.usersValidator.validate(user, result);
+        if (result.hasErrors()) {
+            throw new UserServiceExceptions(result.getAllErrors().get(0).getCode());
+        }
         return usersService.registerUser(user);
     }
 }

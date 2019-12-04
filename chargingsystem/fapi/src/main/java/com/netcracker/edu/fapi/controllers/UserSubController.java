@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserSubController {
     private UserSubInterface userSubInterface;
 

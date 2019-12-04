@@ -10,4 +10,5 @@ public interface CustomerServiceInterface {
     Customer getCustomerById(long id);
     Customer saveCustomer(Customer customer);
     void deleteCustomerById(long id);
+    String checkEmailExists(String email);
 }

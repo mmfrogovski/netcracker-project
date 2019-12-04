@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/customers")
 public class CustomersController {
 
     private CustomerServiceInterface customersService;
@@ -21,18 +22,18 @@ public class CustomersController {
         this.customersService = customersService;
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Customer> getCustomers() {
         return customersService.getCustomers();
     }
 
-    @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Customer> getCustomerById(@PathVariable(name = "id") long id) {
         Optional<Customer> customer = customersService.getCustomerById(id);
         return customer.isPresent() ? ResponseEntity.ok(customer.get()) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/customers", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Customer saveCustomer(@RequestBody Customer customer) {
         return customersService.saveCustomer(customer);
     }
@@ -42,7 +43,12 @@ public class CustomersController {
 //        return customersService.updateCustomerBillingAccount(billingId, id);
 //    }
 
-    @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+    public String checkEmailExists(@PathVariable(name = "email") String email) throws SQLException {
+        return this.customersService.checkEmailExists(email);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteCustomerById(@PathVariable(name = "id") long id) {
         customersService.deleteCustomerById(id);
     }

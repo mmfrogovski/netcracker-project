@@ -13,7 +13,7 @@
           Login must have 4-16 symbols.
         </div>
         <div>
-          <label for="name">Name
+          <label for="name">Full name
             <input id="name" type="text" formControlName="name"/>
           </label>
         </div>
@@ -29,7 +29,7 @@
             <input id="age" type="text" formControlName="age"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('age').invalid && checkoutForm.get('age').touched">Age is required.</div>
+        <div class="invalid" *ngIf="checkoutForm.get('age').invalid && checkoutForm.get('age').touched">Invalid age.</div>
         <div>
           <label for="password">Password
             <input id="password" type="password" formControlName="password"/>

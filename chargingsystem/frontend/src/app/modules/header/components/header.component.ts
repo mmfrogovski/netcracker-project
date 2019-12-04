@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {User} from "../../../models/user";
-import {AuthToken, UsersServiceService} from "../../../services/users-service/users-service.service";
+import {UsersServiceService} from "../../../services/users-service/users-service.service";
 import {Subscription} from "rxjs";
 import {StorageService} from "../../../services/storage-service/storage-service";
 import {ToastrService} from "ngx-toastr";
@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.eventService.onRegistrUser.subscribe(login => {
-      this.logIn(login);
+    this.eventService.onRegistrUser.subscribe(() => {
+      this.checkLogged();
     });
     this.addClassActive();
     this.checkLogged();
@@ -72,24 +72,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logIn(user): void {
-    this.usersService.generateToken(user)
-      .subscribe((authToken: AuthToken) => {
-        if (authToken.token) {
-          this.isLoggedIn = true;
-          this.isPopup = !this.isPopup;
-          this.storageService.setToken(authToken.token);
-          this.usersService.getAuthorizedUser()
-            .subscribe((userModel: User) => {
-              this.storageService.setCurrentUser(userModel);
-            });
-        }
-      }, (error) => {
-        if (error.status === 401) {
-          this.toastr.info('Check your set data', 'Invalid login or password!')
-        } else {
-          this.toastr.error(error.message, 'Error!');
-        }
-      });
+    this.usersService.logIn(user);
+    this.isLoggedIn = true;
+    this.isPopup = !this.isPopup;
   }
 
 
