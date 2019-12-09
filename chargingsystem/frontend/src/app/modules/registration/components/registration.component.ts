@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.checkoutForm = this.formBuilder.group({
       login: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[A-Za-z0-9_]{1,15}$')
+        Validators.pattern('^[A-Za-z]{1}[0-9A-Za-z]{1,15}$')
       ]),
       name: new FormControl('', [
         Validators.required,
@@ -35,12 +35,13 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.email
+        Validators.pattern('[a-zA-Z0-9_]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,4}')
       ]),
       age: new FormControl('', [
         Validators.required,
         Validators.min(1),
-        Validators.max(100)
+        Validators.max(100),
+        Validators.pattern('[0-9]*')
       ]),
       role: 0,
       password: new FormControl('', [

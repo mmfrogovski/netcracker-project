@@ -13,7 +13,7 @@
       </div>
       <div class="details">
         <ul>
-          <li>Price: {{service.price}}</li>
+          <li>Price: {{service.price}} $day</li>
           <li>Name: {{service.subName}}</li>
           <li class="subscribe" *ngIf="!subscribed && user!=null"><a (click)="subscribeToService()">Subscribe</a></li>
           <li class="subscribe" *ngIf="subscribed && user!=null"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>
@@ -22,7 +22,7 @@
     </div>
     <div class="reviews">
       <h3>Reviews</h3>
-      <h3><a class="add-review" (click)="addReviewShow()">Add review</a></h3>
+      <h3 *ngIf="user!=null"><a class="add-review" (click)="addReviewShow()">Add review</a></h3>
       <div class="add-review-wrap" *ngIf="addReviewPopup">
         <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
           <div>

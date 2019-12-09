@@ -1,0 +1,40 @@
+.not-found{
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../../assets/images/photo-1575811443691-15ab7433898a.jpg");
+  background-size: 100%, auto;
+}
+.not-found h2{
+  font-size: 5vw;
+  font-weight: 500;
+  color: red;
+  text-align: center;
+}
+
+.not-found h3{
+  font-size: 5vw;
+  font-weight: 500;
+  color: blue;
+  text-align: center;
+}
+
+.not-found button {
+  position: absolute;
+  left: 45%;
+  width: 10vw;
+  height: auto;
+  background-color: #ea4c88;
+  border: solid 1px transparent;
+}
+
+.not-found button:hover {
+ background-color: #ea005b;
+}
+
+.not-found button a{
+  color: #ffffff;
+  font-size: 2vw;
+  text-decoration: none;
+}

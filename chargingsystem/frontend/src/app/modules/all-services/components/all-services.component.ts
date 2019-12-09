@@ -16,8 +16,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   public service: Service;
   public checkoutForm;
   public isPopup: boolean = false;
-  public user:User;
-
+  public user: User;
+  public base64Image: string;
   public config: any;
 
   public services: Service[] = [];
@@ -35,7 +35,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.storageService.getCurrentUser();
-    this.loadFirstPage();
+    this.loadPage(0,4);
     this.checkoutForm = this.formBuilder.group({
       serviceName: new FormControl('', [
         Validators.required,
@@ -45,7 +45,8 @@ export class AllServicesComponent implements OnInit, OnDestroy {
         Validators.required
       ]),
       price: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.min(4)
       ]),
       description: new FormControl('', [
         Validators.required
@@ -56,7 +57,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     })
   }
 
-  pageChanged(event) {
+  public pageChanged(event): void {
     this.config.currentPage = event;
     this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1, 4).subscribe(
       res => {
@@ -65,13 +66,30 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     ));
   }
 
+  public handleFileSelect(evt): void {
+    let files = evt.target.files;
+    let file = files[0];
+
+    if (files && file) {
+      let reader = new FileReader();
+
+      reader.onload = this.handleReaderLoaded.bind(this);
+
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  public handleReaderLoaded(readerEvt): void {
+    let binaryString = readerEvt.target.result;
+    this.base64Image = btoa(binaryString);
+  }
 
   public formAction(): void {
     this.isPopup = !this.isPopup;
   }
 
-  private loadFirstPage() {
-    this.subscriptions.push(this.allServicesService.getServicePage(0, 4).subscribe(page => {
+  private loadPage(page: number, size: number) {
+    this.subscriptions.push(this.allServicesService.getServicePage(page, size).subscribe(page => {
       this.services = page.content;
       this.config.totalItems = page.totalElements;
     }));
@@ -82,17 +100,25 @@ export class AllServicesComponent implements OnInit, OnDestroy {
     this.checkoutForm.reset();
   }
 
-  sendService(service) {
-    this.services.push(service);
-    this.subscriptions.push(this.allServicesService.saveService(service).subscribe());
+  public sendService(service: Service): void {
+    service.image = this.base64Image;
+    this.subscriptions.push(this.allServicesService.saveService(service).subscribe(() => {
+      console.log(this.config.currentPage);
+      console.log(this.config.totalItems/this.config.itemsPerPage);
+      if(this.config.currentPage>=(this.config.totalItems/this.config.itemsPerPage)){
+        this.services.push(service);
+      }
+    }));
+    this.base64Image = "";
     this.isPopup = false;
   }
 
-  deleteService(item) {
-    this.subscriptions.push(this.allServicesService.deleteService(item.id).subscribe());
-    this.services.slice(item);
-  }
-
+  public deleteService = (service: Service): void => {
+    this.subscriptions.push(this.allServicesService.deleteService(service.id).subscribe(() => {
+      var delService = this.services.find(s => s.id == service.id);
+      this.services.splice(this.services.indexOf(delService), 1);
+    }));
+  };
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

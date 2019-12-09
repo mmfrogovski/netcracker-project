@@ -21,8 +21,8 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {EventService} from "./services/eventService/event.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
-import {StorageService} from "./services/storage-service/storage-service";
 import {APIInterceptor} from "./interceptors/api-interceptor";
+import {NotFoundComponent} from './modules/404/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import {APIInterceptor} from "./interceptors/api-interceptor";
     MyServicesComponent,
     RegistrationComponent,
     ProfileComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,11 +54,12 @@ import {APIInterceptor} from "./interceptors/api-interceptor";
       preventDuplicates: false
     })
   ],
-  providers: [BackendUrlsConst, EventService, APIInterceptor,{
+  providers: [BackendUrlsConst, EventService, APIInterceptor, {
     provide: HTTP_INTERCEPTORS,
     useClass: APIInterceptor,
     multi: true
-  }],
+  },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

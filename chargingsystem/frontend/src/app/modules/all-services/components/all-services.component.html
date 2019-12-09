@@ -18,8 +18,7 @@
             <input id="price" type="number" formControlName="price"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Price is
-          required.
+        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Min price - 4.
         </div>
         <div>
           <label for="subName">sub name
@@ -39,8 +38,12 @@
         </div>
         <div>
           <label for="image">Image
-            <input id="image" type="text" formControlName="image"/>
+            <input class="" type="file" accept="image/*" formControlName="image" id="image"
+                   (change)="handleFileSelect($event)"/>
           </label>
+        </div>
+        <div class="postImage">
+          <img src="data:image/png;base64,{{base64Image}}" alt=""/>
         </div>
         <div class="invalid" *ngIf="checkoutForm.get('image').invalid && checkoutForm.get('image').touched">Image is
           required.
@@ -56,7 +59,7 @@
       <a>Add service</a>
     </div>
     <div class="articles" *ngFor="let item of services | paginate: config">
-      <div class="container" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
+      <div class="container" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + item.image + ')'}">
         <div class="delete_wrap" *ngIf="user!=null && user.role==true">
           <button type="submit" (click)="deleteService(item)"><img
             src="http://cdn.onlinewebfonts.com/svg/img_116511.png" alt="delete" class="delete"/></button>

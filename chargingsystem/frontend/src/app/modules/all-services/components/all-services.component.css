@@ -257,6 +257,9 @@ div.close_wrap {
   right: -29rem;
 }
 
+.postImage img{
+  width: 150px;
+}
 
 img.close{
   position: relative;

@@ -6,6 +6,8 @@ import {ServiceDetailsComponent} from "./modules/service-details/components/serv
 import {MyServicesComponent} from "./modules/my-services/components/my-services.component";
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
 import {ProfileComponent} from "./modules/profile/components/profile.component";
+import {NotFoundComponent} from "./modules/404/not-found/not-found.component";
+import {LoginGuard} from "./services/login-guard/login.guard";
 
 
 const routes: Routes = [
@@ -13,9 +15,10 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "all-services", component: AllServicesViewComponent},
   {path: "service-details/:id", component: ServiceDetailsComponent},
-  {path: "my-services", component: MyServicesComponent},
+  {path: "my-services", component: MyServicesComponent, canActivate:[LoginGuard]},
   {path: "registration", component: RegistrationComponent},
-  {path: "profile", component: ProfileComponent}
+  {path: "profile", component: ProfileComponent, canActivate:[LoginGuard]},
+  {path: "**", component:NotFoundComponent}
 ];
 
 @NgModule({
