@@ -39,4 +39,8 @@ public interface UserSubscriptionRepository extends CrudRepository<UserSubscript
 
 
     List<UserSubscription> findAllByOrderBySubscriptionPriceDesc();
+
+    @Query(value = "select count(us.subscription.id)from UserSubscription us group by us.subscription.id order by us.subscription.id asc")
+    int[] getNumberOfServiceSubscriptions();
+
 }

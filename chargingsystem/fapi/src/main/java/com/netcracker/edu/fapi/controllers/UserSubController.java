@@ -55,4 +55,9 @@ public class UserSubController {
     public void setUserSubActive(@PathVariable(name = "id") long id, @PathVariable(name="status") boolean status){
         userSubInterface.setUserSubActive(id, status);
     }
+
+    @GetMapping(value = "users_subs/servicesNumOfSub")
+    public int[] getNumberOfServiceSubscriptions(){
+        return userSubInterface.getNumberOfServiceSubscriptions();
+    }
 }

@@ -5,19 +5,19 @@
   <div class="content">
     <div class="start-block">
       <div class="most-popular-service">
-        <h1>Yandex Music</h1>
+        <h1>{{mostPopularService.serviceName}}</h1>
         <p>
           Most popular service.
         </p>
       </div>
-      <div class="first-block-logo">
+      <div class="first-block-logo" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + mostPopularService.image + ')'}">
       </div>
     </div>
     <div class="middle-block">
-      <div class="second-block-logo">
+      <div class="second-block-logo" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + lastAddedService.image + ')'}" >
       </div>
       <div class="latest-service">
-        <h1>Yandex Music</h1>
+        <h1>{{lastAddedService.serviceName}}</h1>
         <p>
           Latest added service.
         </p>
@@ -25,9 +25,9 @@
     </div>
     <div class="end-block">
       <div class="last-update">
-        <h1>Yandex Music</h1>
+        <h1>{{lastAddedService.serviceName}}</h1>
         <p>
-          Last update description.
+          {{lastAddedService.description}}
         </p>
       </div>
     </div>

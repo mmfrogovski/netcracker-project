@@ -15,6 +15,13 @@ body {
   padding: 0;
 }
 
+.services_info{
+  overflow-y: scroll;
+  overflow: hidden;
+}
+
+
+
 .profile {
   width: 78%;
   height: 30vw;

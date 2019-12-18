@@ -55,4 +55,9 @@ public class UserSubController {
     public void deleteUserSubById(@PathVariable(name = "id") long id) {
         userSubInterface.deleteUserSubById(id);
     }
+
+    @GetMapping(value = "users_subs/servicesNumOfSub")
+    public int[] getNumberOfServiceSubscriptions(){
+        return userSubInterface.getNumberOfServiceSubscriptions();
+    }
 }

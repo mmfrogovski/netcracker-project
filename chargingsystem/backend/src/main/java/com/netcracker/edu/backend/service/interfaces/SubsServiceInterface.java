@@ -16,4 +16,9 @@ public interface SubsServiceInterface {
     void deleteServiceById(long id);
 
     Page<Subscription> getSubsPage(int page, int size);
+
+    Subscription getLastAddedSubscription();
+
+    Subscription getMostPopularSubscription();
+
 }

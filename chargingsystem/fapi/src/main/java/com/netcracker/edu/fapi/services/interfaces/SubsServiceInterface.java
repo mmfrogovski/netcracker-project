@@ -17,4 +17,7 @@ public interface SubsServiceInterface {
 
     RestResponsePage getSubsPage(int page, int size);
 
+    Subscription getMostPopularService();
+
+    Subscription getLastAddedService();
 }

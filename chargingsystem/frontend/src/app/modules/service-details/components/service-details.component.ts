@@ -17,6 +17,7 @@ import {User} from "../../../models/user";
   templateUrl: './service-details.component.html',
   styleUrls: ['./service-details.component.css']
 })
+
 export class ServiceDetailsComponent implements OnInit, OnDestroy {
 
   public addReviewPopup: boolean = false;
@@ -80,7 +81,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   public addReviewShow(): void {
-    if(this.user!=null)
+    if (this.user != null)
       this.addReviewPopup = !this.addReviewPopup;
   }
 
@@ -94,7 +95,7 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   public addReview(review): void {
-    this.subscriptions.push(this.reviewsService.saveReview(review).subscribe(res => {
+    this.subscriptions.push(this.reviewsService.saveReview(review).subscribe(() => {
     }));
   }
 

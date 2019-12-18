@@ -49,5 +49,17 @@ public class SubscriptionService implements SubsServiceInterface {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(backendServerUrl + "/api/all_subs/pages/" + page + "/" + size, RestResponsePage.class);
     }
+
+    @Override
+    public Subscription getMostPopularService() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl+"/api/all_subs/mostPopular", Subscription.class);
+    }
+
+    @Override
+    public Subscription getLastAddedService() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl+"/api/all_subs/lastAdded", Subscription.class);
+    }
 }
 

@@ -100,4 +100,9 @@ public class UserSubService implements UserSubInterface {
             }
         });
     }
+
+    @Override
+    public int[] getNumberOfServiceSubscriptions(){
+        return userSubscriptionRepository.getNumberOfServiceSubscriptions();
+    }
 }

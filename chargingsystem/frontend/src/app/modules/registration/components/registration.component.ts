@@ -64,8 +64,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.usersService.registUser(user).subscribe(() => {
         let val: LoginModel = {username: user.login, password: user.password};
         this.usersService.logIn(val);
-    },err=>{
-      this.toastr.error("Error", "This email is already in use.");
+    },error=>{
+      this.toastr.error("Error", error.error.message);
     }));
   }
 

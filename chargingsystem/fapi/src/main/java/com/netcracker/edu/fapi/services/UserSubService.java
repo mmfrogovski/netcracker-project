@@ -61,4 +61,10 @@ public class UserSubService implements UserSubInterface {
         restTemplate.put(backendServerUrl + "/api/users_subs/" + id + "/" + status, new UserSubscription());
     }
 
+    @Override
+    public int[] getNumberOfServiceSubscriptions(){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl+"/api/users_subs/servicesNumOfSub", int[].class);
+    }
+
 }

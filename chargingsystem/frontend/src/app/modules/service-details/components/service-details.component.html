@@ -13,7 +13,7 @@
       </div>
       <div class="details">
         <ul>
-          <li>Price: {{service.price}} $day</li>
+          <li>Price: {{service.price}} / $day</li>
           <li>Name: {{service.subName}}</li>
           <li class="subscribe" *ngIf="!subscribed && user!=null"><a (click)="subscribeToService()">Subscribe</a></li>
           <li class="subscribe" *ngIf="subscribed && user!=null"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>

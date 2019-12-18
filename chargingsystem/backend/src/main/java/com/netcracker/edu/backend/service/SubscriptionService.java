@@ -1,7 +1,10 @@
 package com.netcracker.edu.backend.service;
 
+import com.netcracker.edu.backend.entities.Customer;
 import com.netcracker.edu.backend.entities.Subscription;
+import com.netcracker.edu.backend.entities.UserSubscription;
 import com.netcracker.edu.backend.repository.SubscriptionRepository;
+import com.netcracker.edu.backend.repository.UserSubscriptionRepository;
 import com.netcracker.edu.backend.service.interfaces.SubsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,9 @@ public class SubscriptionService implements SubsServiceInterface {
     @Autowired
     SubscriptionRepository subscriptionRepository;
 
+    @Autowired
+    UserSubscriptionRepository userSubscriptionRepository;
+
     @Override
     public List<Subscription> getSubs() {
         return (List<Subscription>) subscriptionRepository.findAll();
@@ -30,7 +36,13 @@ public class SubscriptionService implements SubsServiceInterface {
 
     @Override
     public Subscription saveService(Subscription service) {
-        return subscriptionRepository.save(service);
+        subscriptionRepository.save(service);
+        Customer customer = new Customer();
+        customer.setId(45);
+        Subscription subscription = new Subscription();
+        subscription.setId(service.getId());
+        userSubscriptionRepository.save(new UserSubscription("00-00-0000", false, 0, 0, customer, subscription));
+        return service;
     }
 
     @Override
@@ -43,4 +55,13 @@ public class SubscriptionService implements SubsServiceInterface {
         return subscriptionRepository.findAll(PageRequest.of(page, size, Sort.Direction.ASC, "id"));
     }
 
+    @Override
+    public Subscription getLastAddedSubscription() {
+        return subscriptionRepository.getLastAddedSubscription();
+    }
+
+    @Override
+    public Subscription getMostPopularSubscription() {
+        return subscriptionRepository.getMostPopularSubscription();
+    }
 }

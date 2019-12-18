@@ -37,7 +37,6 @@ body {
 }
 
 .start-block .first-block-logo {
-  background-image: url("../../../../assets/images/og-image.png");
   background-repeat: no-repeat;
   background-size: 100%, auto;
   width: 50%;

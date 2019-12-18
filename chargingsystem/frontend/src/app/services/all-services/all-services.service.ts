@@ -31,8 +31,18 @@ export class AllServicesService {
     return this.http.post<Service>(this.backUrls.backendUrlAllSubs, service);
   }
 
+  public getNumberOfServiceSubscriptions():Observable<number[]>{
+    return this.http.get<number[]>(this.backUrls.backendUrlUsersSubs+'servicesNumOfSub');
+  }
+
   deleteService(id: number): Observable<void> {
     return this.http.delete<void>(this.backUrls.backendUrlAllSubs + id);
   }
 
+  public getMostPopularService():Observable<Service>{
+    return this.http.get<Service>(this.backUrls.backendUrlAllSubs + 'mostPopular');
+  }
+  public getLastAddedService():Observable<Service>{
+    return this.http.get<Service>(this.backUrls.backendUrlAllSubs + 'lastAdded');
+  }
 }

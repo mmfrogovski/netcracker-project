@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/all_subs")
 public class AllServicesController {
     private SubsServiceInterface subsService;
 
@@ -22,30 +22,40 @@ public class AllServicesController {
         this.subsService = subsService;
     }
 
-    @RequestMapping(value = "/all_subs", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Subscription> getAllSubs() {
         return subsService.getSubs();
     }
 
-    @RequestMapping(value = "/all_subs/{serviceId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{serviceId}", method = RequestMethod.GET)
     public ResponseEntity<Subscription> getServiceById(@PathVariable(name = "serviceId") long serviceId) {
         Subscription service = subsService.getServiceById(serviceId);
         return service != null ? ResponseEntity.ok(service) : ResponseEntity.notFound().build();
     }
 
-    @RequestMapping(value = "/all_subs/pages/{page}/{size}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pages/{page}/{size}", method = RequestMethod.GET)
     public RestResponsePage getAllSubs(@PathVariable(name = "page") int page, @PathVariable(name = "size") int size) {
         return subsService.getSubsPage(page, size);
     }
 
-    @RequestMapping(value = "/all_subs", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public Subscription saveService(@RequestBody Subscription service) throws IOException {
         return subsService.saveService(service);
     }
 
-    @RequestMapping(value = "/all_subs/{serviceId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{serviceId}", method = RequestMethod.DELETE)
     public void deleteServiceById(@PathVariable(name = "serviceId") long serviceId) {
         subsService.deleteServiceById(serviceId);
+    }
+
+    @GetMapping(value = "/mostPopular")
+    public Subscription getMostPopularService(){
+        return subsService.getMostPopularService();
+    }
+
+    @GetMapping(value = "/lastAdded")
+    public Subscription getLastAddedService(){
+        return subsService.getLastAddedService();
     }
 
 }

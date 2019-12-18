@@ -24,4 +24,7 @@ public interface UserSubInterface {
     void getMoneyForSubscriptions();
 
     void subDurationAdd();
+
+    int[] getNumberOfServiceSubscriptions();
 }
+

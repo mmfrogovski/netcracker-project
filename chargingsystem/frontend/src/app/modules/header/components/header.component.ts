@@ -73,8 +73,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public logIn(user): void {
     this.usersService.logIn(user);
-    this.isLoggedIn = true;
-    this.isPopup = !this.isPopup;
+    this.checkLogged();
+    this.isPopup!=this.isPopup;
   }
 
 

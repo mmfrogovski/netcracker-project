@@ -38,7 +38,7 @@
         </div>
         <div>
           <label for="image">Image
-            <input class="" type="file" accept="image/*" formControlName="image" id="image"
+            <input type="file" accept="image/*" formControlName="image" id="image"
                    (change)="handleFileSelect($event)"/>
           </label>
         </div>
@@ -58,7 +58,7 @@
     <div class="add-service" (click)="formAction()" *ngIf="user!=null && user.role==true">
       <a>Add service</a>
     </div>
-    <div class="articles" *ngFor="let item of services | paginate: config">
+    <div class="articles" *ngFor="let item of services | paginate: config; let i=index">
       <div class="container" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + item.image + ')'}">
         <div class="delete_wrap" *ngIf="user!=null && user.role==true">
           <button type="submit" (click)="deleteService(item)"><img
@@ -68,6 +68,7 @@
           <div class="anons">
             <h3>{{item.serviceName}}</h3>
             <p>{{item.description}}</p>
+            <div *ngIf="numberOfServiceSubscriptions[i+4*(pageNum-1)]-1">Number of subscribers: {{numberOfServiceSubscriptions[i+4*(pageNum-1)]-1}}</div>
           </div>
         </a>
       </div>

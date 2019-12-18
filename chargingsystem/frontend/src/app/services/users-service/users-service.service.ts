@@ -42,6 +42,7 @@ export class UsersServiceService {
     return this.http.get<UserSub[]>(this.constUrls.backendUrlUsersSubs + 'customer/' + id);
   }
 
+
   public getUserByLoginAndPassword(login: string, password: string): Observable<User> {
     return this.http.get<User>(this.constUrls.backendUrlUsers + login + '/' + password);
   }
@@ -70,7 +71,7 @@ export class UsersServiceService {
     return this.http.get<User>('/api/current');
   }
   
-  public logIn(loginModel: LoginModel):void{
+  public logIn(loginModel: LoginModel):boolean{
     this.generateToken(loginModel)
       .subscribe((authToken: AuthToken) => {
         if (authToken.token) {
@@ -79,15 +80,19 @@ export class UsersServiceService {
             .subscribe((userModel: User) => {
               this.storageService.setCurrentUser(userModel);
               window.location.replace('http://localhost:4200/');
+              return true;
             });
         }
       }, (error) => {
         if (error.status === 401) {
           this.toastr.info('Check your set data', 'Invalid login or password!')
+          return false;
         } else {
           this.toastr.error(error.message, 'Error!');
+          return false;
         }
       });
+    return true;
   }
 }
 

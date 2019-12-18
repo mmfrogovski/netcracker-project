@@ -19,4 +19,6 @@ public interface UserSubInterface {
 
     UserSubscription getSubscriptionByCustomerAndServiceId(long customerId, long serviceId);
 
+    int[] getNumberOfServiceSubscriptions();
+
 }
