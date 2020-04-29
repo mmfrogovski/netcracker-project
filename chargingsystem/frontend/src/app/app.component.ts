@@ -51,9 +51,10 @@ export class AppComponent implements OnInit{
   }
 
   private checkMoney(): void {
+
     this.usersService.getBillingAccountById(this.user.customer.billingAccount.id).subscribe(res => {
       if (this.resourcesStatus) {
-        if (res.resources < 5) {
+        if (res.resources < 3) {
           this.toastr.info('Out of money!', 'Info!');
           this.resourcesStatus = false;
         }

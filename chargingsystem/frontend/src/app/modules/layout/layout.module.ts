@@ -5,6 +5,8 @@ import {AllServicesViewComponent} from "./components/all-services/all-services.c
 import {FooterComponent} from "../footer/footer.component";
 import {NgModule} from "@angular/core";
 import {ServiceDetailsComponent} from "../service-details/components/service-details.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MyServicesModule} from "../my-services/my-services.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import {ServiceDetailsComponent} from "../service-details/components/service-det
   ],
   imports: [
     BrowserModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    MyServicesModule
   ],
   providers: [],
   bootstrap: []

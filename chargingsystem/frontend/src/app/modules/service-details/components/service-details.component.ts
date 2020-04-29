@@ -11,6 +11,7 @@ import {AllServicesService} from "../../../services/all-services/all-services.se
 import {Customer} from "../../../models/customer";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {User} from "../../../models/user";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-service-details',

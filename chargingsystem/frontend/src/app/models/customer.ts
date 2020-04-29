@@ -1,9 +1,9 @@
-import {BillingAccount} from "./billing-account";
+import {BillingAccount} from './billing-account';
 
 export interface Customer {
-  id:number;
-  age:number;
-  email:string;
-  name:string;
-  billingAccount:BillingAccount;
+  id: number;
+  age: number;
+  email: string;
+  name: string;
+  billingAccount: BillingAccount;
 }

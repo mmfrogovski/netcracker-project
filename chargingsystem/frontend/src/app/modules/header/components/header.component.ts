@@ -7,18 +7,19 @@ import {StorageService} from "../../../services/storage-service/storage-service"
 import {ToastrService} from "ngx-toastr";
 import {EventService} from "../../../services/eventService/event.service";
 
+// noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  public isPopup: boolean = false;
+  public isPopup = false;
   public checkoutForm;
   public user: User;
-  public isLoggedIn: boolean = false;
-  public wrong: boolean = false;
+  public isLoggedIn = false;
+  public wrong = false;
   public page: string;
 
   private subscriptions: Subscription[] = [];

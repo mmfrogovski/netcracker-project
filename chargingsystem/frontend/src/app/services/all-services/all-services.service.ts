@@ -15,19 +15,19 @@ export class AllServicesService {
   constructor(private http: HttpClient, private backUrls: BackendUrlsConst) {
   }
 
-  getServices(): Observable<Service[]> {
+  public getServices(): Observable<Service[]> {
     return this.http.get<Service[]>(this.backUrls.backendUrlAllSubs);
   }
 
-  getServicePage(page: number, size: number): Observable<Page> {
+  public getServicePage(page: number, size: number): Observable<Page> {
     return this.http.get<Page>(this.backUrls.backendUrlAllSubs + 'pages/' + page + '/' + size);
   }
 
-  getServiceById(id): Observable<Service> {
+  public getServiceById(id): Observable<Service> {
     return this.http.get<Service>(this.backUrls.backendUrlAllSubs + id);
   }
 
-  saveService(service: Service): Observable<Service> {
+  public saveService(service: Service): Observable<Service> {
     return this.http.post<Service>(this.backUrls.backendUrlAllSubs, service);
   }
 
@@ -35,7 +35,7 @@ export class AllServicesService {
     return this.http.get<number[]>(this.backUrls.backendUrlUsersSubs+'servicesNumOfSub');
   }
 
-  deleteService(id: number): Observable<void> {
+  public deleteService(id: number): Observable<void> {
     return this.http.delete<void>(this.backUrls.backendUrlAllSubs + id);
   }
 

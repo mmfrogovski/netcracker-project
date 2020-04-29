@@ -38,7 +38,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.eventService.onUpdatePrice.subscribe(value => {
-      this.resources = value
+      this.resources = value;
+    },error => {
+      console.log("error");
     });
     this.eventService.onUpdateServiceStatus.subscribe(value => {
       this.myServices = value;
