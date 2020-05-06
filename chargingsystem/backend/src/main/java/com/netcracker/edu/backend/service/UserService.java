@@ -41,7 +41,7 @@ public class UserService implements UserServiceInterface {
     @Override
     public User registerUser(RegistrationData registrationData){
         User tempUser = new User(registrationData.getLogin(),registrationData.getPassword(),registrationData.isRole());
-        Customer tempCustomer= new Customer(registrationData.getName(), registrationData.getEmail(), registrationData.getAge());
+        Customer tempCustomer= new Customer(registrationData.getName(), registrationData.getEmail(), registrationData.getAge(), registrationData.getAvatar());
         BillingAccount tempBillingAccount = new BillingAccount(registrationData.getResources());
         tempCustomer.setBillingAccount(tempBillingAccount);
         tempUser.setCustomer(tempCustomer);

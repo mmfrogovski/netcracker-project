@@ -9,6 +9,7 @@ import {BillingAccount} from "../../models/billing-account";
 import {LoginModel} from "../../models/login-model";
 import {StorageService} from "../storage-service/storage-service";
 import {ToastrService} from "ngx-toastr";
+import {Customer} from "../../models/customer";
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,9 @@ export class UsersServiceService {
     return this.http.get<UserSub[]>(this.constUrls.backendUrlUsersSubs + 'customer/' + id);
   }
 
+  public saveUser(data: Customer): Observable<Customer>{
+    return this.http.post<Customer>(this.constUrls.backendUrlCustomers, data);
+  }
 
   public getUserByLoginAndPassword(login: string, password: string): Observable<User> {
     return this.http.get<User>(this.constUrls.backendUrlUsers + login + '/' + password);
@@ -70,7 +74,7 @@ export class UsersServiceService {
   public getAuthorizedUser():Observable<User>{
     return this.http.get<User>('/api/current');
   }
-  
+
   public logIn(loginModel: LoginModel):boolean{
     this.generateToken(loginModel)
       .subscribe((authToken: AuthToken) => {

@@ -43,7 +43,7 @@
           </label>
         </div>
         <div class="postImage">
-          <img src="data:image/png;base64,{{base64Image}}" alt=""/>
+          <img src="data:image/png;base64,{{base64Image}}" alt="img"/>
         </div>
         <div class="invalid" *ngIf="checkoutForm.get('image').invalid && checkoutForm.get('image').touched">Image is
           required.
@@ -68,7 +68,7 @@
           <div class="anons">
             <h3>{{item.serviceName}}</h3>
             <p>{{item.description}}</p>
-            <div *ngIf="numberOfServiceSubscriptions[i+4*(pageNum-1)]-1">Number of subscribers: {{numberOfServiceSubscriptions[i+4*(pageNum-1)]-1}}</div>
+            <div *ngIf="numberOfServiceSubscriptions[i+4*(pageNum-1)]">Number of subscribers: {{numberOfServiceSubscriptions[i+4*(pageNum-1)]-1}}</div>
           </div>
         </a>
       </div>

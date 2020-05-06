@@ -9,6 +9,7 @@ public class RegistrationData {
     private String email;
     private int age;
     private int resources = 0;
+    private String avatar = "";
 
     public RegistrationData() {
     }

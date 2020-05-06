@@ -38,7 +38,7 @@ public class SubscriptionService implements SubsServiceInterface {
     public Subscription saveService(Subscription service) {
         subscriptionRepository.save(service);
         Customer customer = new Customer();
-        customer.setId(45);
+        customer.setId(5);
         Subscription subscription = new Subscription();
         subscription.setId(service.getId());
         userSubscriptionRepository.save(new UserSubscription("00-00-0000", false, 0, 0, customer, subscription));

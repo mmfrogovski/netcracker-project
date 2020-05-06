@@ -13,15 +13,17 @@ public class Customer {
     private int age;
     private BillingAccount billingAccount;
 
+    private String avatar;
 
 
     public Customer() {
     }
 
-    public Customer(String name, String email, int age) {
+    public Customer(String name, String email, int age, String avatar) {
         this.name = name;
         this.email = email;
         this.age = age;
+        this.avatar = avatar;
     }
 
 
@@ -65,6 +67,14 @@ public class Customer {
         this.email = email;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,6 +98,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", billingAccount=" + billingAccount +
+                ", avatar=" + avatar +
                 '}';
     }
 }

@@ -6,4 +6,5 @@ export interface Customer {
   email: string;
   name: string;
   billingAccount: BillingAccount;
+  avatar: string;
 }

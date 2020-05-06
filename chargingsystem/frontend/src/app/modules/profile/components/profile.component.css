@@ -114,6 +114,7 @@ button:disabled:hover{
 div.add-resources{
   background-color: rgba(0, 0, 0, .25);
   bottom: 0;
+  z-index: 1500;
   justify-content: center;
   left: 0;
   position: fixed;
@@ -156,4 +157,53 @@ div.close_wrap{
   position: absolute;
   right: -29rem;
   top:0;
+}
+
+div.settings{
+  z-index: 1600;
+  background-color: rgba(0, 0, 0, .25);
+  bottom: 0;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+div.settings form{
+  height: auto;
+  align-self: center;
+  background-color: rgba(32, 0, 126, 0.8);
+  position: absolute;
+  bottom: 30%;
+  border: none;
+  left: 30%;
+  border-radius: 0.1vw;
+  padding: 0.4vw;
+  width: 40vw;
+}
+
+.postImage img{
+  width: 150px;
+}
+
+div.close_wrap_img{
+  position: absolute;
+  right: -29vw;
+}
+
+.postImage img{
+  width: 150px;
+}
+
+div.avatar img{
+  position: relative;
+  z-index: 1;
+  width: 150px;
+}
+
+div.avatar img{
+  position: absolute;
+  right: 53vw;
+  border-radius: 100%;
 }

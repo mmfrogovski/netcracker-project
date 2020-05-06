@@ -9,6 +9,7 @@ public class RegistrationData {
     private String email;
     private int age;
     private int resources = 0;
+    private String avatar = "";
 
     public RegistrationData() {
     }
@@ -77,6 +78,15 @@ public class RegistrationData {
 
     public void setResources(int resources) {
         this.resources = resources;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
