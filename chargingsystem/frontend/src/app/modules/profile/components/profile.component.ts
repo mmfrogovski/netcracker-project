@@ -69,10 +69,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       name: new FormControl('', [
         Validators.min(4)
       ]),
-      email: new FormControl('', [
-      ]),
-      image: new FormControl('', [
-      ])
+      email: new FormControl('', []),
+      image: new FormControl('', [])
     });
 
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -119,16 +117,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   public onSubmitValue(data): void {
-    if(data.name == ""){
-      data.name = this.user.customer.name;
+    if (data.name != "") {
+      this.user.customer.name = data.name;
     }
-    if(data.email == ""){
-      data.email = this.user.customer.email;
+    if (data.email != "") {
+      this.user.customer.email = data.email;
     }
-    if(data.avatar == null){
-      data.image = this.user.customer.avatar;
+    if (data.avatar != "") {
+     this.user.customer.avatar = data.image ;
     }
-    this.sendCustomer(data);
+    this.sendCustomer(this.user.customer);
     this.checkoutForm.reset();
   }
 
@@ -150,7 +148,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .setBillingAccountResources(this.resources + value, this.user.customer.billingAccount)
       .subscribe(() => {
           this.toastr.success('Resources was successfully added!', 'Success!');
-        this.user.customer.billingAccount.resources = this.resources + value;
+          this.user.customer.billingAccount.resources = this.resources + value;
           this.localStorage.setCurrentUser(this.user);
         },
         err => {

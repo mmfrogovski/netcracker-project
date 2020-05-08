@@ -5,4 +5,5 @@ export class Service {
   price:number;
   description:string;
   image: string;
+  tags: string;
 }

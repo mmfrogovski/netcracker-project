@@ -39,6 +39,12 @@ public class SubscriptionService implements SubsServiceInterface {
     }
 
     @Override
+    public Subscription editService(Subscription service) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/all_subs/edit", service, Subscription.class).getBody();
+    }
+
+    @Override
     public void deleteServiceById(long serviceId) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/all_subs/" + serviceId);
@@ -53,13 +59,20 @@ public class SubscriptionService implements SubsServiceInterface {
     @Override
     public Subscription getMostPopularService() {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/all_subs/mostPopular", Subscription.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/all_subs/mostPopular", Subscription.class);
     }
 
     @Override
     public Subscription getLastAddedService() {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/all_subs/lastAdded", Subscription.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/all_subs/lastAdded", Subscription.class);
+    }
+
+    @Override
+    public List<Subscription> getServicesByTags(String tags) {
+        RestTemplate restTemplate = new RestTemplate();
+        Subscription[] subscriptions = restTemplate.getForObject(backendServerUrl + "/api/all_subs/search/" + tags, Subscription[].class);
+        return subscriptions == null ? Collections.emptyList() : Arrays.asList(subscriptions);
     }
 }
 

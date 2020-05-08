@@ -11,7 +11,6 @@ import {AllServicesService} from "../../../services/all-services/all-services.se
 import {Customer} from "../../../models/customer";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {User} from "../../../models/user";
-import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-service-details',
@@ -34,6 +33,11 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
   public user: User;
   public subscribed: boolean = false;
 
+  public base64Image: string;
+
+  public isEdit: boolean = false;
+
+  public checkoutServiceForm;
 
   constructor(private activatedRoute: ActivatedRoute,
               private allServicesService: AllServicesService,
@@ -56,6 +60,23 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
       reviewDate: this.date.getDate() + ' ' + this.date.getMonth() + ' ' + this.date.getFullYear(),
       customer: {id: this.user.customer.id},
       subscription: {id: this.serviceId}
+    });
+
+    this.checkoutServiceForm = this.formBuilder.group({
+      serviceName: new FormControl('', [
+        Validators.maxLength(255)
+      ]),
+      subName: new FormControl('', [
+      ]),
+      price: new FormControl('', [
+        Validators.min(4)
+      ]),
+      description: new FormControl('', [
+      ]),
+      tags: new FormControl('', [
+      ]),
+      image: new FormControl('', [
+      ])
     })
   }
 
@@ -86,6 +107,38 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
       this.addReviewPopup = !this.addReviewPopup;
   }
 
+
+  public onSubmitValue(data): void {
+    if (data.serviceName != "") {
+      this.service.serviceName = data.serviceName;
+    }
+    if (data.price != "") {
+      this.service.price = data.price;
+    }
+    if (data.description != "") {
+      this.service.description = data.description;
+    }
+    if (data.image != "") {
+      this.service.image = this.base64Image;
+    }
+    if (data.subName != "") {
+      this.service.subName = data.subName;
+    }
+    if(data.tags != ""){
+      this.service.tags = data.tags;
+    }
+    this.editService(this.service);
+    this.checkoutForm.reset();
+  }
+
+  public editService(service: Service): void {
+    this.subscriptions.push(this.allServicesService.editService(service).subscribe(res => {
+      this.service = res;
+    }));
+    this.base64Image = "";
+    this.isEdit = false;
+  }
+
   public subscribedCheck(): void {
     this.subscriptions.push(this.usersServicesService.getSubscriptionByCustomerAndServiceId(this.user.customer.id, this.serviceId).subscribe(res => {
       if (res != null) {
@@ -93,6 +146,24 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
         this.userSub = res;
       }
     }))
+  }
+
+  public handleFileSelect(evt): void {
+    let files = evt.target.files;
+    let file = files[0];
+
+    if (files && file) {
+      let reader = new FileReader();
+
+      reader.onload = this.handleReaderLoaded.bind(this);
+
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  public handleReaderLoaded(readerEvt): void {
+    let binaryString = readerEvt.target.result;
+    this.base64Image = btoa(binaryString);
   }
 
   public addReview(review): void {
@@ -115,6 +186,10 @@ export class ServiceDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.usersServicesService.deleteUserSub(this.userSub.id).subscribe(() => {
       this.subscribed = false;
     }));
+  }
+
+  formAction() {
+    this.isEdit = !this.isEdit;
   }
 
   ngOnDestroy(): void {

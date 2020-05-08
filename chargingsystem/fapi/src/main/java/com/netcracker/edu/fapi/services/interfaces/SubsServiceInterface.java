@@ -9,9 +9,13 @@ import java.util.List;
 public interface SubsServiceInterface {
     List<Subscription> getSubs();
 
+    List<Subscription> getServicesByTags(String tags);
+
     Subscription getServiceById(long serviceId);
 
     Subscription saveService(Subscription service) throws IOException;
+
+    Subscription editService(Subscription service) throws IOException;
 
     void deleteServiceById(long serviceId);
 

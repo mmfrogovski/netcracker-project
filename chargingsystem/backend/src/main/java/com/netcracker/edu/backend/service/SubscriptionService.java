@@ -46,6 +46,12 @@ public class SubscriptionService implements SubsServiceInterface {
     }
 
     @Override
+    public Subscription editService(Subscription service) {
+        subscriptionRepository.save(service);
+        return service;
+    }
+
+    @Override
     public void deleteServiceById(long serviceId) {
         subscriptionRepository.deleteById(serviceId);
     }
@@ -63,5 +69,10 @@ public class SubscriptionService implements SubsServiceInterface {
     @Override
     public Subscription getMostPopularSubscription() {
         return subscriptionRepository.getMostPopularSubscription();
+    }
+
+    @Override
+    public List<Subscription> getServicesByTags(String tags) {
+        return (List<Subscription>) subscriptionRepository.getSubscriptionsByTags(tags);
     }
 }

@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "all-services", component: AllServicesViewComponent},
   {path: "service-details/:id", component: ServiceDetailsComponent},
+  {path: "all-services/:search", component: AllServicesViewComponent},
   {path: "my-services", component: MyServicesComponent, canActivate:[LoginGuard]},
   {path: "registration", component: RegistrationComponent},
   {path: "profile", component: ProfileComponent, canActivate:[LoginGuard]},

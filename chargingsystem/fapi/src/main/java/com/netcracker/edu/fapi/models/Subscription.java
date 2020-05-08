@@ -8,17 +8,19 @@ public class Subscription {
     private int price;
     private String description;
     private String image;
+    private String tags;
 
     public Subscription() {
     }
 
-    public Subscription(long id, String serviceName, String subName, int price, String description, String image) {
+    public Subscription(long id, String serviceName, String subName, int price, String description, String image, String tags) {
         this.id = id;
         this.serviceName = serviceName;
         this.subName = subName;
         this.price = price;
         this.description = description;
         this.image = image;
+        this.tags = tags;
     }
 
     public long getId() {
@@ -70,6 +72,14 @@ public class Subscription {
         this.description = description;
     }
 
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Subscription{" +
@@ -79,6 +89,7 @@ public class Subscription {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", image=" + image +
+                ", tags=" + tags +
                 '}';
     }
 }

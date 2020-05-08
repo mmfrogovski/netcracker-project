@@ -18,7 +18,8 @@
             <input id="price" type="number" formControlName="price"/>
           </label>
         </div>
-        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Min price - 4.
+        <div class="invalid" *ngIf="checkoutForm.get('price').invalid && checkoutForm.get('price').touched">Min price -
+          4.
         </div>
         <div>
           <label for="subName">sub name
@@ -35,6 +36,15 @@
         </div>
         <div class="invalid" *ngIf="checkoutForm.get('description').invalid && checkoutForm.get('description').touched">
           Description is required.
+        </div>
+        <div>
+          <label for="tags">Tags
+            <input id="tags" type="text" formControlName="tags"/>
+          </label>
+        </div>
+        <div class="invalid"
+             *ngIf="checkoutForm.get('tags').invalid && checkoutForm.get('tags').touched">
+          Tags are required. #Example#Of#Tags
         </div>
         <div>
           <label for="image">Image
@@ -55,9 +65,19 @@
     </div>
   </div>
   <div class="content">
-    <div class="add-service" (click)="formAction()" *ngIf="user!=null && user.role==true">
-      <a>Add service</a>
+    <div class="top-selection">
+      <div class="items-per-page" (click)="isItemsPerPageShow()"> Items per page</div>
+      <ul *ngIf="isItemsPerPage">
+        <li (click)="changeConfig(2)">2</li>
+        <li (click)="changeConfig(4)">4</li>
+        <li (click)="changeConfig(6)">6</li>
+      </ul>
+      <div class="add-service" (click)="formAction()" *ngIf="user!=null && user.role==true">
+        <a>Add service</a>
+      </div>
     </div>
+    <div class="clear-top"></div>
+    <div class="not-found" *ngIf="notFound">Not Found {{search}}</div>
     <div class="articles" *ngFor="let item of services | paginate: config; let i=index">
       <div class="container" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + item.image + ')'}">
         <div class="delete_wrap" *ngIf="user!=null && user.role==true">
@@ -68,13 +88,14 @@
           <div class="anons">
             <h3>{{item.serviceName}}</h3>
             <p>{{item.description}}</p>
-            <div *ngIf="numberOfServiceSubscriptions[i+4*(pageNum-1)]">Number of subscribers: {{numberOfServiceSubscriptions[i+4*(pageNum-1)]-1}}</div>
+            <div *ngIf="numberOfServiceSubscriptions[i+itemsPP*(pageNum-1)]">Number of
+              subscribers: {{numberOfServiceSubscriptions[i + itemsPP * (pageNum - 1)] - 1}}</div>
           </div>
         </a>
       </div>
     </div>
     <div class="clear"></div>
-    <div class="pagination_wrap">
+    <div class="pagination_wrap" *ngIf="search==null">
       <pagination-controls (pageChange)="pageChanged($event)" class="pagination-control"></pagination-controls>
     </div>
   </div>

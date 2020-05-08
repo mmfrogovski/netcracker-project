@@ -1,10 +1,15 @@
 <div class="head-wrap">
   <header id="header" class="alt">
     <h1 id="logo"><a href="#">Charging System</a></h1>
+    <label for="search">
+      <input id="search" class="search" #inputValue />
+      <button class="find" (click)="Search(inputValue)"><img src="../../../../assets/images/magnifying-glass.png" alt="find"></button>
+    </label>
     <nav id="nav">
       <ul>
         <li [ngClass]="{active: page === 'http://localhost:4200/'}"><a href="#">Welcome</a></li>
-        <li [ngClass]="{active: page === 'http://localhost:4200/all-services'}"><a [routerLink]="['/all-services']">Services</a>
+        <li [ngClass]="{active: page === 'http://localhost:4200/all-services'}" (click)="reload()">
+          <a [routerLink]="['/all-services/']">Services</a>
         </li>
         <li *ngIf="isLoggedIn" [ngClass]="{active: page === 'http://localhost:4200/my-services'}"><a
           [routerLink]="['/my-services']">My

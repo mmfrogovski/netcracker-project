@@ -9,9 +9,13 @@ import java.util.Optional;
 public interface SubsServiceInterface {
     List<Subscription> getSubs();
 
+    List<Subscription> getServicesByTags(String tags);
+
     Optional<Subscription> getServiceById(long serviceId);
 
     Subscription saveService(Subscription Service);
+
+    Subscription editService(Subscription Service);
 
     void deleteServiceById(long id);
 

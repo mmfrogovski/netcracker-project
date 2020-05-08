@@ -17,7 +17,44 @@
   z-index: 10000;
 }
 
-#header form label{
+#search {
+  color: #050505;
+  position: absolute;
+  left: 15vw;
+  width: 13vw;
+  height: 1.8vw;
+  top: 2vw;
+  background-color: transparent;
+  border:none;
+  border-bottom: 2px solid #ffffff;
+  outline: none;
+  font-size: 1.5vw;
+}
+
+button.find{
+  position: absolute;
+  left: 28vw;
+  top:2vw;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+button.find:hover{
+  cursor: pointer;
+}
+
+button.find img:hover{
+  width: 2vw;
+}
+
+
+#search:focus{
+  color: #ffffff;
+  font-size: 1.5vw;
+}
+
+#header form label {
   margin-top: 2.5vw;
 }
 
@@ -161,7 +198,7 @@ a.close {
   right: -29rem;
 }
 
-img.close{
+img.close {
   border-radius: 100%;
   width: 9%;
   height: 100%;
@@ -231,9 +268,9 @@ form button:hover {
   border: solid 2px;
 }
 
-.invalid{
+.invalid {
   position: absolute;
-  color:red;
+  color: red;
   font-weight: 500;
   font-size: 1vw;
 }

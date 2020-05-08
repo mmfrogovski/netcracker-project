@@ -1,7 +1,8 @@
 body {
   width: 100%;
   height: auto;
-  background-image: url("../../../../assets/images/details-bg.jpg");
+  /*background-image: url("../../../../assets/images/details-bg.jpg");*/
+  background-image: url("../../../../assets/images/registration-bg.jpg");
   background-size: 100%, auto;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -14,15 +15,15 @@ body {
   height: 100px;
   background-color: #ffb128;
   margin-top: 2%;
+  border-radius: 2vw 2vw 0 0;
   margin-left: 11%;
-  padding: 1%;
+  padding: 0;
   text-align: center;
-
-  color: #ffffff;
+  color: black;
 }
 
 .banner h2 {
-  font-size: 1.5vw;
+  font-size: 3vw;
   font-weight: 600;
 }
 
@@ -36,6 +37,7 @@ body {
   color: white;
   font-size: 1.5vw;
   font-weight: 300;
+  border-radius: 0 0 2vw 2vw;
 }
 
 .service-wrap ul {
@@ -59,6 +61,11 @@ body {
 .service-wrap ul li a:hover {
   border: solid 1px;
   cursor: pointer;
+}
+
+.service-description{
+  width: 70%;
+  word-break: break-word;
 }
 
 .reviews {
@@ -181,6 +188,165 @@ div.details li.subscribe a:hover {
   top: 9%;
 }
 
+.add-service {
+  position: absolute;
+  right: 15vw;
+  top: 19vw;
+}
+
+.add-service a {
+  padding: 0.2vw;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5vw;
+  font-weight: 600;
+  border: solid 1px;
+}
+
+
+.add-service a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: solid 1px #ffffff;
+  cursor: pointer;
+}
+
+.add_service_form {
+  background-color: rgba(0, 0, 0, .25);
+  bottom: 0;
+  position: fixed;
+  justify-content: center;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.form_wrap {
+  align-self: center;
+  background-color: rgba(94, 7, 126, 0.8);
+  position: absolute;
+  bottom: 30%;
+  left: 30%;
+  border-radius: 0.1vw;
+  padding: 0.4vw;
+  width: 35vw;
+  height: auto;
+}
+
+label {
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+p, label {
+  line-height: 1em;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.form_wrap form {
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.form_wrap form input {
+  border-bottom: 1px solid #ffffff;
+  font-size: 1em;
+  height: 30px;
+  outline: none;
+}
+
+.form_wrap form input[type="text"] {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid 2px #ffffff;
+}
+
+.form_wrap form input[type="number"] {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid 2px #ffffff;
+}
+
+.form_wrap form input[type="password"] {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: solid 2px #ffffff;
+}
+
+.form_wrap form input:focus {
+  color: #fff;
+}
+
+.form_wrap form button[type="submit"] {
+  border-radius: 3px;
+  border: transparent;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: 600;
+  font-size: 1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 30%;
+  height: 50px;
+  margin-top: 1.3vw;
+  margin-left: 33%;
+}
+
+.form_wrap form button[type="submit"]:hover {
+  background-color: #d44179;
+}
+
+.form_wrap form button[type="submit"]:disabled {
+  background-color: #d43a44;
+}
+
+.form_wrap form button[type="submit"]:disabled:hover {
+  background-color: #d42625;
+}
+
+
+.invalid {
+  color: red;
+  font-size: 1.3vw;
+}
+
+div.close_wrap {
+  position: absolute;
+  top: 0;
+  right: -29rem;
+}
+
+.postImage img {
+  width: 150px;
+}
+
+img.close {
+  position: relative;
+  z-index: 100;
+  border-radius: 100%;
+  width: 9%;
+  height: 100%;
+}
+
+img.close:hover {
+  cursor: pointer;
+  background-color: #7c8081;
+}
+
+.close:hover {
+  background-color: #596982;
+  cursor: pointer;
+}
+
 .add-review-wrap form button {
   color: #ffffff;
   font-weight: 400;
@@ -199,3 +365,6 @@ div.details li.subscribe a:hover {
   background-color: #b22222;
 }
 
+.description{
+  height: 10vw;
+}

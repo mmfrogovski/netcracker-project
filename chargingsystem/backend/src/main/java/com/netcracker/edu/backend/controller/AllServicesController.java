@@ -41,9 +41,19 @@ public class AllServicesController {
         return subsService.saveService(service);
     }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public Subscription editService(@RequestBody Subscription service) {
+        return subsService.editService(service);
+    }
+
     @RequestMapping(value = "/{serviceId}", method = RequestMethod.DELETE)
     public void deleteServiceById(@PathVariable(name = "serviceId") long id) {
         subsService.deleteServiceById(id);
+    }
+
+    @GetMapping(value = "/search/{tags}")
+    public List<Subscription> getServicesByTags(@PathVariable(name = "tags") String tags){
+        return subsService.getServicesByTags(tags);
     }
 
     @GetMapping(value = "/mostPopular")

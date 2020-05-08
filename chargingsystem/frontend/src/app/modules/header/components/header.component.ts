@@ -6,6 +6,8 @@ import {Subscription} from "rxjs";
 import {StorageService} from "../../../services/storage-service/storage-service";
 import {ToastrService} from "ngx-toastr";
 import {EventService} from "../../../services/eventService/event.service";
+import {stringify} from "querystring";
+import {Router} from "@angular/router";
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({
@@ -29,7 +31,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private usersService: UsersServiceService,
               private storageService: StorageService,
               private toastr: ToastrService,
-              private eventService: EventService) {
+              private eventService: EventService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -83,6 +86,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isPopup = !this.isPopup;
   }
 
+  public Search(inputValue: HTMLInputElement):void {
+    if(inputValue.value != ""){
+      if(!this.hasStr(this.page)){
+        this.router.navigate(['/all-services/', {search: inputValue.value}]);
+      }
+      else {
+        window.location.replace('/all-services/'+ inputValue.value);
+      }
+    }
+  }
+
+  public hasStr(str: string):boolean{
+    return str.includes("http://localhost:4200/all-services");
+  }
+
+  public reload() {
+      window.location.reload();
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

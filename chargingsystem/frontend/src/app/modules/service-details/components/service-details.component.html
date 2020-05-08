@@ -4,21 +4,95 @@
   <div class="content">
     <div class="banner">
       <h2 *ngIf="service.serviceName != null">{{service.serviceName}}</h2>
-      <p class="date">{{date|date}}</p>
+<!--      <p class="date">{{date|date}}</p>-->
+    </div>
+    <div class="add-service" (click)="formAction()" *ngIf="user!=null && user.role==true">
+      <a>Edit service</a>
     </div>
     <div class="service-wrap">
       <div class="description">
-        <h2>Service description</h2>
-        <p>{{service.description}}</p>
+        <div class="add_service_form" *ngIf="isEdit">
+          <div class="form_wrap">
+            <div (click)="formAction()" class="close_wrap"><img
+              src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img">
+            </div>
+            <form method="post" [formGroup]="checkoutServiceForm" (ngSubmit)="onSubmitValue(checkoutServiceForm.value)">
+              <div>
+                <label for="serviceName">Service Name
+                  <input id="serviceName" type="text" formControlName="serviceName"/>
+                </label>
+              </div>
+              <div class="invalid"
+                   *ngIf="checkoutServiceForm.get('serviceName').invalid && checkoutServiceForm.get('serviceName').touched">
+                Service Name is required.
+              </div>
+              <div>
+                <label for="price">Price
+                  <input id="price" type="number" formControlName="price"/>
+                </label>
+              </div>
+              <div class="invalid" *ngIf="checkoutServiceForm.get('price').invalid && checkoutServiceForm.get('price').touched">Min
+                price -
+                4.
+              </div>
+              <div>
+                <label for="subName">sub name
+                  <input id="subName" type="text" formControlName="subName"/>
+                </label>
+              </div>
+              <div class="invalid" *ngIf="checkoutServiceForm.get('subName').invalid && checkoutServiceForm.get('subName').touched">
+                Sub Name
+                is required.
+              </div>
+              <div>
+                <label for="description">Description
+                  <input id="description" type="text" formControlName="description"/>
+                </label>
+              </div>
+              <div class="invalid"
+                   *ngIf="checkoutServiceForm.get('description').invalid && checkoutServiceForm.get('description').touched">
+                Description is required.
+              </div>
+              <div>
+                <label for="tags">Tags
+                  <input id="tags" type="text" formControlName="tags"/>
+                </label>
+              </div>
+              <div class="invalid"
+                   *ngIf="checkoutServiceForm.get('tags').invalid && checkoutServiceForm.get('tags').touched">
+                #Example#Of#Tags
+              </div>
+              <div>
+                <label for="image">Image
+                  <input type="file" accept="image/*" formControlName="image" id="image"
+                         (change)="handleFileSelect($event)"/>
+                </label>
+              </div>
+              <div class="postImage">
+                <img src="data:image/png;base64,{{base64Image}}" alt="img"/>
+              </div>
+              <div class="invalid" *ngIf="checkoutServiceForm.get('image').invalid && checkoutServiceForm.get('image').touched">Image
+                is
+                required.
+              </div>
+              <div class="send_service">
+                <button class="button" type="submit" [disabled]="!checkoutServiceForm.valid">Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <p class="service-description">{{service.description}}</p>
       </div>
       <div class="details">
         <ul>
           <li>Price: {{service.price}} / $day</li>
           <li>Name: {{service.subName}}</li>
           <li class="subscribe" *ngIf="!subscribed && user!=null"><a (click)="subscribeToService()">Subscribe</a></li>
-          <li class="subscribe" *ngIf="subscribed && user!=null"><a (click)="unsubscribeFromService()">Unsubscribe</a></li>
+          <li class="subscribe" *ngIf="subscribed && user!=null"><a (click)="unsubscribeFromService()">Unsubscribe</a>
+          </li>
         </ul>
       </div>
+      <div class="tags">{{service.tags}}</div>
     </div>
     <div class="reviews">
       <h3>Reviews</h3>
@@ -30,8 +104,11 @@
               <textarea id="review" type="text" formControlName="review"></textarea>
             </label>
             <button class="button" type="submit" [disabled]="!checkoutForm.valid">Add</button>
-            <button class="button" (click)="addReviewShow()"><img src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/></button>
-            <div class="invalid" *ngIf="checkoutForm.get('review').invalid && checkoutForm.get('review').touched">Review can't be empty and max number of symbols is 255.
+            <button class="button" (click)="addReviewShow()"><img
+              src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/>
+            </button>
+            <div class="invalid" *ngIf="checkoutForm.get('review').invalid && checkoutForm.get('review').touched">Review
+              can't be empty and max number of symbols is 255.
             </div>
           </div>
         </form>

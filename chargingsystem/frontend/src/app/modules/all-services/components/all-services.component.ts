@@ -5,8 +5,7 @@ import {Service} from "../../../models/service";
 import {AllServicesService} from "../../../services/all-services/all-services.service";
 import {User} from "../../../models/user";
 import {StorageService} from "../../../services/storage-service/storage-service";
-import {UsersServiceService} from "../../../services/users-service/users-service.service";
-import {UserSub} from "../../../models/user-sub";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-all-services',
@@ -22,16 +21,19 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   public base64Image: string;
   public config: any;
   public date: Date = new Date();
-  public newSubscription: UserSub = new UserSub();
+  public search: string = "";
+  public notFound: boolean = false;
   public numberOfServiceSubscriptions: number[] = [];
   public services: Service[] = [];
   private subscriptions: Subscription[] = [];
   public pageNum: number = 1;
+  public isItemsPerPage: boolean = false;
+  public itemsPP: number = 4;
 
   constructor(private allServicesService: AllServicesService,
               private formBuilder: FormBuilder,
               private storageService: StorageService,
-              private usersServicesService: UsersServiceService) {
+              private route: ActivatedRoute) {
     this.config = {
       itemsPerPage: 4,
       currentPage: 1,
@@ -41,6 +43,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.storageService.getCurrentUser();
+    this.search = this.route.snapshot.paramMap.get('search');
     this.loadPage(0, 4);
     this.getNumberOfServiceSub();
     this.checkoutForm = this.formBuilder.group({
@@ -58,6 +61,10 @@ export class AllServicesComponent implements OnInit, OnDestroy {
       description: new FormControl('', [
         Validators.required
       ]),
+      tags: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(255)
+      ]),
       image: new FormControl('', [
         Validators.required
       ])
@@ -66,7 +73,7 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   public pageChanged(event): void {
     this.config.currentPage = event;
-    this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1, 4).subscribe(
+    this.subscriptions.push(this.allServicesService.getServicePage(parseFloat(event) - 1, this.config.itemsPerPage).subscribe(
       res => {
         this.services = res.content;
         this.pageNum = parseFloat(this.config.currentPage);
@@ -97,10 +104,14 @@ export class AllServicesComponent implements OnInit, OnDestroy {
   }
 
   private loadPage(page: number, size: number) {
-    this.subscriptions.push(this.allServicesService.getServicePage(page, size).subscribe(page => {
-      this.services = page.content;
-      this.config.totalItems = page.totalElements;
-    }));
+    if (this.search == null) {
+      this.subscriptions.push(this.allServicesService.getServicePage(page, size).subscribe(page => {
+        this.services = page.content;
+        this.config.totalItems = page.totalElements;
+      }));
+    } else {
+      this.loadServicesByTags(this.search);
+    }
   }
 
   public onSubmit(data): void {
@@ -134,8 +145,24 @@ export class AllServicesComponent implements OnInit, OnDestroy {
 
   }
 
+  public loadServicesByTags(tags: string) {
+    this.allServicesService.getServicesByTags(tags).subscribe(res => {
+      this.services = res;
+      this.notFound = res[0] == undefined;
+    })
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  isItemsPerPageShow() {
+    this.isItemsPerPage = !this.isItemsPerPage;
+  }
+
+  changeConfig(itemsPerPage: number) {
+    this.config.itemsPerPage = itemsPerPage;
+    this.itemsPP = itemsPerPage;
+    this.loadPage(0, this.config.itemsPerPage);
+  }
 }
