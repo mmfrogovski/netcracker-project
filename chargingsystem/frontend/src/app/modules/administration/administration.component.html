@@ -1,0 +1,14 @@
+<app-header></app-header>
+<body>
+<div class="content">
+  <ul class="head"><li>#Id</li><li>UserName</li><li>E-mail</li><li>Resources</li></ul>
+  <ul class="head" *ngFor="let user of users">
+    <li>{{user.customer.id}}</li>
+    <li>{{user.customer.name}}</li>
+    <li>{{user.customer.email}}</li>
+    <li>{{user.customer.billingAccount.resources}}$</li>
+  </ul>
+</div>
+<app-footer></app-footer>
+</body>
+

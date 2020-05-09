@@ -21,4 +21,8 @@ export class LoginGuard implements CanActivate {
     }
   }
 
+  canAdministrate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
+    return this.strorageService.getCurrentUser().role;
+  }
+
 }

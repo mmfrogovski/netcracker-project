@@ -2,9 +2,11 @@
 
 <section id="footer">
   <div class="copyright_wrap">
+    <div class="administration" *ngIf="user.role"><a [routerLink]="['/administration']">Administration</a></div>
     <ul class="copyright">
       <li>&copy; ChargingSystem</li>
       <li>Design: <a href="#">Rogovskiy Vladislav</a></li>
+      <li><a href="#">Petrik Sergey</a></li>
     </ul>
   </div>
 </section>

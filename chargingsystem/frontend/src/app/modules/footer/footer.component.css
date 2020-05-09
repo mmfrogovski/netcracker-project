@@ -67,5 +67,20 @@ ul.copyright{
   padding: 0;
 }
 
+div.administration{
+  font-size: 1.6vw;
+}
+
+div.administration a{
+  color: #efebeb;
+  border: 1px solid;
+  padding: 0.3vw;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+div.administration a:hover {
+  background-color: rgba(255,255,255, 0.2);
+}
 
 

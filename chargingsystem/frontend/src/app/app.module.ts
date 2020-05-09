@@ -23,6 +23,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {APIInterceptor} from "./interceptors/api-interceptor";
 import {NotFoundComponent} from './modules/404/not-found/not-found.component';
+import { AdministrationComponent } from './modules/administration/administration.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {NotFoundComponent} from './modules/404/not-found/not-found.component';
     RegistrationComponent,
     ProfileComponent,
     NotFoundComponent,
+    AdministrationComponent,
   ],
   imports: [
     BrowserModule,

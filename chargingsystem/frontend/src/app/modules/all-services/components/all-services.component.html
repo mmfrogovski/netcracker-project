@@ -88,7 +88,7 @@
           <div class="anons">
             <h3>{{item.serviceName}}</h3>
             <p>{{item.description}}</p>
-            <div *ngIf="numberOfServiceSubscriptions[i+itemsPP*(pageNum-1)]">Number of
+            <div *ngIf="numberOfServiceSubscriptions[i+itemsPP*(pageNum-1)] && search==null">Number of
               subscribers: {{numberOfServiceSubscriptions[i + itemsPP * (pageNum - 1)] - 1}}</div>
           </div>
         </a>

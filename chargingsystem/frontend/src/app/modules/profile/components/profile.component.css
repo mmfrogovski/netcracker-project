@@ -1,31 +1,25 @@
 body {
+  position: absolute;
   width: 100%;
   height: auto;
   /*background-image: url("../../../../assets/images/my-services-bg.jpg");*/
   background-image: url("../../../../assets/images/registration-bg.jpg");
-  background-size: 100%, auto;
+  background-size: 100%, 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
   padding-top: 5.5em;
 }
 
 .content {
-  width: 100%;
+  width: 99%;
   height: 34vw;
-  margin: 1vw auto;
+  margin: 2vw auto;
   padding: 0;
 }
 
-.services_info{
-  overflow-y: scroll;
-  overflow: hidden;
-}
-
-
-
 .profile {
   width: 78%;
-  height: 30vw;
+  height: 32vw;
   background-color: rgba(0, 0, 0, 0.3);
   margin-left: 11%;
   color: #ffffff;
@@ -78,13 +72,14 @@ body {
 
 img.close {
   border-radius: 100%;
-  width: 9%;
+  width: 8%;
+  right: 0.1vw;
   height: 100%;
 }
 
 img.close:hover {
   cursor: pointer;
-  background-color: #7c8081;
+  width: 9%;
 }
 
 div.add-resources button{
@@ -124,10 +119,12 @@ div.add-resources{
 }
 
 div.add-resources input{
+  overflow-y: hidden;
   height: 2vw;
   width: 50%;
   background:none;
   border: none;
+  outline: none;
   color:#ffffff;
   font-size: 1.5vw;
   border-bottom: 2px solid #ffffff;
@@ -137,12 +134,12 @@ div.add-resources input{
 div.add-resources form{
   height: 4vw;
   align-self: center;
-  background-color: rgba(32, 0, 126, 0.8);
+  background-color: rgba(94, 7, 126, 1);
   position: absolute;
   bottom: 50%;
   border: none;
   left: 30%;
-  border-radius: 0.1vw;
+  border-radius: 0.5vw;
   padding: 0.4vw;
   width: 40vw;
 }
@@ -172,16 +169,61 @@ div.settings{
 }
 
 div.settings form{
-  height: auto;
   align-self: center;
-  background-color: rgba(32, 0, 126, 0.8);
+  background-color: rgba(94, 7, 126, 1);
   position: absolute;
   bottom: 30%;
-  border: none;
   left: 30%;
-  border-radius: 0.1vw;
-  padding: 0.4vw;
-  width: 40vw;
+  border-radius: 0.5vw;
+  padding: 1.4vw;
+  width: 35vw;
+  height: auto;
+}
+
+div.settings form label{
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+div.settings form p, label {
+  line-height: 1.5em;
+  color: #ffffff;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+div.settings input{
+  background-color: transparent;
+  width: 100%;
+  position: relative;
+  border:none;
+  color: #ffffff;
+  font-size: 1.2vw;
+  border-bottom: 2px solid #ffffff;
+  outline: none;
+}
+
+div.settings button{
+  border: transparent;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: 600;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 30%;
+  height: 3vw;
+  margin-top: 1.3vw;
+  margin-left: 33%;
+}
+
+.edit{
+  position: relative;
+  left: 2.5vw;
 }
 
 .postImage img{
@@ -190,8 +232,10 @@ div.settings form{
 
 div.close_wrap_img{
   position: absolute;
-  right: -29vw;
+  right: -27vw;
+  top: 0.1vw;
 }
+
 
 .postImage img{
   width: 150px;

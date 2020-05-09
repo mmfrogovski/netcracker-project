@@ -7,7 +7,9 @@ import {MyServicesComponent} from "./modules/my-services/components/my-services.
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
 import {ProfileComponent} from "./modules/profile/components/profile.component";
 import {NotFoundComponent} from "./modules/404/not-found/not-found.component";
-import {LoginGuard} from "./services/login-guard/login.guard";
+import {LoginGuard} from "./services/guard/login.guard";
+import {AdministrationComponent} from "./modules/administration/administration.component";
+import {AdminGuard} from "./services/guard/admin.guard";
 
 
 const routes: Routes = [
@@ -19,6 +21,7 @@ const routes: Routes = [
   {path: "my-services", component: MyServicesComponent, canActivate:[LoginGuard]},
   {path: "registration", component: RegistrationComponent},
   {path: "profile", component: ProfileComponent, canActivate:[LoginGuard]},
+  {path: "administration", component: AdministrationComponent, canActivate:[AdminGuard]},
   {path: "**", component:NotFoundComponent}
 ];
 

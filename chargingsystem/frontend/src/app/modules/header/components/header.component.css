@@ -173,11 +173,11 @@ div.overlay {
 
 div.overlay > div.login-wrapper {
   align-self: center;
-  background-color: rgba(32, 0, 126, 0.8);
+  background-color: rgba(94, 7, 126, 1);
   position: absolute;
   bottom: 30%;
   left: 30%;
-  border-radius: 0.1vw;
+  border-radius: 0.5vw;
   padding: 0.4vw;
   width: 35vw;
 }
@@ -195,18 +195,18 @@ a.close {
   padding: 0.2vw 0.7vw;
   position: absolute;
   top: 0;
-  right: -29rem;
+  right: -30rem;
 }
 
 img.close {
   border-radius: 100%;
-  width: 9%;
+  width: 8%;
   height: 100%;
 }
 
 img.close:hover {
   cursor: pointer;
-  background-color: #7c8081;
+  width: 9%;
 }
 
 .login-wrapper form label {
@@ -226,12 +226,12 @@ img.close:hover {
 .login-wrapper form textarea {
   background-color: transparent;
   border: none;
-  border-bottom: solid 1px #ffffff;
+  border-bottom: solid 2px #ffffff;
   display: block;
-  font-size: 1vw;
+  font-size: 1.5vw;
   margin: .4vw 0 1vw 0;
-  padding: .7em .55em;
-  width: 90%;
+  width: 100%;
+  outline: none;
 }
 
 .login-wrapper form input[type="text"]:focus,
@@ -246,12 +246,13 @@ img.close:hover {
 
 
 form button {
-  margin: 2.1vw;
+  margin: 2.1vw 1vw 0 4vw;
   background-color: #6dc2ff;
   border: solid 2px transparent;
   color: rgb(255, 255, 255);
   font-size: 1.5em;
-  padding: .55em .9em;
+  font-weight: bold;
+  padding: .3em .9em;
   cursor: pointer;
 }
 
