@@ -177,7 +177,7 @@ div.details li.subscribe a:hover {
   font-size: 1.5vw;
 }
 
-.add-review-wrap form div button img {
+.add-review-wrap form div button svg {
   width: 3vw;
   height: auto;
 }
@@ -223,11 +223,11 @@ div.details li.subscribe a:hover {
 
 .form_wrap {
   align-self: center;
-  background-color: rgba(94, 7, 126, 0.8);
+  background-color: rgba(94, 7, 126, 1);
   position: absolute;
   bottom: 30%;
   left: 30%;
-  border-radius: 0.1vw;
+  border-radius: 0.5vw;
   padding: 0.4vw;
   width: 35vw;
   height: auto;
@@ -322,29 +322,19 @@ p, label {
 div.close_wrap {
   position: absolute;
   top: 0;
-  right: -29rem;
+  right: 0;
+}
+
+div.close_wrap svg{
+  color: #7c8081;
+}
+
+div.close_wrap svg:hover{
+  color: #ffffff;
 }
 
 .postImage img {
   width: 150px;
-}
-
-img.close {
-  position: relative;
-  z-index: 100;
-  border-radius: 100%;
-  width: 9%;
-  height: 100%;
-}
-
-img.close:hover {
-  cursor: pointer;
-  background-color: #7c8081;
-}
-
-.close:hover {
-  background-color: #596982;
-  cursor: pointer;
 }
 
 .add-review-wrap form button {

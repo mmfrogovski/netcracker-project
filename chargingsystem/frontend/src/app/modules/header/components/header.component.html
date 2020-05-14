@@ -2,8 +2,9 @@
   <header id="header" class="alt">
     <h1 id="logo"><a href="#">Charging System</a></h1>
     <label for="search">
-      <input id="search" class="search" #inputValue />
-      <button class="find" (click)="Search(inputValue)"><img src="../../../../assets/images/magnifying-glass.png" alt="find"></button>
+      <input id="search" class="search" #inputValue/>
+      <button class="find" (click)="Search(inputValue)"><img src="../../../../assets/images/magnifying-glass.png"
+                                                             alt="find"></button>
     </label>
     <nav id="nav">
       <ul>
@@ -21,15 +22,24 @@
         <div class="overlay" *ngIf="isPopup">
           <div class="login-wrapper">
             <div class="login-content">
-              <a class="close" (click)="showLogin()"><img
-                src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close"
-                alt="close-img"/></a>
+              <a class="close" (click)="showLogin()">
+                <svg class="bi bi-x" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                        d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                        clip-rule="evenodd"/>
+                  <path fill-rule="evenodd"
+                        d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                        clip-rule="evenodd"/>
+                </svg>
+              </a>
               <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
                 <label for="username">
                   Login:
                   <input type="text" name="username" id="username" formControlName="username"/>
                 </label>
-                <div class="invalid" *ngIf="checkoutForm.get('username').invalid && checkoutForm.get('username').touched">
+                <div class="invalid"
+                     *ngIf="checkoutForm.get('username').invalid && checkoutForm.get('username').touched">
                   Invalid login.
                   Login must have 4-16 symbols.
                 </div>

@@ -51,6 +51,10 @@ export class UsersServiceService {
     return this.http.get<User>(this.constUrls.backendUrlUsers + login + '/' + password);
   }
 
+  public deleteUserById(id:number):Observable<void>{
+    return this.http.delete<void>(this.constUrls.backendUrlCustomers+id);
+  }
+
   public getSubscriptionByCustomerAndServiceId(customerId: number, serviceId: number): Observable<UserSub> {
     return this.http.get<UserSub>(this.constUrls.backendUrlUsersSubs + 'customer/' + customerId + '/service/' + serviceId);
   }

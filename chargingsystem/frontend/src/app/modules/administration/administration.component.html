@@ -1,12 +1,17 @@
 <app-header></app-header>
 <body>
 <div class="content">
-  <ul class="head"><li>#Id</li><li>UserName</li><li>E-mail</li><li>Resources</li></ul>
-  <ul class="head" *ngFor="let user of users">
-    <li>{{user.customer.id}}</li>
-    <li>{{user.customer.name}}</li>
-    <li>{{user.customer.email}}</li>
-    <li>{{user.customer.billingAccount.resources}}$</li>
+  <ul class="head">
+    <li class="head_id">#Id</li>
+    <li class="head_name">UserName</li>
+    <li class="head_email">E-mail</li>
+    <li class="head_res">Resources</li><li></li></ul>
+  <ul class="head" *ngFor="let user of users; index as i">
+    <li class="user_id">{{user.customer.id}}</li>
+    <li class="user_name">{{user.customer.name}}</li>
+    <li class="user_email">{{user.customer.email}}</li>
+    <li class="user_res">{{user.customer.billingAccount.resources}}$ </li>
+    <li><button class="delete_btn" (click)="deleteUser(user.customer.id, i)">Delete</button></li>
   </ul>
 </div>
 <app-footer></app-footer>

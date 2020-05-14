@@ -28,6 +28,11 @@ export class AdministrationComponent implements OnInit, OnDestroy {
     }));
   }
 
+  public deleteUser(id: number, i: number):void{
+    this.usersService.deleteUserById(id).subscribe();
+    this.users.splice(i, 1);
+  }
+
   public deleteFake(): void {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].id == 3) {

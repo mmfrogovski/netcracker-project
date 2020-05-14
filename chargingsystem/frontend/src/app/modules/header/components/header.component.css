@@ -195,18 +195,17 @@ a.close {
   padding: 0.2vw 0.7vw;
   position: absolute;
   top: 0;
-  right: -30rem;
+  right: -0.5vw;
 }
 
-img.close {
+a.close svg{
   border-radius: 100%;
-  width: 8%;
-  height: 100%;
+  color: #7c8081;
 }
 
-img.close:hover {
+a.close svg:hover {
   cursor: pointer;
-  width: 9%;
+  color: #ffffff;
 }
 
 .login-wrapper form label {

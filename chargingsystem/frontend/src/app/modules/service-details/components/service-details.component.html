@@ -13,8 +13,16 @@
       <div class="description">
         <div class="add_service_form" *ngIf="isEdit">
           <div class="form_wrap">
-            <div (click)="formAction()" class="close_wrap"><img
-              src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img">
+            <div (click)="formAction()" class="close_wrap">
+              <svg class="bi bi-x" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                      clip-rule="evenodd"/>
+                <path fill-rule="evenodd"
+                      d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                      clip-rule="evenodd"/>
+              </svg>
             </div>
             <form method="post" [formGroup]="checkoutServiceForm" (ngSubmit)="onSubmitValue(checkoutServiceForm.value)">
               <div>
@@ -104,8 +112,16 @@
               <textarea id="review" type="text" formControlName="review"></textarea>
             </label>
             <button class="button" type="submit" [disabled]="!checkoutForm.valid">Add</button>
-            <button class="button" (click)="addReviewShow()"><img
-              src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"/>
+            <button class="button" (click)="addReviewShow()">
+              <svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                      clip-rule="evenodd"/>
+                <path fill-rule="evenodd"
+                      d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                      clip-rule="evenodd"/>
+              </svg>
             </button>
             <div class="invalid" *ngIf="checkoutForm.get('review').invalid && checkoutForm.get('review').touched">Review
               can't be empty and max number of symbols is 255.

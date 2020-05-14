@@ -2,8 +2,17 @@
 <div class="wrapper">
   <div class="add_service_form" *ngIf="isPopup==true">
     <div class="form_wrap">
-      <div (click)="formAction()" class="close_wrap"><img
-        src="https://icon-library.net/images/close-icon-png/close-icon-png-22.jpg" class="close" alt="close-img"></div>
+      <div (click)="formAction()" class="close_wrap">
+        <svg class="bi bi-x" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor"
+             xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                clip-rule="evenodd"/>
+          <path fill-rule="evenodd"
+                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                clip-rule="evenodd"/>
+        </svg>
+      </div>
       <form method="post" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
         <div>
           <label for="serviceName">Service Name
@@ -81,8 +90,17 @@
     <div class="articles" *ngFor="let item of services | paginate: config; let i=index">
       <div class="container" [ngStyle]="{'background-image': 'url(data:image/png;base64,' + item.image + ')'}">
         <div class="delete_wrap" *ngIf="user!=null && user.role==true">
-          <button type="submit" (click)="deleteService(item)"><img
-            src="http://cdn.onlinewebfonts.com/svg/img_116511.png" alt="delete" class="delete"/></button>
+          <button type="submit" (click)="deleteService(item)">
+            <svg class="bi bi-x-circle" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+                    clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                    clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                    clip-rule="evenodd"/>
+            </svg>
+          </button>
         </div>
         <a [routerLink]="['/service-details/' + item.id]">
           <div class="anons">

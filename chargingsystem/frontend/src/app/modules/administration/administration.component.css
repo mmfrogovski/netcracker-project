@@ -11,13 +11,13 @@ body {
 
 .content {
   width: 100%;
-  height: 34vw;
+  height: 35vw;
   border-top: 1px solid #ffffff;
   margin: 1vw auto;
   padding: 0;
 }
 
-.head{
+.head {
   margin: 1vw 20% 0 20%;
   color: #ffffff;
   border-bottom: 1px solid #ffffff;
@@ -25,10 +25,69 @@ body {
   justify-content: space-between;
 }
 
-.head li{
-  width: 14%;
+.head li {
   display: inline-block;
   font-size: 1.3vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 400;
   text-align: left;
 }
+
+.head li.user_id{
+  width: 3vw;
+}
+
+.head li.user_name{
+  width: 10vw;
+}
+
+.head li.user_email{
+  width: 15vw;
+}
+
+.head li.user_res{
+  width: 4vw;
+  text-align: right;
+}
+
+.head li.head_id{
+  width: 2vw;
+}
+
+.head li.head_name{
+  width: 10vw;
+}
+
+.head li.head_email{
+  width: 16vw;
+}
+
+.head li.head_res{
+  width: 7vw;
+}
+
+
+
+.head li:hover{
+  overflow: visible;
+
+}
+
+.delete_btn {
+  background: transparent;
+  font-size: 1.2vw;
+  color: #ffffff;
+}
+
+.delete_btn:hover {
+  background: rgba(255,255,255, 0.4);
+}
+
+.delete {
+  position: relative;
+  left: auto;
+}
+
+

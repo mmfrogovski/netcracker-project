@@ -111,6 +111,7 @@ body {
 .add-service {
   position: absolute;
   right: 15vw;
+  margin-top: 0;
 }
 
 .add-service a {
@@ -131,7 +132,7 @@ body {
 
 
 div.delete_wrap {
-  width: 4%;
+  width: 5%;
   position: absolute;
 }
 
@@ -140,15 +141,12 @@ div.delete_wrap button {
   border: none;
 }
 
-
-img.delete:hover {
-  background-color: red;
+div.delete_wrap svg{
+  color: #7c8081;
 }
 
-img.delete {
-  border-radius: 100%;
-  background-color: transparent;
-  width: 100%;
+div.delete_wrap svg:hover{
+  color: #c51900;
 }
 
 .add_service_form {
@@ -263,25 +261,21 @@ p, label {
 div.close_wrap {
   position: absolute;
   top: 0;
-  right: -29rem;
+  right: 0;
 }
 
 .postImage img {
   width: 150px;
 }
 
-img.close {
-  position: relative;
-  z-index: 100;
+.close_wrap svg{
   border-radius: 100%;
-  width: 8%;
-  height: 100%;
+  color: #7c8081;
 }
 
-img.close:hover {
+.close_wrap svg:hover {
   cursor: pointer;
-  transition: 0.1s;
-  width: 9%;
+  color: #ffffff;
 }
 
 
@@ -292,6 +286,7 @@ img.close:hover {
 }
 
 .pagination_wrap {
+  margin-top: 0;
   width: auto;
   margin-left: 15%;
   margin-right: 32%;
@@ -304,10 +299,12 @@ div.items-per-page {
   padding: 0.2vw;
   text-decoration: none;
   color: #ffffff;
-  font-size: 1.5vw;
+  font-size: 1.6vw;
   font-weight: 600;
   border: solid 1px;
 }
+
+
 
 div.items-per-page:hover{
   background-color: rgba(255, 255, 255, 0.2);
@@ -316,6 +313,7 @@ div.items-per-page:hover{
 }
 
 div.top-selection ul{
+  margin-top: 0;
   position: absolute;
   z-index: 2000;
   width: 200px;
@@ -355,6 +353,10 @@ div.top-selection div{
   background-color: rgba(255, 255, 255, 0.2);
   border: solid 1px #ffffff;
   cursor: pointer;
+}
+
+.top-selection ul li:last-child{
+  border-bottom: none;
 }
 
 div.not-found{
