@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
-import {Service} from "../../models/service";
 import {UserSub} from "../../models/user-sub";
 import {LoginModel} from "../../models/login-model";
 
@@ -16,7 +15,6 @@ export class EventService {
 
   public onRegistrUser: Subject<LoginModel> = new Subject<LoginModel>();
 
-
   public updatePrice(price: number): void {
     this.onUpdatePrice.next(price);
   }
@@ -25,7 +23,7 @@ export class EventService {
     this.onUpdateServiceStatus.next(services);
   }
 
-  public registrUser(login: LoginModel): void{
+  public registrUser(login: LoginModel): void {
     this.onRegistrUser.next(login);
   }
 }

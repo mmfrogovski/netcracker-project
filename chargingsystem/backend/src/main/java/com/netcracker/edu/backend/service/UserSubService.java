@@ -21,6 +21,28 @@ public class UserSubService implements UserSubInterface {
     @Autowired
     private BillingAccountService billingAccountService;
 
+    @Override
+    @Scheduled(fixedRate = 20000)
+    public void subDurationAdd() {
+        List<UserSubscription> userSubscriptions = (List<UserSubscription>) userSubscriptionRepository.findAll();
+        userSubscriptions.forEach(subscription -> {
+            if (subscription.isActive()) {
+                userSubscriptionRepository.updateSubDurationById(subscription.getId(), subscription.getSubDuration() + 1);
+                if (10 < subscription.getSubDuration()) {
+                    if (20 < subscription.getSubDuration()) {
+                        if (30 < subscription.getSubDuration()) {
+                            userSubscriptionRepository.updateDiscountById(subscription.getId(), 3);
+                        } else {
+                            userSubscriptionRepository.updateDiscountById(subscription.getId(), 2);
+                        }
+                    } else {
+                        userSubscriptionRepository.updateDiscountById(subscription.getId(), 1);
+                    }
+                }
+            }
+        });
+    }
+
 
     @Override
     public List<UserSubscription> getUsersSub() {
@@ -77,28 +99,6 @@ public class UserSubService implements UserSubInterface {
                 }
             }
         }
-    }
-
-    @Override
-    @Scheduled(fixedRate = 20000)
-    public void subDurationAdd() {
-        List<UserSubscription> userSubscriptions = (List<UserSubscription>) userSubscriptionRepository.findAll();
-        userSubscriptions.forEach(subscription -> {
-            if (subscription.isActive()) {
-                userSubscriptionRepository.updateSubDurationById(subscription.getId(), subscription.getSubDuration() + 1);
-                if (10 < subscription.getSubDuration()) {
-                    if (20 < subscription.getSubDuration()) {
-                        if (30 < subscription.getSubDuration()) {
-                            userSubscriptionRepository.updateDiscountById(subscription.getId(), 3);
-                        } else {
-                            userSubscriptionRepository.updateDiscountById(subscription.getId(), 2);
-                        }
-                    } else {
-                        userSubscriptionRepository.updateDiscountById(subscription.getId(), 1);
-                    }
-                }
-            }
-        });
     }
 
     @Override
